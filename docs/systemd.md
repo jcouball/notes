@@ -1,0 +1,240 @@
+# systemd
+
+
+
+Handles all system state and init stuff during bootup and after.
+
+More of a system manager than a service manager. It reacts to system level events.
+
+{:toc}
+
+## What is systemd made of?
+
+* systemctl
+* journalctl
+* init
+* Process management
+* Network management (networkd)
+* Login management (logind)
+* Logs (journald)
+* Etc.
+
+## Directory and files
+
+### Configuration files
+
+| Path         | Description                                          |
+| ------------ | ---------------------------------------------------- |
+| /etc/systemd | Contains configuration files for systemd components. |
+
+Not all systemd componets are used on every distribution. For instance, in RHEL **timesyncd** is not used.
+
+Configuration files typically list ALL possible configuration items. Most will be commented out. These commented out entries show the (compiled in) default values for each setting.
+
+Get help on a particlar setting using the `man` command. Use the string `systemd-{file}` to get help for the settings in a particular config file. For example `man systemd-system.conf`
+
+### Unit files
+
+| Path                      | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `/lib/systemd/system`     | The default location for unit files that either come with the operating system or come with any packages that you might install |
+| `/usr/lib/systemd/system` | Unit files from locally installed packages (e.g. via apt-get) |
+| `/run/systemd/system`     | Transient unit files that are generated                      |
+| `/etc/systemd/system`     | The location for user created unit files. Any unit files in this directory have have the same name as unit files in `/lib/systemd/system` take precedence. |
+
+A unit file is a plain text ini-style file that encodes information about a service, a socket, a device, a mount point, an automount point, a swap file or partition, a start-up target, a watched file system path, a timer controlled and supervised by systemd(1), a resource management slice or a group of externally created processes.
+
+Each file is a plain text file divided into sections, with configuration entries in the style key=value. Empty lines and lines starting with "#" or ";" are ignored, which may be used for commenting.
+
+See `man systemd.unit` for full documentation.
+
+### Executables
+
+| Path           | Description                                                  |
+| -------------- | ------------------------------------------------------------ |
+| `/lib/systemd` | Contains most of the systemd executables. There are symbolic links in either /bin or /usr/bin directories that point to some of the executable files here. |
+
+## Systemd units
+
+A thing that systemd manages. systemd can manage these type of things:
+
+| Unit Type          | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| service            | These are the configuration files for services. They replace the old-fashioned init scripts that we had on the old System V (SysV) systems. |
+| socket             | Sockets can either enable communication between different system services or they can automatically wake up a sleeping service when it receives a connection request. |
+| slice              | Slice units are used when configuring **cgroups**.           |
+| mount or automount | These contain mount point information for filesystems that are controlled by systemd. Normally, they get created automatically, so you shouldn't have to do too much with them. |
+| target             | Target units are used during system startup, for grouping units and for providing well-known synchronization points. Akin to named runlevels |
+| timer              | Timer units are for scheduling jobs that run on a schedule. They replace the old cron system. |
+| path               | Path units are for services that can be started via path-based activation. |
+| swap               | Swap units contain information about your swap partitions.   |
+| device             | Many system devices are automatically represented inside systemd by device units, which can be used to activate services when a given device exists in the file system. Device units are named after the `/sys/` and `/dev/` paths they control. |
+| scope              | Scopes units manage a set of system processes. Unlike service units, scope units manage externally created processes and do not fork off processes on its own. |
+
+A unit is described by options in a unit file. Unit file options are described by `man systend.unit`. This man page is an index that directs to the right man page for each parameter.
+
+### A minimal unit file
+
+```
+[Unit]
+Description=A very simple service created by James
+# bring up only after networking has come up
+After=network-up.target
+
+[Service]
+# the command for starting this service
+ExecStart=/usr/local/bin/myservice
+
+[Install]
+# this unit should be running in order to consider the multi-user unit to be considered up.
+WantedBy=multi-user.target
+```
+
+### Service unit file
+
+Service units are the equivalent of init scripts on the old SysV systems. Use them to configure services (aka *daemons*). A service can be pretty much anything that starts automatically and runs in the background.
+
+Service unit files are divided into three sections: `[Unit]`, `[Service]`, and `[Install]`. 
+
+| Section     | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| `[Unit]`    | The `[Unit]` section contains generic options about the unit that is not dependent on the type of unit. These options are documented by `man systemd.unit`.<br /><br />The most used options are `Description`, `Documentation`, and `After`. |
+| `[Service]` | The `[Service]` section contains options which can only be used in a service unit file. <br /><br />These options describe the service and the process it supervises. These options are documented by `man systemd.service`. |
+| `[Install]` | The `[Install]` section describes what happens when the unit is enabled or disabled. This section is not interpreted by `systemd` during runtime; it is used by the `enable` and `disable` commands of the `systemctl` during installation of a unit.<br /><br />These options are documented by `man systemd.unit`. |
+
+### Socket unit file
+
+### Path unit file
+
+## systemctl
+
+The **systemctl** utility is used to introspect and control the state of the **systemd** system and service manager.
+
+It is used to view units and their status and enable or disable units.
+
+Some **systemctl** commands (like those that change configuration) require root privileges.
+
+The default command if none is specified is `list-units`.
+
+### Unit commands
+
+| Command                                                      | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <a name="systemctl-list-units"></a>`list‑units`              | `list-units [PATTERN...]`<br /><br />List units that systemd currently has in memory.<br/>By default  only units which are active, have pending jobs, or have failed are shown.<br /><br />`--all` additionally shows units which are loaded but not active<br />`--type`,  `--scope`, `--state` can be used to filter the units shown |
+| <a name="systemctl-list-sockets"></a>`list‑sockets`          | `list-sockets [PATTERN...]`<br /><br />List socket units currently in memory, ordered by listening address. If one or more PATTERNs are specified, only socket units matching one of them are shown. |
+| <a name="systemctl-list-timers"></a>`list‑timers`            | `list-timers [PATTERN...]`<br /><br />List timer units currently in memory, ordered by the time they elapse next. If one or more PATTERNs are specified, only units matching one of them are shown. |
+| <a name="systemctl-start"></a>`start`                        | `start PATTERN...`<br /><br />Start (activate) one or more units specified on the command line. |
+| <a name="systemctl-stop"></a>`stop`                          | `stop PATTERN...`<br /><br/> Stop (deactivate) one or more units specified on the command line. |
+| <a name="systemctl-reload"></a>`reload`                      | `reload PATTERN...`<br /><br />Asks all units listed on the command line to reload their configuration. Note that this will reload the service-specific configuration, not the unit configuration file of systemd.<br /><br />If you want systemd to reload the configuration file of a unit, use the  `daemon-reload` command. |
+| <a name="systemctl-restart"></a>`restart`                    | `restart PATTERN...`<br/><br />Stop and then start one or more units specified on the command line. If the units are not running yet, they will be started. |
+| <a name="systemctl-try-restart"></a>`try‑restart`            | `try-restart PATTERN...`<br/><br />Stop and then start one or more units specified on the command line if the units are running. This does nothing if units are not running. |
+| <a name="systemctl-reload-or-restart"></a>`reload‑or‑restart` | `reload-or-restart PATTERN...`<br /><br/>Reload one or more units if they support it. If not, stop and then start them instead. If the units are not running yet, they will be started. |
+| <a name="systemctl-try-reload-or-restart"></a>`try‑reload‑or‑restart` | `try-reload-or-restart PATTERN...`<br /><br/>Reload one or more units if they support it. If not, stop and then start them instead. This does nothing if the units are not running. |
+| <a name="systemctl-isolate"></a>`isolate`                    | `isolate UNIT`<br/><br />Start the unit specified on the command line and its dependencies and stop all others, unless they have `IgnoreOnIsolate=yes`.<br /><br />If a unit name with no extension is given, an extension of ".target" will be assumed. |
+| <a name="systemctl-kill"></a>`kill`                          | `kill PATTERN...`<br /><br/>Send a signal to one or more processes of the unit. Use `--kill-who=` to select which process to kill. Use `--signal=` to select the signal to send. |
+| <a name="systemctl-freeze"></a>`freeze`                      | `freeze PATTERN...`<br /><br/>Freeze one or more units specified on the command line using cgroup freezer.<br /><br />Freezing the unit will cause all processes contained within the cgroup corresponding to the unit to be suspended. Being suspended means that unit's processes won't be scheduled to run on CPU until thawed.<br /><br />`freeze` is only supported on systems that use unified cgroup hierarchy. |
+| <a name="systemctl-thaw"></a>`thaw`                          | `thaw PATTERN...`<br /><br/>Thaw (unfreeze) one or more units specified on the command line.<br/><br/>This is the inverse operation to the freeze command and resumes the execution of processes in the unit's cgroup. |
+| <a name="systemctl-is-active"></a>`is‑active`                | `is-active PATTERN...`<br /><br />Check whether any of the specified units are active (i.e. running). Returns an exit code `0` if at least one is active, or non-zero otherwise. Unless `--quiet` is specified, this will also print the current unit state to standard output. |
+| <a name="systemctl-is-failed"></a>`is‑failed`                | `is-failed PATTERN...`<br /><br />Check whether any of the specified units are in a "failed" state. Returns an exit code 0 if at least one has failed, non-zero otherwise. Unless --quiet is specified, this will also print the current unit state to standard output. |
+| <a name="systemctl-status"></a>`status`                      | `status [PATTERN...[PID...]]`<br /><br />Show terse runtime status information about one or more units, followed by most recent log data from the journal. If no units are specified, show system status.<br /><br />Show terse runtime status information about one or more units including: name, description, unit file path, enabled/disabled state, vendor preset, and running state.<br /><br />If combined with `--all`, also show the status of all units (subject to limitations specified with `-t`). If a PID is passed, show information about the unit the process belongs to. |
+| <a name="systemctl-show"></a>`show`                          | `show [PATTERN...|JOB...]`<br /><br />Show properties of one or more units, jobs, or the manager itself. If no argument is specified, properties of the manager will be shown. If a unit name is specified, properties of the unit are shown, and if a job ID is specified, properties of the job are shown.<br /><br />By default, empty properties are suppressed. Use `--all` to show those too. To select specific properties to show, use --property=.<br /><br />This command is intended to be used whenever computer-parsable output is required. Use `status` if you are looking for formatted human-readable output. |
+| <a name="systemctl-cat"></a>`cat`                            | `cat PATTERN...`<br /><br/>Show backing files of one or more units. Prints the "fragment" and "drop-ins" (source files) of units. Each file is preceded by a comment which includes the file name. Note that this shows the contents of the backing files on disk, which may not match the system manager's understanding of these units if any unit files were updated on disk and the `daemon-reload` command wasn't issued since. |
+| <a name="systemctl-set-property"></a>`set‑property`          | `set-property UNIT PROPERTY=VALUE...`<br /><br/>Set the specified unit properties at runtime where this is supported. This allows changing configuration parameter properties such as resource control settings at runtime. Not all properties may be changed at runtime, but many resource control settings. The changes are applied immediately, and stored on disk for future boots, unless `--runtime` is passed, in which case the settings only apply until the next reboot. The syntax of the property assignment follows closely the syntax of assignments in unit files.<br /><br />Example: `systemctl set-property foobar.service CPUShares=777` |
+| <a name="systemctl-help"></a>`help`                          | `help PATTERN...|PID...`<br /><br />Show manual pages for one or more units, if available. If a PID is given, the manual pages for the unit the process belongs to are shown. |
+| <a name="systemctl-restart-failed"></a>`restart‑failed`      | `reset-failed [PATTERN...]`<br /><br/>Reset the "failed" state of the specified units, or if no unit name is passed, reset the state of all units. When a unit fails in some way (i.e. process exiting with non-zero error code, terminating abnormally or timing out), it will automatically enter the "failed" state and its exit code and status is recorded for introspection by the administrator until the service is stopped/re-started or reset with this command. |
+| <a name="systemctl-list-dependencies"></a>`list‑dependencies` | list-dependencies [UNIT]<br/><br />Shows units required and wanted by the specified unit. This recursively lists units following the <u>Requires=</u>, <u>Requisite=</u>, <u>ConsistsOf=</u>, <u>Wants=</u>, <u>BindsTo=</u> dependencies. If no unit is specified, default.target is implied.<br/><br/>By default, only target units are recursively expanded. When `--all` is passed, all other units are recursively expanded as well.<br/><br/>Options `--reverse`, `--after`, `--before` may be used to change what types of dependencies are shown. |
+
+### Unit file commands
+
+| Command                                                   | Description                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| <a name="systemctl-list-unit-files"></a>`list‑unit‑files` | `list-unit-files [PATTERN...]`<br /><br />List unit files installed on the system, in combination with their enablement state (as reported by `is-enabled`) |
+| <a name="systemctl-enable"></a>`enable`                   | `enable UNIT...`, `enable PATH...`<br /><br />Enable one or more units or unit instances.<br /><br />Note that this does not have the effect of also starting any of the units being enabled. If this is desired, combine this command with the `--now` switch, or invoke start with appropriate arguments later.<br /><br />This command will print the file system operations executed. This output may be suppressed by passing `--quiet`.<br /><br />Depending on whether `--system`, `--user`, `--runtime`, or `--global` is specified, this enables the unit for the system, for the calling user only, for only this boot of the system, or for all future logins of all users. |
+| <a name="systemctl-disable"></a>`disable`                 | `disable UNIT...`<br /><br />Disables one or more units.<br /><br />This command expects valid unit names only, it does not accept paths to unit files.<br /><br />Note that this command does not implicitly stop the units that are being disabled. If this is desired, either combine this command with the `--now` switch, or invoke the stop command with appropriate arguments later.<br /><br />This command will print information about the file system operations executed. This output may be suppressed by passing `--quiet`.<br/><br/>This command honors `--system`, `--user`, `--runtime` and `--global` in a similar way as `enable`. |
+| <a name="systemctl-reenable"></a>`reenable`               | `reenable UNIT...`<br /><br />Reenable one or more units, as specified on the command line. This is a combination of `disable` and `enable` and is useful to reset the symlinks a unit file is enabled with to the defaults configured in its "[Install]" section. This command expects a unit name only, it does not accept paths to unit files. |
+| <a name="systemctl-preset"></a>`preset`                   | `preset UNIT...`<br /><br/>Reset the enable/disable status one or more unit files, as specified on the command line, to the defaults configured in the preset policy files. This has the same effect as disable or enable, depending how the unit is listed in the preset files.<br /><br />Use --preset-mode= to control whether units shall be enabled and disabled, or only enabled, or only disabled. |
+| <a name="systemctl-preset-all"></a>`preset‑all`           | `preset-all`<br /><br/>Resets all installed unit files to the defaults configured in the preset policy file.<br/><br/>Use `--preset-mode=` to control whether units shall be enabled and disabled, or only enabled, or only disabled. |
+| <a name="systemctl-is-enabled"></a>`is‑enabled`           | `is-enabled UNIT...`<br /><br />Checks whether any of the specified unit files are enabled (as with enable). Returns an exit code `0` if at least one is enabled, non-zero otherwise. Prints the current enable status. To suppress this output, use `--quiet`. To show installation targets, use `--full`. |
+| <a name="systemctl-mask"></a>`mask`                       | `mask UNIT...`<br /><br/>Mask one or more units, as specified on the command line. This will link these unit files to /dev/null, making it impossible to start them. This is a stronger version of `disable`, since it prohibits all kinds of activation of the unit, including enablement  and manual activation. |
+| <a name="systemctl-umask"></a>`umask`                     | `unmask UNIT...`<br /><br/>Unmask one or more unit files, as specified on the command line. This will undo the effect of `mask`. This command expects valid unit names only, it does not accept unit file paths. |
+| <a name="systemctl-link"></a>`link`                       | `link PATH...`<br /><br/>Link a unit file that is not in the unit file search paths into the unit file search path. This command expects an absolute path to a unit file. The effect of this may be undone with `disable`.<br /><br />The effect of this command is that a unit file is made available for commands such as `start`, even though it is not installed directly in the unit search path.<br /><br />The file system where the linked unit files are located must be accessible when systemd is started (e.g. anything underneath /home or /var is not allowed, unless those directories are located on the root file system). |
+| <a name="systemctl-revert"></a>`revert`                   | `revert UNIT...`<br /><br/>Revert one or more unit files to their vendor versions. This command removes drop-in configuration files that modify the specified units, as well as any user-configured unit file that overrides a matching vendor supplied unit file.<br /><br />Effectively, this command may be used to undo all changes made with systemctl edit, `systemctl set-property` and `systemctl mask` and puts the original unit file with its settings back in effect. |
+| <a name="systemctl-add-wants"></a>`add‑wants`             | `add-wants TARGET UNIT...`, `add-requires TARGET UNIT...`<br /><br/>Adds "Wants=" or "Requires=" dependencies, respectively, to the specified TARGET for one or more units.<br/><br/>This command honors `--system`, `--user`, `--runtime` and `--global` in a way similar to enable. |
+| <a name="systemctl-edit"></a>`edit`                       | `edit UNIT...`<br /><br/>Edit a drop-in snippet or a whole replacement file if `--full` is specified, to extend or override the specified unit.<br /><br />Depending on whether `--system` (the default), `--user`, or `--global` is specified, this  command creates a drop-in file for each unit either for the system, for the calling  user, or for all futures logins of all users. Then, the editor is invoked on temporary files which will be written to the real location if the editor exits successfully.<br /><br />If `--full` is specified, this will copy the original units instead of creating drop-in  files. If `--force` is specified and any units do not already exist, new unit files will be  opened for editing. If `--runtime` is specified, the changes will be made temporarily in `/run` and they will be lost on the next reboot.<br /><br />If the temporary file is empty upon exit, the modification of the related unit is canceled.<br/><br/>After the units have been edited, systemd configuration is reloaded (in a way that is  equivalent to `daemon-reload`). |
+| <a name="systemctl-get-default"></a>`get‑default`         | `get-default`<br /><br/>Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to. |
+| <a name="systemctl-set-default"></a>`set‑default`         | `set-default TARGET`<br /><br/>Set the default target to boot into. This sets (symlinks) the default.target alias to the given target unit. |
+
+### Machine commands
+
+| Command                                               | Description                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| <a name="systemctl-list-machines"></a>`list‑machines` | `list-machines [PATTERN...]`<br /><br/>List the host and all running local containers with their state. If one or more PATTERNs are specified, only containers matching one of them are shown. |
+
+### Job commands
+
+| Command                                       | Description                                                  |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| <a name="systemctl-list-jobs"></a>`list‑jobs` | `list-jobs [PATTERN...]`<br /><br/>List jobs that are in progress. If one or more PATTERNs are specified, only jobs for units matching one of them are shown.<br/><br/>When combined with `--after` or `--before` the list is augmented with information on which other job each job is waiting for, and which other jobs are waiting for it, see above. |
+| <a name="systemctl-cancel"></a>`cancel`       | `cancel JOB...`<br /><br/>Cancel one or more jobs specified on the command line by their numeric job IDs. If no job ID is specified, cancel all pending jobs. |
+
+### Environment commands
+
+| Command                                                      | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <a name="systemctl-show-environment"></a>`show‑environment`  | `show-environment`<br /><br/>Dump the systemd manager environment block. This is the environment block that is passed to all processes the manager spawns. The environment block will be dumped in straight-forward form suitable for sourcing into most shells. |
+| <a name="systemctl-set-environment"></a>`set‑environment`    | `set-environment VARIABLE=VALUE...`<br /><br/>Set one or more systemd manager environment variables, as specified on the command line. |
+| <a name="systemctl-unset-environment"></a>`unset‑environment` | `unset-environment VARIABLE...`<br /><br/>Unset one or more systemd manager environment variables. If only a variable name is specified, it will be removed regardless of its value. If a variable and a value are specified, the variable is only removed if it has the specified value. |
+| <a name="systemctl-import-environment"></a>`import‑environment` | `import-environment [VARIABLE...]`<br /><br/>Import all, one or more environment variables set on the client into the systemd manager environment block. If no arguments are passed, the entire environment block is imported. Otherwise, a list of one or more environment variable names should be passed, whose client-side values are then imported into the manager's environment block. |
+
+### Manager lifecycle commands
+
+| Command                                               | Description                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------ |
+| <a name="systemctl-daemon-reload"></a>`daemon‑reload` | Reload the systemd manager configuration. This will rerun all generators, reload all unit files, and recreate the entire dependency tree. While the daemon is being reloaded, all sockets systemd listens on behalf of user configuration will stay accessible.<br/><br/>This command should not be confused with the `reload` command. |
+| <a name="systemctl-daemon-exec"></a>`daemon‑exec`     | `daemon-reexec`<br /><br/>Reexecute the systemd manager. This will serialize the manager state, reexecute the process and deserialize the state again. This command is of little use except for debugging and package upgrades. Sometimes, it might be helpful as a heavy-weight `daemon-reload`. While the daemon is being reexecuted, all sockets systemd listening on behalf of user configuration will stay accessible. |
+
+### System commands
+
+| Command                                                      | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <a name="systemctl-is-system-running"></a>`is‑system‑running` | `is-system-running`<br /><br/>Checks whether the system is operational. This returns success (exit code 0) when the system is fully up and running, specifically not in startup, shutdown or maintenance mode, and with no failed services. Failure is returned otherwise (exit code non-zero).<br /><br />In addition, the current state is printed in a short string to standard output, see the table below. Use `--quiet` to suppress this output. |
+| <a name="systemctl-default"></a>`default`                    | `default`<br /><br/>Enter default mode. This is equivalent to `systemctl isolate default.target`. This operation is blocking by default, use `--no-block` to request asynchronous behavior. |
+| <a name="systemctl-rescue"></a>`rescue`                      | `rescue`<br /><br/>Enter rescue mode. This is equivalent to `systemctl isolate rescue.target`. This operation is blocking by default, use` --no-block` to request asynchronous behavior. |
+| <a name="systemctl-emergency"></a>`emergency`                | `emergency`<br /><br/>Enter emergency mode. This is equivalent to `systemctl isolate emergency.target`. This operation is blocking by default, use `--no-block` to request asynchronous behavior. |
+| <a name="systemctl-halt"></a>`halt`                          | `halt`<br /><br />Shut down and halt the system. This is mostly equivalent to `systemctl start halt.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the halt operation is enqueued, without waiting for it to complete.<br /><br />Note that this operation will simply halt the OS kernel after shutting down, leaving the hardware powered on. Use `systemctl poweroff` for powering off the system. |
+| <a name="systemctl-poweroff"></a>`poweroff`                  | `poweroff`<br /><br />Shut down and power-off the system. This is mostly equivalent to `systemctl start poweroff.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the power-off operation is enqueued, without waiting for it to complete.<br /><br />If combined with `--force`, shutdown of all running services is skipped, however all processes are killed and all file systems are unmounted or mounted read-only, immediately followed by the powering off.<br /><br />If `--force` is specified twice, the operation is immediately executed without terminating any processes or unmounting any file systems. This may result in data loss. Note that when `--force` is specified twice the power-off operation is executed by systemctl itself, and the system manager is not contacted. This means the command should succeed even when the system manager has crashed. |
+| <a name="systemctl-reboot"></a>`reboot`                      | `reboot [arg]`<br /><br/>Shut down and reboot the system. This is mostly equivalent to` systemctl start reboot.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/>`--force` works the same as the `poweroff` command.<br /><br/>If the optional argument arg is given, it will be passed as the optional argument to the reboot(2) system call. The value is architecture and firmware specific. As an example, "recovery" might be used to trigger system recovery, and "fota" might be used to trigger a “firmware over the air” update. |
+| <a name="systemctl-kexec"></a>`kexec`                        | `kexec`<br /><br />Shut down and reboot the system via `kexec`. This is equivalent to `systemctl start kexec.target --job-mode=replace-irreversibly --no-block`. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/>If combined with `--force`, shutdown of all running services is skipped, however all processes are killed and all file systems are unmounted or mounted read-only, immediately followed by the reboot. |
+| <a name="systemctl-exit"></a>`exit`                          | `exit [EXIT_CODE]`<br /><br/>Ask the service manager to quit. This is only supported for user service managers (i.e. in conjunction with the `--user` option) or in containers and is equivalent to `poweroff` otherwise. This command is asynchronous; it will return after the exit operation is enqueued, without waiting for it to complete.<br/><br/>The service manager will exit with the specified exit code, if EXIT_CODE is passed. |
+| <a name="systemctl-switch-root"></a>`switch‑root`            | `switch-root ROOT [INIT]`<br /><br/>Switches to a different root directory and executes a new system manager process below it. Thisis intended for usage in initial RAM disks ("initrd"), and will transition from the initrd's system manager process (a.k.a. "init" process) to the main system manager process which is loaded from the actual host volume. |
+| <a name="systemctl-suspend"></a>`suspend`                    | `suspend`<br/><br />Suspend the system. This will trigger activation of the special target unit suspend.target. This command is asynchronous, and will return after the suspend operation is successfully enqueued. It will not wait for the suspend/resume cycle to complete. |
+| <a name="systemctl-hibernate"></a>`hibernate`                | `hibernate`<br/><br />Hibernate the system. This will trigger activation of the special target unit hibernate.target. This command is asynchronous, and will return after the hibernation operation is successfully enqueued. It will not wait for the hibernate/thaw cycle to complete. |
+| <a name="systemctl-hybrid-sleep"></a>`hybrid‑sleep`          | `hybrid-sleep`<br/><br />Hibernate and suspend the system. This will trigger activation of the special target unit `hybrid-sleep.target`. This command is asynchronous, and will return after the hybrid sleep operation is successfully enqueued. It will not wait for the sleep/wake-up cycle to complete. |
+
+## Enabled vs. Disabled
+
+An enabled unit is launched at bootup time. A disabled unit is not. Has nothing to do with the current running state of the unit.
+
+## Active vs. Inactive
+
+An active unit is currently running. An inactive unit is not.
+
+## Controlling a service
+
+### Verify the status of a service
+
+### Starting, stopping, and reloading a.service
+
+### Enabling and disabling a service
+
+### Kiling a service
+
+### Masking a service
+
+## journalctl
+
+| Command | Description |
+| ------- | ----------- |
+|         |             |
+
+## User Level Units

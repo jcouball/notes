@@ -1,0 +1,78 @@
+site_name: James Couball's Tech Docs
+repo_url: https://github.com/jcouball/
+repo_name: Edit This Page
+site_description: >-
+  Technical documentation that the author finds useful in his day to day
+  coding activities.
+
+use_directory_urls: true
+
+extra:
+    config_override: false
+    doc_owner: James Couball
+    doc_owner_shortid: jcouball
+    doc_owner_email: jcouball@yahoo.com
+
+extra_css:
+    - css/mermaid_local.css
+
+extra_javascript:
+    - js/mermaid.js
+    - js/mermaid_settings.js
+
+markdown_extensions:
+    - admonition
+    - codehilite
+    - markdown_include.include:
+          base_path: docs
+    - pymdownx.arithmatex
+    - pymdownx.betterem:
+        smart_enable: all
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.inlinehilite
+    - pymdownx.magiclink
+    - pymdownx.mark
+    - pymdownx.smartsymbols
+    - pymdownx.superfences:
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.tabbed
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.tilde
+    - toc:
+        permalink: true
+        toc_depth: 3
+
+plugins:
+    - search
+
+strict: true
+
+theme: 'material'
+
+nav:
+  - Documentation Standards: documentation_standards.md
+  - Git Tips: git.md
+  - Homebrew Tips: homebrew.md
+  - Music Theory: music_theory.md
+  - JavaScript/Node:
+    - Ultimate JavaScript Mastery:
+      - Types: javascript/ultimate_javascript_mastery/01_types.md
+      - Control Flow: javascript/ultimate_javascript_mastery/02_control_flow.md
+      - Objects: javascript/ultimate_javascript_mastery/03_objects.md
+      - Arrays: javascript/ultimate_javascript_mastery/04_arrays.md
+      - Functions: javascript/ultimate_javascript_mastery/05_functions.md
+      - Objects Revisited: javascript/ultimate_javascript_mastery/06_objects_revisited.md
+      - Prototypes: javascript/ultimate_javascript_mastery/07_prototypes.md
+      - Prototypical Inheritance: javascript/ultimate_javascript_mastery/08_prototypical_inheritance.md
+      - ES6 Classes: javascript/ultimate_javascript_mastery/09_es6_classes.md
+      - ES6 Tooling: javascript/ultimate_javascript_mastery/10_es6_tooling.md
+    - Node.js: complete_node_js_course.md
+  - systemd: systemd.md
+  - Ruby:
+    - Subprocesses: ruby/subprocesses.md
