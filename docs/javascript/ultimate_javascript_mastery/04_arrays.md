@@ -27,7 +27,8 @@ console.log(numbers);
 
 ### Primitives
 
-To find primitives in an array, use `indexOf`.  This method uses the strict equality operator (`===`) for comparisons.
+To find primitives in an array, use `indexOf`.  This method uses the strict
+equality operator (`===`) for comparisons.
 
 ```javascript
 Array.indexOf(searchElement, fromIndex);
@@ -50,9 +51,9 @@ Array.lastIndexOf(searchElement, fromIndex);
 ```javascript
 const numbers = [1, 2, 3, 1, 4];
 console.log(numbers.lastIndexOf(1)); // 3
-console.log(numbers.lastIndexOf(1, 2)); // 0 (since searching backwards from index 2)
+console.log(numbers.lastIndexOf(1, 2)); // 0
 console.log(numbers.lastIndexOf(1, -2)); // 3
-console.log(numbers.lastIndexOf(1, -3)); // 0 (since searching backards from index 2)
+console.log(numbers.lastIndexOf(1, -3)); // 0
 ```
 
 or `includes`:
@@ -65,7 +66,8 @@ console.log(numbers.includes(1)); // true
 
 ### Reference Types
 
-Since `indexOf`, `lastIndexOf`, and `includes` uses the strict comparison operator, array elements can not be found based on their attribute values.
+Since `indexOf`, `lastIndexOf`, and `includes` uses the strict comparison
+operator, array elements can not be found based on their attribute values.
 
 ```javascript
 const people = [
@@ -75,7 +77,8 @@ const people = [
 console.log(people.includes({ id: 3, name: 'Frank' })); // false!
 ```
 
-Instead, for reference types, use `find`. `find` returns `undefined` if an element is not found:
+Instead, for reference types, use `find`. `find` returns `undefined` if an
+element is not found:
 
 ```javascript
 const people = [
@@ -94,7 +97,8 @@ person = people.find (function(p) {
 console.log(person); // undefined
 ```
 
-There is a similar methods called `findIndex` which returns the index or -1 if an matching item could not be found.
+There is a similar methods called `findIndex` which returns the index or -1 if
+a matching item could not be found.
 
 ## Arrow Functions
 
@@ -134,7 +138,8 @@ console.log(numbers.shift()); // 1
 console.log(numbers); // [2, 3, 4]
 ```
 
-Use `splice` to remove items from the middle of an array. `splice` returns the elements removed:
+Use `splice` to remove items from the middle of an array. `splice` returns
+the elements removed:
 
 ```javascript
 const numbers = [1, 2, 3, 4];
@@ -203,7 +208,8 @@ console.log(numbers); // [1, 2, 3, 4, 5, 6]
 
 ## The Spread Operator
 
-The spread operator (`...`) can be used to concatenate mutiple arrays.  It also allows mixing in other new elements too.
+The spread operator (`...`) can be used to concatenate mutiple arrays.  It also
+allows mixing in other new elements too.
 
 ```javascript
 const first = [1, 2, 3];
@@ -273,11 +279,11 @@ const people = [
 
 // Case insensative sort
 function compare(a, b) {
-	const aName = a.name.toLowerCase();
-	const bName = b.name.toLowerCase();
-	if (aName < bName) return -1;
-	if (aName > bName) return 1;
-	return 0;
+  const aName = a.name.toLowerCase();
+  const bName = b.name.toLowerCase();
+  if (aName < bName) return -1;
+  if (aName > bName) return 1;
+  return 0;
 }
 
 people.sort((a, b) => compare(a, b));
@@ -318,7 +324,8 @@ console.log(someNegative); // false
 
 ## Filtering an Array
 
-Use `filter` to select only array elements that match some criteria. Returns a new array.
+Use `filter` to select only array elements that match some criteria. Returns a
+new array.
 
 ```javascript
 const numbers = [1, -1, 2, 3];
@@ -341,7 +348,8 @@ console.log(teenagers); // [ { name: 'James', age: 19 } ]
 
 ## Mapping an Array
 
-Transform each element in one array into something else stored in another array. Returns a new array.
+Transform each element in one array into something else stored in another
+array. Returns a new array.
 
 ```javascript
 const numbers = [1, 2, 3];

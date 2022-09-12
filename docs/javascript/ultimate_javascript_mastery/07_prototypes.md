@@ -10,15 +10,23 @@ There are two types of inheritance: Classical vs. Prototypical Inheritance.
 
 ## Prototypes and Prototypical Inheritance
 
-Every object in Javascript (except one, the ***common object ancestor***), has a prototype or parent.  An object 'inherits' all the members of the its prototype.
+Every object in Javascript (except one, the ***common object ancestor***), has a
+prototype or parent.  An object 'inherits' all the members of the its prototype.
 
-Prototypes themselves have a prototype and are thus chained together. An object 'inherits' all the members members of the entire prototype chain.
+Prototypes themselves have a prototype and are thus chained together. An object
+'inherits' all the members members of the entire prototype chain.
 
-Every object created in Javascript inherits from a common object ancestor. This is the last prototype in an object's ***prototype chain***. This common ancestor does not itself have a prototype.
+Every object created in Javascript inherits from a common object ancestor. This is the
+last prototype in an object's ***prototype chain***. This common ancestor does not
+itself have a prototype.
 
-When accessing a object's member, first the object is checked.  If the member is not found on the object, then its prototype is checked. If not found there, the prototype's prototype is checked and so on through the prototype chain.
+When accessing a object's member, first the object is checked.  If the member is not
+found on the object, then its prototype is checked. If not found there, the prototype's
+prototype is checked and so on through the prototype chain.
 
-Use `Object.getPrototypeOf(obj)` to get the prototype of any object or `Object.setPrototypeOf(obj)`. The `__proto__` property is the deprecated way getting and setting an object's prototype.
+Use `Object.getPrototypeOf(obj)` to get the prototype of any object or
+`Object.setPrototypeOf(obj)`. The `__proto__` property is the deprecated way getting
+and setting an object's prototype.
 
 ```javascript
 let x = {}
@@ -61,7 +69,8 @@ console.log(toStringDescriptor);
 // {writable: true, enumerable: false, configurable: true, value: ƒ}
 ```
 
-The descriptor can be set with `Object.defineProperty(obj, propertyName, descriptor)`. The default for `writable`, `enumerable`, and `configurable` are all `true`.
+The descriptor can be set with `Object.defineProperty(obj, propertyName, descriptor)`.
+The default for `writable`, `enumerable`, and `configurable` are all `true`.
 
 ```javascript
 let person = { name: 'James' };
@@ -90,7 +99,8 @@ console.log(person); // { name: 'James' } - still has the name property
 
 ## Constructor Prototypes
 
-Set a constructor function's `prototype` property to define what object another object should inherit from.
+Set a constructor function's `prototype` property to define what object another object
+should inherit from.
 
 ```javascript
 function Creature(name) {
@@ -140,11 +150,14 @@ console.log(p1.toString()); // A person named James Couball
 
 ## Iterating Instance and Prototype Members
 
-`Object.keys` only returns ***instance members***.  This does not include members defined by this object's prototype chain.
+`Object.keys` only returns ***instance members***.  This does not include members
+defined by this object's prototype chain.
 
-`for... in` loop returns ***all members*** defined in the instance and by the prototype chain.
+`for... in` loop returns ***all members*** defined in the instance and by the prototype
+chain.
 
-The `hasOwnProperty(propertyName)` (defined in the root object) returns `true` if the `propertyName` is an instance member.
+The `hasOwnProperty(propertyName)` (defined in the root object) returns `true` if the
+`propertyName` is an instance member.
 
 ```javascript
 function Person(name) {

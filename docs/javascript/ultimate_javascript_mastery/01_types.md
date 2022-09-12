@@ -1,6 +1,7 @@
 # Ultimate JavaScript Mastery: Types
 
 ## Primitive / Value Types
+
 - String
 - Number
 - Boolean
@@ -8,11 +9,13 @@
 - null
 
 ## Reference Types
+
 - Object
 - Array
 - Function
 
 ## Operators
+
 - Arithmetic
 - Assignment
 - Comparison
@@ -22,5 +25,6 @@
 - Bitwise: &, |, ^
 
 ## Operator Precedence
+
 - It is a thing
 - Use parenthesis if you aren’t sure

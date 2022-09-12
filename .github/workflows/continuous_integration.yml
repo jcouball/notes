@@ -22,7 +22,7 @@ jobs:
           bundler-cache: true
 
       - name: Lint Documentation
-        run: 'mdl README.md docs && echo "SUCCESS: All markdown is compliant"'
+        run: 'mdl -s mdl_style.rb README.md docs && echo "SUCCESS: All markdown is compliant"'
 
 
   build_and_deploy:

@@ -10,7 +10,9 @@
 
 Homebrew package definition built from upstream sources
 
-Formulae are the definitions of how to install the various command line packages/applications available through Homebrew. These are the things that make brew install work.
+Formulae are the definitions of how to install the various command line packages/
+applications available through Homebrew. These are the things that make brew install
+work.
 
 ### Tap
 
@@ -20,11 +22,15 @@ The default tap is “homebrew/core”
 
 ### Casks
 
-Essentially Casks are Homebrew packages for GUI applications. Casks allow you to leverage the command line to install applications such as Google Chrome and (at the time of writing) 3,381 other applications.
+Essentially Casks are Homebrew packages for GUI applications. Casks allow you to
+leverage the command line to install applications such as Google Chrome and (at the
+time of writing) 3,381 other applications.
 
 ### Brewfile
 
-Similar to Ruby's Gemfile (a way to list Ruby gems necessary for a project), a Brewfile allows you to list Homebrew packages, Casks, taps, and even App Store applications to install on your system.
+Similar to Ruby's Gemfile (a way to list Ruby gems necessary for a project), a Brewfile
+allows you to list Homebrew packages, Casks, taps, and even App Store applications to
+install on your system.
 
 ### Keg
 
@@ -64,13 +70,13 @@ A pre-built keg poured into the cellar/rack instead of building from upstream so
 
 ## Uninstall Formula
 
-## Search for Formula 
+## Search for Formula
 
 `brew search <searchterm>`
 
 ## Search for Mac Apps
 
-`mas search <searchterm> `
+`mas search <searchterm>`
 
 ## Search Cask Tokens and Formula Names
 
@@ -84,7 +90,9 @@ A pre-built keg poured into the cellar/rack instead of building from upstream so
 
 ## Show Leaf Formulas and their Dependencies
 
-`brew leaves | xargs brew deps --installed --for-each | sed "s/^.*:/$(tput setaf 4)&$(tput sgr0)/"`
+```shell
+brew leaves | xargs brew deps --installed --for-each | sed "s/^.*:/$(tput setaf 4)&$(tput sgr0)/"
+```
 
 ## Update Brew
 

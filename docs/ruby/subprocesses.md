@@ -1,4 +1,4 @@
-## Running Subprocesses in Ruby
+# Running Subprocesses in Ruby
 
 Ruby has many ways of running subprocesses. This guide will help you to choose the
 right method for your needs. Ruby comes with a rich-set of tools for spawning and
@@ -42,7 +42,8 @@ communicating with external subprocesses.
 
 **[\`command\` ⭢ string](https://ruby-doc.org/core/Kernel.html#method-i-60)**
 
-**Use Case**: Run a command and wait for the results. STDOUT from the subprocess is returned as a String.
+**Use Case**: Run a command and wait for the results. STDOUT from the subprocess is
+returned as a String.
 
 **Params**
 
@@ -523,19 +524,20 @@ that signal, that handler is executed.
 specify how signals are handled. It takes two arguments: the name of the signal to trap and
 the block of code to run when the named signal is received.
 
-The block passed to [Kernel#trap](https://ruby-doc.org/core/Kernel.html#method-i-trap) must be
-[reentrant](https://en.wikipedia.org/wiki/Reentrancy_(computing)) and thread-safe. For
-detailed guidance on what is safe to call in a trap block, see the article
-[Caveats for implementing Signal.trap callbacks](https://ruby-doc.org/core/doc/signals_rdoc.html).
-To avoid problems in the trap block, the main thread of the program is blocked while the
-trap block is executed.
+The block passed to [Kernel#trap](https://ruby-doc.org/core/Kernel.html#method-i-trap)
+must be [reentrant](https://en.wikipedia.org/wiki/Reentrancy_(computing)) and
+thread-safe. For detailed guidance on what is safe to call in a trap block, see the
+article [Caveats for implementing Signal.trap callbacks](https://ruby-doc.org/core/doc/signals_rdoc.html).
+To avoid problems in the trap block, the main thread of the program is blocked while
+the trap block is executed.
 
 The operating system will tell Ruby about subprocesses terminating with the `SIGCHLD` signal.
 
-Ruby may call the trap after ***multiple*** subprocesses have ended. To handle this situation, call
-[Process.wait](https://ruby-doc.org/core/Process.html#method-c-wait) in a loop with
-the `Process::WNOHANG` flag. This flag tells [Process.wait](https://ruby-doc.org/core/Process.html#method-c-wait)
-to return `nil` rather than blocking if there are no more subprocesses that have terminated.
+Ruby may call the trap after ***multiple*** subprocesses have ended. To handle this
+situation, call [Process.wait](https://ruby-doc.org/core/Process.html#method-c-wait) in
+a loop with the `Process::WNOHANG` flag. This flag tells
+[Process.wait](https://ruby-doc.org/core/Process.html#method-c-wait) to return `nil`
+rather than blocking if there are no more subprocesses that have terminated.
 
 A complete implementation of the previous examples using a signal handler follows.  The
 example shows a dashboard of the processes along with the elapsed time.
@@ -728,32 +730,32 @@ available system resources.
 See [Process.setrlimit](https://ruby-doc.org/core/Process.html#method-c-setrlimit)
 
 * Process.spawn rlimit options sets these limits
-    * limit_cpu # seconds of CPU time the scipt can use
+  * limit_cpu # seconds of CPU time the scipt can use
 
-    * rlimit_as # sets bound (in bytes) for address space made available to program
+  * rlimit_as # sets bound (in bytes) for address space made available to program
 
-    * Files open at a time, number of processes, etc.
+  * Files open at a time, number of processes, etc.
 
-    * Pay attention to the platform compatibility information listed for each
+  * Pay attention to the platform compatibility information listed for each
 
 * There is an option to set soft limits and hard limits
-    * Hard limits effects are both sudden and final usually resulting in the subprocess
+  * Hard limits effects are both sudden and final usually resulting in the subprocess
       being terminated
-        * If just one limit number is given, it is considered a hard limit:
-            * :limit_cpu => 2
-    * Soft limits raise a signal in the subprocess when the soft limit is hit (they can
+  * If just one limit number is given, it is considered a hard limit:
+    * :limit_cpu => 2
+  * Soft limits raise a signal in the subprocess when the soft limit is hit (they can
       be thought of as a warning to the subprocess):
-        * A hard limit needs to be specified along with the hard limit, the first number
+    * A hard limit needs to be specified along with the hard limit, the first number
           is the soft limit and the second number is the hard limit:
-            * :limit_cpu = [1, 2]
-        * Example:
+      * :limit_cpu = [1, 2]
+    * Example:
 
-          ```ruby
-          trap("XCPU") do
-            puts "Received SIGXCPU, shutting down"
-            exit
-          end
-          ```
+      ```ruby
+      trap("XCPU") do
+        puts "Received SIGXCPU, shutting down"
+        exit
+      end
+      ```
 
 ## Open Pipe
 

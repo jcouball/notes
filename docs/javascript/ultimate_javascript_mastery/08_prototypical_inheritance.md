@@ -70,7 +70,9 @@ for (let creature of creatures) {
 
 ## Mixins
 
-Use `Object.assign` to copy members from one or more sources to a target prototype. In the following example, the canEat and canWalk mixins are created and the `mixin` function adds their members to Person.
+Use `Object.assign` to copy members from one or more sources to a target prototype. In
+the following example, the canEat and canWalk mixins are created and the `mixin`
+function adds their members to Person.
 
 ```javascript
 function mixin(target, ...sources) {
