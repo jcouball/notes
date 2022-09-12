@@ -1,3 +1,3 @@
 # My Personal Tech Docs
 
-Notes for my own use.
+[My notes hosted on GitHub Pages](https://jcouball.github.io/notes)
