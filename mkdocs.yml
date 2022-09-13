@@ -73,6 +73,8 @@ nav:
       - ES6 Classes: javascript/ultimate_javascript_mastery/09_es6_classes.md
       - ES6 Tooling: javascript/ultimate_javascript_mastery/10_es6_tooling.md
     - Node.js: complete_node_js_course.md
-  - systemd: systemd.md
+  - systemd:
+    - Concepts: systemd/concepts.md
+    - systemctl: systemd/systemctl.md
   - Ruby:
     - Subprocesses: ruby/subprocesses.md
