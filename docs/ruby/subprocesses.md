@@ -801,3 +801,13 @@ See [Process.setrlimit](https://ruby-doc.org/core/Process.html#method-c-setrlimi
 * [Signal handling and Ruby](https://gist.github.com/mvidner/bf12a0b3c662ca6a5784)
 * [SignalException](https://www.exceptionalcreatures.com/bestiary/SignalException.html)
 * [Signals Referenced in RubyTapas Episodes](https://www.rubytapas.com/references/signals/)
+
+## Subprocess Status
+
+## Kernel System
+
+## Environment Isolation
+
+## Spawn
+
+## System

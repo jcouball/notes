@@ -493,4 +493,3 @@ git rev-parse --abbrev-ref --symbolic-full-name HEAD
 | Commits, Not Remote, Detached        | If there is only one branch, return it. If there is more than one branch and one of them is the configured `init.defaultBranch`, return it. Otherwise return the current branch. |
 | Commits, Remote, Not Detached        | Return the last known state of HEAD on the remote<br />`git symbolic-ref --short refs/remotes/origin/HEAD` |
 | Commits, Remote, Detached            | Return the last known state of HEAD on the remote<br />`git symbolic-ref --short refs/remotes/origin/HEAD` |
-
