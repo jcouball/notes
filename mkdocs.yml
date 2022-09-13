@@ -1,6 +1,7 @@
 site_name: James Couball's Tech Docs
-repo_url: https://github.com/jcouball/
-repo_name: Edit This Page
+repo_url: https://github.com/jcouball/notes
+repo_name: jcouball/notes
+edit_uri: edit/main/docs/
 site_description: >-
   Technical documentation that the author finds useful in his day to day
   coding activities.
@@ -22,6 +23,7 @@ extra_javascript:
 
 markdown_extensions:
     - admonition
+    - attr_list
     - codehilite
     - markdown_include.include:
           base_path: docs
