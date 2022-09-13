@@ -1,124 +1,4 @@
-# systemd
-
-Handles all system state and init stuff during bootup and after.
-
-More of a system manager than a service manager. It reacts to system level events.
-
-{:toc}
-
-## What is systemd made of?
-
-* systemctl
-* journalctl
-* init
-* Process management
-* Network management (networkd)
-* Login management (logind)
-* Logs (journald)
-* Etc.
-
-## Directory and files
-
-### Configuration files
-
-| Path         | Description                                          |
-| ------------ | ---------------------------------------------------- |
-| /etc/systemd | Contains configuration files for systemd components. |
-
-Not all systemd componets are used on every distribution. For instance, in RHEL
-**timesyncd** is not used.
-
-Configuration files typically list ALL possible configuration items. Most will be
-commented out. These commented out entries show the (compiled in) default values for
-each setting.
-
-Get help on a particlar setting using the `man` command. Use the string
-`systemd-{file}` to get help for the settings in a particular config file. For example
-`man systemd-system.conf`
-
-### Unit files
-
-| Path                      | Description                                                  |
-| ------------------------- | ------------------------------------------------------------ |
-| `/lib/systemd/system`     | The default location for unit files that either come with the operating system or come with any packages that you might install |
-| `/usr/lib/systemd/system` | Unit files from locally installed packages (e.g. via apt-get) |
-| `/run/systemd/system`     | Transient unit files that are generated                      |
-| `/etc/systemd/system`     | The location for user created unit files. Any unit files in this directory have have the same name as unit files in `/lib/systemd/system` take precedence. |
-
-A unit file is a plain text ini-style file that encodes information about a service, a
-socket, a device, a mount point, an automount point, a swap file or partition, a start-
-up target, a watched file system path, a timer controlled and supervised by systemd(1),
-a resource management slice or a group of externally created processes.
-
-Each file is a plain text file divided into sections, with configuration entries in the
-style key=value. Empty lines and lines starting with "#" or ";" are ignored, which may
-be used for commenting.
-
-See `man systemd.unit` for full documentation.
-
-### Executables
-
-| Path           | Description                                                  |
-| -------------- | ------------------------------------------------------------ |
-| `/lib/systemd` | Contains most of the systemd executables. There are symbolic links in either /bin or /usr/bin directories that point to some of the executable files here. |
-
-## Systemd units
-
-A thing that systemd manages. systemd can manage these type of things:
-
-| Unit Type          | Description                                                  |
-| ------------------ | ------------------------------------------------------------ |
-| service            | These are the configuration files for services. They replace the old-fashioned init scripts that we had on the old System V (SysV) systems. |
-| socket             | Sockets can either enable communication between different system services or they can automatically wake up a sleeping service when it receives a connection request. |
-| slice              | Slice units are used when configuring **cgroups**.           |
-| mount or automount | These contain mount point information for filesystems that are controlled by systemd. Normally, they get created automatically, so you shouldn't have to do too much with them. |
-| target             | Target units are used during system startup, for grouping units and for providing well-known synchronization points. Akin to named runlevels |
-| timer              | Timer units are for scheduling jobs that run on a schedule. They replace the old cron system. |
-| path               | Path units are for services that can be started via path-based activation. |
-| swap               | Swap units contain information about your swap partitions.   |
-| device             | Many system devices are automatically represented inside systemd by device units, which can be used to activate services when a given device exists in the file system. Device units are named after the `/sys/` and `/dev/` paths they control. |
-| scope              | Scopes units manage a set of system processes. Unlike service units, scope units manage externally created processes and do not fork off processes on its own. |
-
-A unit is described by options in a unit file. Unit file options are described by
-`man systend.unit`. This man page is an index that directs to the right man page for
-each parameter.
-
-### A minimal unit file
-
-```ini
-[Unit]
-Description=A very simple service created by James
-# bring up only after networking has come up
-After=network-up.target
-
-[Service]
-# the command for starting this service
-ExecStart=/usr/local/bin/myservice
-
-[Install]
-# this unit should be running in order to consider the multi-user unit to be considered up.
-WantedBy=multi-user.target
-```
-
-### Service unit file
-
-Service units are the equivalent of init scripts on the old SysV systems. Use them to
-configure services (aka *daemons*). A service can be pretty much anything that starts
-automatically and runs in the background.
-
-Service unit files are divided into three sections: `[Unit]`, `[Service]`, and `[Install]`.
-
-| Section     | Description                                                  |
-| ----------- | ------------------------------------------------------------ |
-| `[Unit]`    | The `[Unit]` section contains generic options about the unit that is not dependent on the type of unit. These options are documented by `man systemd.unit`.<br /><br />The most used options are `Description`, `Documentation`, and `After`. |
-| `[Service]` | The `[Service]` section contains options which can only be used in a service unit file. <br /><br />These options describe the service and the process it supervises. These options are documented by `man systemd.service`. |
-| `[Install]` | The `[Install]` section describes what happens when the unit is enabled or disabled. This section is not interpreted by `systemd` during runtime; it is used by the `enable` and `disable` commands of the `systemctl` during installation of a unit.<br /><br />These options are documented by `man systemd.unit`. |
-
-### Socket unit file
-
-### Path unit file
-
-## systemctl
+# systemctl
 
 The **systemctl** utility is used to introspect and control the state of the
 **systemd** system and service manager.
@@ -129,7 +9,7 @@ Some **systemctl** commands (like those that change configuration) require root 
 
 The default command if none is specified is `list-units`.
 
-### Unit commands
+## Unit commands
 
 | Command                                                      | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -157,7 +37,7 @@ The default command if none is specified is `list-units`.
 | <a name="systemctl-restart-failed"></a>`restart‑failed`      | `reset-failed [PATTERN...]`<br /><br/>Reset the "failed" state of the specified units, or if no unit name is passed, reset the state of all units. When a unit fails in some way (i.e. process exiting with non-zero error code, terminating abnormally or timing out), it will automatically enter the "failed" state and its exit code and status is recorded for introspection by the administrator until the service is stopped/re-started or reset with this command. |
 | <a name="systemctl-list-dependencies"></a>`list‑dependencies` | list-dependencies [UNIT]<br/><br />Shows units required and wanted by the specified unit. This recursively lists units following the <u>Requires=</u>, <u>Requisite=</u>, <u>ConsistsOf=</u>, <u>Wants=</u>, <u>BindsTo=</u> dependencies. If no unit is specified, default.target is implied.<br/><br/>By default, only target units are recursively expanded. When `--all` is passed, all other units are recursively expanded as well.<br/><br/>Options `--reverse`, `--after`, `--before` may be used to change what types of dependencies are shown. |
 
-### Unit file commands
+## Unit file commands
 
 | Command                                                   | Description                                                  |
 | --------------------------------------------------------- | ------------------------------------------------------------ |
@@ -177,20 +57,20 @@ The default command if none is specified is `list-units`.
 | <a name="systemctl-get-default"></a>`get‑default`         | `get-default`<br /><br/>Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to. |
 | <a name="systemctl-set-default"></a>`set‑default`         | `set-default TARGET`<br /><br/>Set the default target to boot into. This sets (symlinks) the default.target alias to the given target unit. |
 
-### Machine commands
+## Machine commands
 
 | Command                                               | Description                                                  |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
 | <a name="systemctl-list-machines"></a>`list‑machines` | `list-machines [PATTERN...]`<br /><br/>List the host and all running local containers with their state. If one or more PATTERNs are specified, only containers matching one of them are shown. |
 
-### Job commands
+## Job commands
 
 | Command                                       | Description                                                  |
 | --------------------------------------------- | ------------------------------------------------------------ |
 | <a name="systemctl-list-jobs"></a>`list‑jobs` | `list-jobs [PATTERN...]`<br /><br/>List jobs that are in progress. If one or more PATTERNs are specified, only jobs for units matching one of them are shown.<br/><br/>When combined with `--after` or `--before` the list is augmented with information on which other job each job is waiting for, and which other jobs are waiting for it, see above. |
 | <a name="systemctl-cancel"></a>`cancel`       | `cancel JOB...`<br /><br/>Cancel one or more jobs specified on the command line by their numeric job IDs. If no job ID is specified, cancel all pending jobs. |
 
-### Environment commands
+## Environment commands
 
 | Command                                                      | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -199,14 +79,14 @@ The default command if none is specified is `list-units`.
 | <a name="systemctl-unset-environment"></a>`unset‑environment` | `unset-environment VARIABLE...`<br /><br/>Unset one or more systemd manager environment variables. If only a variable name is specified, it will be removed regardless of its value. If a variable and a value are specified, the variable is only removed if it has the specified value. |
 | <a name="systemctl-import-environment"></a>`import‑environment` | `import-environment [VARIABLE...]`<br /><br/>Import all, one or more environment variables set on the client into the systemd manager environment block. If no arguments are passed, the entire environment block is imported. Otherwise, a list of one or more environment variable names should be passed, whose client-side values are then imported into the manager's environment block. |
 
-### Manager lifecycle commands
+## Manager lifecycle commands
 
 | Command                                               | Description                                                  |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
 | <a name="systemctl-daemon-reload"></a>`daemon‑reload` | Reload the systemd manager configuration. This will rerun all generators, reload all unit files, and recreate the entire dependency tree. While the daemon is being reloaded, all sockets systemd listens on behalf of user configuration will stay accessible.<br/><br/>This command should not be confused with the `reload` command. |
 | <a name="systemctl-daemon-exec"></a>`daemon‑exec`     | `daemon-reexec`<br /><br/>Reexecute the systemd manager. This will serialize the manager state, reexecute the process and deserialize the state again. This command is of little use except for debugging and package upgrades. Sometimes, it might be helpful as a heavy-weight `daemon-reload`. While the daemon is being reexecuted, all sockets systemd listening on behalf of user configuration will stay accessible. |
 
-### System commands
+## System commands
 
 | Command                                                      | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -223,32 +103,3 @@ The default command if none is specified is `list-units`.
 | <a name="systemctl-suspend"></a>`suspend`                    | `suspend`<br/><br />Suspend the system. This will trigger activation of the special target unit suspend.target. This command is asynchronous, and will return after the suspend operation is successfully enqueued. It will not wait for the suspend/resume cycle to complete. |
 | <a name="systemctl-hibernate"></a>`hibernate`                | `hibernate`<br/><br />Hibernate the system. This will trigger activation of the special target unit hibernate.target. This command is asynchronous, and will return after the hibernation operation is successfully enqueued. It will not wait for the hibernate/thaw cycle to complete. |
 | <a name="systemctl-hybrid-sleep"></a>`hybrid‑sleep`          | `hybrid-sleep`<br/><br />Hibernate and suspend the system. This will trigger activation of the special target unit `hybrid-sleep.target`. This command is asynchronous, and will return after the hybrid sleep operation is successfully enqueued. It will not wait for the sleep/wake-up cycle to complete. |
-
-## Enabled vs. Disabled
-
-An enabled unit is launched at bootup time. A disabled unit is not. Has nothing to do
-with the current running state of the unit.
-
-## Active vs. Inactive
-
-An active unit is currently running. An inactive unit is not.
-
-## Controlling a service
-
-### Verify the status of a service
-
-### Starting, stopping, and reloading a.service
-
-### Enabling and disabling a service
-
-### Kiling a service
-
-### Masking a service
-
-## journalctl
-
-| Command | Description |
-| ------- | ----------- |
-|         |             |
-
-## User Level Units
