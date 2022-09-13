@@ -8,36 +8,37 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
-    name: Lint
+  lint_and_build:
+    name: Lint and Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1.x
-          bundler-cache: true
-
-      - name: Lint Documentation
-        run: 'mdl -s mdl_style.rb README.md docs && echo "SUCCESS: All markdown is compliant"'
-
-
-  build_and_deploy:
-    name: Build & Deploy
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v3
 
       - name: Lint
-        uses: DavidAnson/markdownlint-cli2-action@v7
+        run: |
+          npm install markdownlint-cli2 --global
+          markdownlint-cli2 '**/*.md'
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
 
       - name: Build
-        uses: jnanadarshan/mkdocs-build-action@v1
+        run: |
+          pip3 install -r requirements.txt
+          mkdocs build
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: lint_and_build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Deploy
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
@@ -47,4 +48,3 @@ jobs:
           CONFIG_FILE: mkdocs.yml
           EXTRA_PACKAGES: build-base
           REQUIREMENTS: requirements.txt
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
