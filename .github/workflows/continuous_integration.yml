@@ -29,17 +29,22 @@ jobs:
     name: Build & Deploy
     runs-on: ubuntu-latest
     needs: lint
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Deploy docs
+      - name: Lint
+        uses: DavidAnson/markdownlint-cli2-action@v7
+
+      - name: Build
+        uses: jnanadarshan/mkdocs-build-action@v1
+
+      - name: Deploy
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: optionaldomain.com
           CONFIG_FILE: mkdocs.yml
           EXTRA_PACKAGES: build-base
-          # GITHUB_DOMAIN: github.myenterprise.com
           REQUIREMENTS: requirements.txt
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
