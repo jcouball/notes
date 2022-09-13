@@ -24,11 +24,15 @@ move = run;
 move(); // 'run'
 ```
 
-Function declarations can be used before it is defined. With function expressions, the variable must be in-scope and set before calling the function.
+Function declarations can be used before it is defined. With function
+expressions, the variable must be in-scope and set before calling the
+function.
 
 ## Hoisting
 
-Hoisting is the process of moving function declarations to the top of the code. This is why functions defined with declarations can be used before their defined.
+Hoisting is the process of moving function declarations to the top of the
+code. This is why functions defined with declarations can be used before
+their defined.
 
 ## Arguments
 
@@ -54,7 +58,9 @@ console.log(safeSum(1, 2, 3, 4, 5)); // 1
 
 ## The Rest Operator
 
-The rest operator (`...`) can be used to collect the rest of the arguments passed to a function as an array. It can only be used at the end of the argument list.
+The rest operator (`...`) can be used to collect the rest of the arguments
+passed to a function as an array. It can only be used at the end of the
+argument list.
 
 ```javascript
 function safeSum(...args) {
@@ -68,7 +74,8 @@ console.log(safeSum(1, 2, 3, 4, 5)); // 1
 
 ## Default Parameters
 
-Set default values in the function definition. By default, the default value for an argument is `undefined`.
+Set default values in the function definition. By default, the default value
+for an argument is `undefined`.
 
 ```javascript
 function interest(principal, rate = 3.5, years = 5) {
@@ -97,7 +104,8 @@ const person = {
 console.log(person.fullName()); // 'James Couball'
 ```
 
-Prefix the method with the `get` keyword to make a getter that is accessed like a property. A setter is similarly create with the `set` keyword:
+Prefix the method with the `get` keyword to make a getter that is accessed
+like a property. A setter is similarly create with the `set` keyword:
 
 ```javascript
 const person = {
@@ -116,7 +124,8 @@ const person = {
 // Looks like a property instead of a method call
 person.fullName = 'John Smith';
 
-console.log(person); // { firstName: 'John', lastName: 'Smith', fullName: [Getter/Setter] }
+// { firstName: 'John', lastName: 'Smith', fullName: [Getter/Setter] }
+console.log(person);
 ```
 
 ## `try` / `catch` / `finally` / `throw`
@@ -159,17 +168,22 @@ catch (e) {
 
 The scope of a variable deteremines where the variable is accessible.
 
-`let` and  `const` define block-scoped variables: they are only accessible in the block they are defined in.
+`let` and  `const` define block-scoped variables: they are only accessible
+in the block they are defined in.
 
- `var` defines function-scoped variables. Using `var` outside of a function creates a global variable and attaches it to the `window` object. This is could cause variables or functions to be overwritten in the `window` object.
+ `var` defines function-scoped variables. Using `var` outside of a function
+ creates a global variable and attaches it to the `window` object. This is
+ could cause variables or functions to be overwritten in the `window` object.
 
-Variables defined in a block take precedence (or shadow) variables defined globally or in a scope outside the current block.
+Variables defined in a block take precedence (or shadow) variables defined
+globally or in a scope outside the current block.
 
 ## The `this` Keyword
 
-`this` is the **<u>object</u>** that is executing the current function.
+`this` is the **object** that is executing the current function.
 
-For a method (a function of an object), `this` is a reference to the object for which the method was called:
+For a method (a function of an object), `this` is a reference to the object
+for which the method was called:
 
 ```javascript
 const video = {
@@ -187,7 +201,8 @@ video.play();
 video.stop();
 ```
 
-For a function (not part of an object), `this` is a reference to either `window` (in browsers) or  `global` (in Node):
+For a function (not part of an object), `this` is a reference to either
+`window` (in browsers) or  `global` (in Node):
 
 ```javascript
 const video = {
@@ -212,7 +227,8 @@ function Video(title) {
 const v = new Video('a');
 ```
 
-Inside a callback function, `this` is set to the global object. This can lead to surprising results as the following use of `forEach` illustrates:
+Inside a callback function, `this` is set to the global object. This can lead
+to surprising results as the following use of `forEach` illustrates:
 
 ```javascript
 const video = {
@@ -237,7 +253,8 @@ undefined t2
 undefined t3
 ```
 
-Many callback functions like `forEach` allow you to specify what `this` is inside the callback function in a second argument after the callback function:
+Many callback functions like `forEach` allow you to specify what `this` is
+inside the callback function in a second argument after the callback function:
 
 ```javascript
 const video = {
@@ -268,7 +285,9 @@ a t3
 
 Some callback functions do not allow `this` to be set.
 
-One way to work around this it to set a block-scoped variable (you might name it `that` or `self`) in a block that encloses the callback function. Here is how it would work with the `forEach` example from the last section:
+One way to work around this it to set a block-scoped variable (you might name
+it `that` or `self`) in a block that encloses the callback function. Here is
+how it would work with the `forEach` example from the last section:
 
 ```javascript
 const video = {
@@ -287,7 +306,9 @@ const video = {
 video.showTags();
 ```
 
-Function methods `call` and  `apply` allow `this` to be set for a function call.  `bind` returns a new function where `this` is set for all future function calls.
+Function methods `call` and  `apply` allow `this` to be set for a function
+call.  `bind` returns a new function where `this` is set for all future
+function calls.
 
 ```javascript
 const video = {
@@ -302,7 +323,7 @@ function playVideo() {
 playVideo(); // Logs the global object
 playVideo.call(video); // Sets `this` to video
 playVideo.apply(video); // Also sets `this` to video
-const fn = playVideo.bind(video); // Returns a new function where `this` is always video
+const fn = playVideo.bind(video); // Returns new funct where `this` is video
 fn(); // Also sets `this` to video
 ```
 
@@ -322,7 +343,9 @@ const video = {
 video.showTags();
 ```
 
-The third and best solution is to use arrow functions for callbacks instead of the `function` keyword. Arrow functions inherit `this` from the containing function:
+The third and best solution is to use arrow functions for callbacks instead of
+the `function` keyword. Arrow functions inherit `this` from the containing
+function:
 
 ```javascript
 const video = {

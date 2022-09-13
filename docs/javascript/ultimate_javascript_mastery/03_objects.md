@@ -16,7 +16,7 @@ console.log(person);
 ```javascript
 function createPerson(name, age) {
   { name, age };
-	// Equilavent to:
+  // Equilavent to:
   // { name: name, age: age }
 }
 const person = createPerson('James', 29);
@@ -27,7 +27,7 @@ console.log(person);
 
 ```javascript
 function Person(name, age) {
-	this.name = name;
+  this.name = name;
   this.age = 29
 }
 const person = new Person('James', 29);
@@ -40,7 +40,7 @@ Functions are objects with their own properties and methods
 
 ```javascript
 function Person(name, age) {
-	this.name = name;
+  this.name = name;
   this.age = 29;
 }
 console.log(Person.name);
@@ -75,7 +75,7 @@ Here is an example:
 
 ```javascript
 function Person(name, age) {
-	this.name = name;
+  this.name = name;
   this.age = 29;
   return this;
 }
@@ -193,7 +193,8 @@ const str2 = new String('hi');
 console.log(typeof str2); // object
 ```
 
-When the dot notation is used with a String primitive, JavaScript internally converts the String primitive to a String object.
+When the dot notation is used with a String primitive, JavaScript internally
+converts the String primitive to a String object.
 
 Important String methods:
 

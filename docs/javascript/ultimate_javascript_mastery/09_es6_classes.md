@@ -1,7 +1,5 @@
 # Ultimate JavaScript Mastery: ES6 Classes
 
-
-
 ## ES6 Classes
 
 Syntatical sugar over prototypical inheritance. So this:
@@ -47,9 +45,12 @@ function sayHello() {}
 const sayGoodbye = function() {};
 ```
 
-***Function declarations*** are said to be `hoisted` since they act as if all function declarations happened before code is actually run. This means you can use the function before the line on which it is defined.
+***Function declarations*** are said to be `hoisted` since they act as if all function
+declarations happened before code is actually run. This means you can use the function
+before the line on which it is defined.
 
-***Function expressions*** are not hoisted. This means the function definition must come before it's use in a file.
+***Function expressions*** are not hoisted. This means the function definition must
+come before it's use in a file.
 
 The same thing applies to class definitions:
 
@@ -97,9 +98,12 @@ console.log(circle2); // Circle { radius: 5 }
 
 ## The `this` keyword
 
-A ***Method Call*** is when you run a function using dot notation `<object>.method()`. This call has a 'receiver' identified by `<object>`.  Within the method, `this` is set to refer to this object.
+A ***Method Call*** is when you run a function using dot notation `<object>.method()`.
+This call has a 'receiver' identified by `<object>`.  Within the method, `this` is set
+to refer to this object.
 
-A ***Function Call*** is when you call a function without a receiver. Within this function, `this` is set to the global object (or `undefined` if strict mode is on).
+A ***Function Call*** is when you call a function without a receiver. Within this
+function, `this` is set to the global object (or `undefined` if strict mode is on).
 
 ```javascript
 const Circle = function() {
@@ -140,11 +144,16 @@ const c = new Circle(10);
 c.radius;
 ```
 
-Sometimes people name their properties beginning with an underscore in order to communicate the property is private. This is convention.  There is a better way using ES6 Symbols.
+Sometimes people name their properties beginning with an underscore in order to
+communicate the property is private. This is convention.  There is a better way using
+ES6 Symbols.
 
-A Symbol is an opaque, unique identifier.  The `Symbol()` function (do not use `new`) returns a new Symbol. Everytime you call `Symbol()` you get a different symbol.
+A Symbol is an opaque, unique identifier.  The `Symbol()` function (do not use `new`)
+returns a new Symbol. Everytime you call `Symbol()` you get a different symbol.
 
-To create a private property, fetch a value for the property's identifier (`_radius` in the example below) and then store the attribute value in `this[_radius]`.  An array of Properties keyed by Symbols can be fetched using `Object.getOwnPropertySymbols`.
+To create a private property, fetch a value for the property's identifier (`_radius` in
+the example below) and then store the attribute value in `this[_radius]`.  An array of
+Properties keyed by Symbols can be fetched using `Object.getOwnPropertySymbols`.
 
 ```javascript
 const _radius = Symbol('radius');
@@ -237,7 +246,8 @@ c.draw(); // 10\nmove - undefined\ndraw
 
 ## Getters and Setters
 
-Use the `get` keyword to dynamically create a property getter on an object. This is useful to expose a private property or a computed property.
+Use the `get` keyword to dynamically create a property getter on an object. This is
+useful to expose a private property or a computed property.
 
 Use the `set` keyword to dynamically create a property setter on an object.
 
@@ -293,7 +303,8 @@ c.move(); // move -- defined by Shape
 
 ## Method Overriding
 
-A derived class can use `super` to call methods in base class. `super` is set to the base class.
+A derived class can use `super` to call methods in base class. `super` is set to the
+base class.
 
 ```javascript
 // Accessing super class properties

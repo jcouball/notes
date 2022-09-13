@@ -445,6 +445,3 @@ Viewing Logs
 Setting Environment Variables
 
 MongoDB in the Cloud
-
-
-

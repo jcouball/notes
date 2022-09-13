@@ -1,6 +1,7 @@
 # Ultimate JavaScript Mastery: Control Flow
 
 ## if…else
+
 ```javascript
 if (condition) {
  statement
@@ -18,6 +19,7 @@ else {
 Curley braces can be left off for only a single statement.
 
 ## switch…case
+
 ```javascript
 let role;
 switch (role) {
@@ -46,7 +48,8 @@ for (let i = 0; i < 5 ; i++) {
 }
 ```
 
-Just like the ‘if’ statement, Curley braces can be left off if statement is a single statement
+Just like the ‘if’ statement, Curley braces can be left off if statement is a
+single statement
 
 ## while loop
 

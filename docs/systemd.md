@@ -1,7 +1,5 @@
 # systemd
 
-
-
 Handles all system state and init stuff during bootup and after.
 
 More of a system manager than a service manager. It reacts to system level events.
@@ -27,11 +25,16 @@ More of a system manager than a service manager. It reacts to system level event
 | ------------ | ---------------------------------------------------- |
 | /etc/systemd | Contains configuration files for systemd components. |
 
-Not all systemd componets are used on every distribution. For instance, in RHEL **timesyncd** is not used.
+Not all systemd componets are used on every distribution. For instance, in RHEL
+**timesyncd** is not used.
 
-Configuration files typically list ALL possible configuration items. Most will be commented out. These commented out entries show the (compiled in) default values for each setting.
+Configuration files typically list ALL possible configuration items. Most will be
+commented out. These commented out entries show the (compiled in) default values for
+each setting.
 
-Get help on a particlar setting using the `man` command. Use the string `systemd-{file}` to get help for the settings in a particular config file. For example `man systemd-system.conf`
+Get help on a particlar setting using the `man` command. Use the string
+`systemd-{file}` to get help for the settings in a particular config file. For example
+`man systemd-system.conf`
 
 ### Unit files
 
@@ -42,9 +45,14 @@ Get help on a particlar setting using the `man` command. Use the string `systemd
 | `/run/systemd/system`     | Transient unit files that are generated                      |
 | `/etc/systemd/system`     | The location for user created unit files. Any unit files in this directory have have the same name as unit files in `/lib/systemd/system` take precedence. |
 
-A unit file is a plain text ini-style file that encodes information about a service, a socket, a device, a mount point, an automount point, a swap file or partition, a start-up target, a watched file system path, a timer controlled and supervised by systemd(1), a resource management slice or a group of externally created processes.
+A unit file is a plain text ini-style file that encodes information about a service, a
+socket, a device, a mount point, an automount point, a swap file or partition, a start-
+up target, a watched file system path, a timer controlled and supervised by systemd(1),
+a resource management slice or a group of externally created processes.
 
-Each file is a plain text file divided into sections, with configuration entries in the style key=value. Empty lines and lines starting with "#" or ";" are ignored, which may be used for commenting.
+Each file is a plain text file divided into sections, with configuration entries in the
+style key=value. Empty lines and lines starting with "#" or ";" are ignored, which may
+be used for commenting.
 
 See `man systemd.unit` for full documentation.
 
@@ -71,11 +79,13 @@ A thing that systemd manages. systemd can manage these type of things:
 | device             | Many system devices are automatically represented inside systemd by device units, which can be used to activate services when a given device exists in the file system. Device units are named after the `/sys/` and `/dev/` paths they control. |
 | scope              | Scopes units manage a set of system processes. Unlike service units, scope units manage externally created processes and do not fork off processes on its own. |
 
-A unit is described by options in a unit file. Unit file options are described by `man systend.unit`. This man page is an index that directs to the right man page for each parameter.
+A unit is described by options in a unit file. Unit file options are described by
+`man systend.unit`. This man page is an index that directs to the right man page for
+each parameter.
 
 ### A minimal unit file
 
-```
+```ini
 [Unit]
 Description=A very simple service created by James
 # bring up only after networking has come up
@@ -92,9 +102,11 @@ WantedBy=multi-user.target
 
 ### Service unit file
 
-Service units are the equivalent of init scripts on the old SysV systems. Use them to configure services (aka *daemons*). A service can be pretty much anything that starts automatically and runs in the background.
+Service units are the equivalent of init scripts on the old SysV systems. Use them to
+configure services (aka *daemons*). A service can be pretty much anything that starts
+automatically and runs in the background.
 
-Service unit files are divided into three sections: `[Unit]`, `[Service]`, and `[Install]`. 
+Service unit files are divided into three sections: `[Unit]`, `[Service]`, and `[Install]`.
 
 | Section     | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
@@ -108,7 +120,8 @@ Service unit files are divided into three sections: `[Unit]`, `[Service]`, and `
 
 ## systemctl
 
-The **systemctl** utility is used to introspect and control the state of the **systemd** system and service manager.
+The **systemctl** utility is used to introspect and control the state of the
+**systemd** system and service manager.
 
 It is used to view units and their status and enable or disable units.
 
@@ -199,11 +212,11 @@ The default command if none is specified is `list-units`.
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | <a name="systemctl-is-system-running"></a>`is‑system‑running` | `is-system-running`<br /><br/>Checks whether the system is operational. This returns success (exit code 0) when the system is fully up and running, specifically not in startup, shutdown or maintenance mode, and with no failed services. Failure is returned otherwise (exit code non-zero).<br /><br />In addition, the current state is printed in a short string to standard output, see the table below. Use `--quiet` to suppress this output. |
 | <a name="systemctl-default"></a>`default`                    | `default`<br /><br/>Enter default mode. This is equivalent to `systemctl isolate default.target`. This operation is blocking by default, use `--no-block` to request asynchronous behavior. |
-| <a name="systemctl-rescue"></a>`rescue`                      | `rescue`<br /><br/>Enter rescue mode. This is equivalent to `systemctl isolate rescue.target`. This operation is blocking by default, use` --no-block` to request asynchronous behavior. |
+| <a name="systemctl-rescue"></a>`rescue`                      | `rescue`<br /><br/>Enter rescue mode. This is equivalent to `systemctl isolate rescue.target`. This operation is blocking by default, use`--no-block` to request asynchronous behavior. |
 | <a name="systemctl-emergency"></a>`emergency`                | `emergency`<br /><br/>Enter emergency mode. This is equivalent to `systemctl isolate emergency.target`. This operation is blocking by default, use `--no-block` to request asynchronous behavior. |
 | <a name="systemctl-halt"></a>`halt`                          | `halt`<br /><br />Shut down and halt the system. This is mostly equivalent to `systemctl start halt.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the halt operation is enqueued, without waiting for it to complete.<br /><br />Note that this operation will simply halt the OS kernel after shutting down, leaving the hardware powered on. Use `systemctl poweroff` for powering off the system. |
 | <a name="systemctl-poweroff"></a>`poweroff`                  | `poweroff`<br /><br />Shut down and power-off the system. This is mostly equivalent to `systemctl start poweroff.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the power-off operation is enqueued, without waiting for it to complete.<br /><br />If combined with `--force`, shutdown of all running services is skipped, however all processes are killed and all file systems are unmounted or mounted read-only, immediately followed by the powering off.<br /><br />If `--force` is specified twice, the operation is immediately executed without terminating any processes or unmounting any file systems. This may result in data loss. Note that when `--force` is specified twice the power-off operation is executed by systemctl itself, and the system manager is not contacted. This means the command should succeed even when the system manager has crashed. |
-| <a name="systemctl-reboot"></a>`reboot`                      | `reboot [arg]`<br /><br/>Shut down and reboot the system. This is mostly equivalent to` systemctl start reboot.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/>`--force` works the same as the `poweroff` command.<br /><br/>If the optional argument arg is given, it will be passed as the optional argument to the reboot(2) system call. The value is architecture and firmware specific. As an example, "recovery" might be used to trigger system recovery, and "fota" might be used to trigger a “firmware over the air” update. |
+| <a name="systemctl-reboot"></a>`reboot`                      | `reboot [arg]`<br /><br/>Shut down and reboot the system. This is mostly equivalent to `systemctl start reboot.target --job-mode=replace-irreversibly --no-block`, but also prints a wall message to all users. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/>`--force` works the same as the `poweroff` command.<br /><br/>If the optional argument arg is given, it will be passed as the optional argument to the reboot(2) system call. The value is architecture and firmware specific. As an example, "recovery" might be used to trigger system recovery, and "fota" might be used to trigger a “firmware over the air” update. |
 | <a name="systemctl-kexec"></a>`kexec`                        | `kexec`<br /><br />Shut down and reboot the system via `kexec`. This is equivalent to `systemctl start kexec.target --job-mode=replace-irreversibly --no-block`. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/>If combined with `--force`, shutdown of all running services is skipped, however all processes are killed and all file systems are unmounted or mounted read-only, immediately followed by the reboot. |
 | <a name="systemctl-exit"></a>`exit`                          | `exit [EXIT_CODE]`<br /><br/>Ask the service manager to quit. This is only supported for user service managers (i.e. in conjunction with the `--user` option) or in containers and is equivalent to `poweroff` otherwise. This command is asynchronous; it will return after the exit operation is enqueued, without waiting for it to complete.<br/><br/>The service manager will exit with the specified exit code, if EXIT_CODE is passed. |
 | <a name="systemctl-switch-root"></a>`switch‑root`            | `switch-root ROOT [INIT]`<br /><br/>Switches to a different root directory and executes a new system manager process below it. Thisis intended for usage in initial RAM disks ("initrd"), and will transition from the initrd's system manager process (a.k.a. "init" process) to the main system manager process which is loaded from the actual host volume. |
@@ -213,7 +226,8 @@ The default command if none is specified is `list-units`.
 
 ## Enabled vs. Disabled
 
-An enabled unit is launched at bootup time. A disabled unit is not. Has nothing to do with the current running state of the unit.
+An enabled unit is launched at bootup time. A disabled unit is not. Has nothing to do
+with the current running state of the unit.
 
 ## Active vs. Inactive
 

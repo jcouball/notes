@@ -10,7 +10,7 @@ Using modules increases maintainability, reusability, and abstraction.
 
 CommonJS modules are used in node.
 
-**circle.js**
+`circle.js`
 
 ```javascript
 // Implementation Detail
@@ -35,7 +35,7 @@ module.exports.Circle = Circle;
 module.exports = Circle;
 ```
 
-**index.js**
+`index.js`
 
 ```javascript
 const Circle = require('./circle');
@@ -46,13 +46,11 @@ console.log(c); // Circle {}
 c.draw(); // Circle with radius 10
 ```
 
-
-
 ## ES6 Modules
 
 ES6 Modules are used in browser.
 
-**circle.js**
+`circle.js`
 
 Use the `export` keyword to identify symbols that are to be made available outside the module:
 
@@ -72,7 +70,7 @@ export class Circle {
 }
 ```
 
-**index.js**
+`index.js`
 
 Use the `import` keyword to expose exported symbols from a module
 
@@ -89,7 +87,8 @@ c.draw(); // Circle with radius 10
 
 NPM is the Javascript package manager.
 
-Initialize your node project by running `npm init`.  This creates a `package.json` file for the project.
+Initialize your node project by running `npm init`.  This creates a `package.json` file
+for the project.
 
 ### Babel
 
@@ -97,11 +96,13 @@ Babel is a traspiler that takes modern Javascript code and convert it into ES5
 
 `npm install babel-cli babel-core babel-preset-env --save-dev`
 
-Every feature added on top of ES5 has a babel plugin. Installing `babel-preset-env` is a plugin that installs all plugins available.
+Every feature added on top of ES5 has a babel plugin. Installing `babel-preset-env` is
+a plugin that installs all plugins available.
 
 ### Webpack
 
-Webpack is a Javascript bundlers. It will combine all our Javascript source code and the source code of our dependencies into one file and then minify the result.
+Webpack is a Javascript bundlers. It will combine all our Javascript source code and
+the source code of our dependencies into one file and then minify the result.
 
 `npm install -g webpack-cli`
 

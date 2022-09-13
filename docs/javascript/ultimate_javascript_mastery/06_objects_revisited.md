@@ -8,16 +8,26 @@ OOP groups related pieces of data together with the functions that operate on th
 
 The four core concepts of OOP:
 
-* **Encapsulation**: encapsulation describes the idea of bundling data and methods that work on that data within one unit, like a Javascript object. This concept is also often used to hide the internal representation, or state of an object from the outside. This is called information hiding. Benefits: reduce complexity, increase reusability
-* **Abstraction**: hiding the details of how things work and focusing attention on details of greater importance. Benefits: reduce complexity, isolate impact of change
-* **Inheritance**: a mechanism that allows you to remove duplicate code. Benefits: eliminate redundant code.
-* **Polymorphism**: the provision of a single interface to entities of different types. This mechanism can be used to eliminate long if-then-else or switch blocks. Benefits: reduce complexity, reduce code dependencies
+* **Encapsulation**: encapsulation describes the idea of bundling data and methods that
+  work on that data within one unit, like a Javascript object. This concept is also
+  often used to hide the internal representation, or state of an object from the
+  outside. This is called information hiding. Benefits: reduce complexity, increase
+  reusability.
+* **Abstraction**: hiding the details of how things work and focusing attention on
+  details of greater importance. Benefits: reduce complexity, isolate impact of change
+* **Inheritance**: a mechanism that allows you to remove duplicate code. Benefits:
+  eliminate redundant code.
+* **Polymorphism**: the provision of a single interface to entities of different types.
+  This mechanism can be used to eliminate long if-then-else or switch blocks. Benefits:
+  reduce complexity, reduce code dependencies
 
-In Javascript, the `class` is syntatic sugar over Prototypes and Prototypical Inheritance.
+In Javascript, the `class` is syntatic sugar over Prototypes and Prototypical
+Inheritance.
 
 ## Creating Objects
 
-There are three ways to create objects in Javascript: with object lIterals, a factory function, or a constructor function.
+There are three ways to create objects in Javascript: with object lIterals, a factory
+function, or a constructor function.
 
 ### Object Literals
 
@@ -68,7 +78,8 @@ console.log(person.lastName());
 
 ### Constructor Function
 
-By convention, a constructor function is named after the type of object being created using Pascal case.
+By convention, a constructor function is named after the type of object being created
+using Pascal case.
 
 ```javascript
 function Person(id, name) {
@@ -136,7 +147,9 @@ const Person = new Function('id', 'name', `
 console.log(new Person(1, 'Jane Doe'));
 ```
 
-You can call a function programatically using the `call` method. Note that in the case of calling a constructor function, the constructor function will have to explitly return `this` in order to work as expected.
+You can call a function programatically using the `call` method. Note that in the case
+of calling a constructor function, the constructor function will have to explitly
+return `this` in order to work as expected.
 
 ```javascript
 const Person = new Function('id', 'name', `
@@ -154,15 +167,19 @@ console.log(person);
 
 ## Value vs. Reference Types
 
-When ***primitives*** are copied, their value is copied and the copy is independent of the original.
+When ***primitives*** are copied, their value is copied and the copy is independent of
+the original.
 
-When ***objects*** are copied, the reference to the object is copied. This is known as a *shallow copy*. The copy is NOT independent of the original since they refer to the same underlying object.
+When ***objects*** are copied, the reference to the object is copied. This is known as
+a *shallow copy*. The copy is NOT independent of the original since they refer to the
+same underlying object.
 
 | Primitive / Value Types                                      | Reference Types                 |
 | ------------------------------------------------------------ | ------------------------------- |
 | Number<br />String<br />Boolean<br />Symbol<br />undefined<br />null | Object<br />Function<br />Array |
 
-Value types are always copied when assigned.  Two different variables with the same value are independent.
+Value types are always copied when assigned.  Two different variables with the
+same value are independent.
 
 ```javascript
 let x = 10;
@@ -173,7 +190,8 @@ x = 20;
 console.log(y); // still 10.  x and y are independent.
 ```
 
-A reference refers to some other location in memory that might be shared between two different variables.
+A reference refers to some other location in memory that might be shared
+between two different variables.
 
 ```javascript
 let x = { value: 10 };
@@ -201,7 +219,8 @@ console.log(number); // 10
 
 ## Adding or Removing Properties
 
-Javascript is a dynamic language.  Properties can be added whenever you need them simply by setting them with dot notation:
+Javascript is a dynamic language.  Properties can be added whenever you need
+them simply by setting them with dot notation:
 
 ```javascript
 function Person(id, name) {
@@ -215,7 +234,8 @@ person.age = 39;
 console.log(person); //Person {id: 1, name: "James Couball", age: 39}
 ```
 
-Bracket notation can be used if you don't know the name ahead of time or if the property name is not a valid identifier:
+Bracket notation can be used if you don't know the name ahead of time or if
+the property name is not a valid identifier:
 
 ```javascript
 function Person(id, name) {
@@ -314,9 +334,11 @@ if (Object.keys(person).includes('id')) console.log('Person has an id');
 
 Hide the details and complexity and show only the essential features.
 
-Properties and methods that are part of the implementation details should be made private so they can not be used by users of the object.
+Properties and methods that are part of the implementation details should be
+made private so they can not be used by users of the object.
 
-Make properties private by declaring them as block-scope variables (using `let` or `const`) in the Constructor function:
+Make properties private by declaring them as block-scope variables (using
+`let` or `const`) in the Constructor function:
 
 ```javascript
 function Person(id, name) {
