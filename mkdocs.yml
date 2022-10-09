@@ -59,11 +59,13 @@ strict: true
 theme: 'material'
 
 nav:
+  - About Me: index.md
   - Documentation Standards: documentation_standards.md
   - Git Tips: git.md
   - Homebrew Tips: homebrew.md
   - Home Files: homefiles.md
   - Music Theory: music_theory.md
+
   - JavaScript/Node:
     - Ultimate JavaScript Mastery:
       - Types: javascript/ultimate_javascript_mastery/01_types.md
@@ -76,6 +78,24 @@ nav:
       - Prototypical Inheritance: javascript/ultimate_javascript_mastery/08_prototypical_inheritance.md
       - ES6 Classes: javascript/ultimate_javascript_mastery/09_es6_classes.md
       - ES6 Tooling: javascript/ultimate_javascript_mastery/10_es6_tooling.md
+    - Complete Node.js:
+      - Introduction: javascript/complete_node_js/00_introduction.md
+      - Getting Started: javascript/complete_node_js/01_getting_started.md
+      - Node Module System: javascript/complete_node_js/02_node_module_system.md
+      - Node Package Manager: javascript/complete_node_js/03_node_package_manager.md
+      - Express: javascript/complete_node_js/04_express.md
+      - Advanced Express: javascript/complete_node_js/05_express_advanced.md
+      - Async JavaScript: javascript/complete_node_js/06_async_javascript.md
+      - Crud with Mongoose: javascript/complete_node_js/07_crud_mongoose.md
+      - Mongo Data Validations: javascript/complete_node_js/08_mongo_data_validation.md
+      - Mongoose Relationships: javascript/complete_node_js/09_mongoose_relationships.md
+      - Auth: javascript/complete_node_js/10_auth.md
+      - Handling and Logging Errors: javascript/complete_node_js/11_errors.md
+      - Refactoring: javascript/complete_node_js/11b_refactoring.md
+      - Unit Testing: javascript/complete_node_js/12_unit_testing.md
+      - Integration Testing: javascript/complete_node_js/13_integration_testing.md
+      - Test Driven Development: javascript/complete_node_js/14_test_driven_development.md
+      - Deployment: javascript/complete_node_js/15_deployment.md
 
   - systemd:
     - Concepts: systemd/concepts.md
