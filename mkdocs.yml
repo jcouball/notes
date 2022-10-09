@@ -25,6 +25,7 @@ markdown_extensions:
     - admonition
     - attr_list
     - codehilite
+    - def_list
     - markdown_include.include:
           base_path: docs
     - pymdownx.arithmatex
@@ -61,6 +62,7 @@ nav:
   - Documentation Standards: documentation_standards.md
   - Git Tips: git.md
   - Homebrew Tips: homebrew.md
+  - Home Files: homefiles.md
   - Music Theory: music_theory.md
   - JavaScript/Node:
     - Ultimate JavaScript Mastery:
@@ -74,9 +76,10 @@ nav:
       - Prototypical Inheritance: javascript/ultimate_javascript_mastery/08_prototypical_inheritance.md
       - ES6 Classes: javascript/ultimate_javascript_mastery/09_es6_classes.md
       - ES6 Tooling: javascript/ultimate_javascript_mastery/10_es6_tooling.md
-    - Node.js: complete_node_js_course.md
+
   - systemd:
     - Concepts: systemd/concepts.md
     - systemctl: systemd/systemctl.md
+
   - Ruby:
     - Subprocesses: ruby/subprocesses.md

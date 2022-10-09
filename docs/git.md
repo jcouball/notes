@@ -153,31 +153,31 @@ Amend older commit messages:
 ## Stash
 
 * `git stash`
-  * [save “message”] - annotate a stash with a description
-  * [--include-untracked | -u] - include untracked files
-  * [--all | -a] - include ignored files
-  * [—patch | -p] - interactively choose which change hunks to save in the stash.
+    * [save “message”] - annotate a stash with a description
+    * [--include-untracked | -u] - include untracked files
+    * [--all | -a] - include ignored files
+    * [—patch | -p] - interactively choose which change hunks to save in the stash.
       Press ‘?’ for a list of hunk commands.
 * `git stash apply`
-  * re-apply a stash but keep the stash
+    * re-apply a stash but keep the stash
 * `git stash pop`
-  * re-apply the most recently created stash: stash@{0}
-  * [identifier] - re-apply a stash by identifier (see git stash list)
+    * re-apply the most recently created stash: stash@{0}
+    * [identifier] - re-apply a stash by identifier (see git stash list)
 * `git stash list`
-  * List all available stashes with identifier and message
+    * List all available stashes with identifier and message
 * `git stash show`
-  * View a summary of the last stash
-  * [identifier] - show the summary of a different stash
-  * [--patch | -p] - include a full diff of the stash
+    * View a summary of the last stash
+    * [identifier] - show the summary of a different stash
+    * [--patch | -p] - include a full diff of the stash
 * `git stash branch [branch-name]`
-  * check out a new branch based on the commit the last stash was created from and
+    * check out a new branch based on the commit the last stash was created from and
       then pops that stash’s changes onto it
-  * [identifier] - branch and pop from a different stash
+    * [identifier] - branch and pop from a different stash
 * `git stash drop`
-  * Delete the last stash
-  * [identifier] - delete a different stash
+    * Delete the last stash
+    * [identifier] - delete a different stash
 * `git stash clean`
-  * Delete all stashes
+    * Delete all stashes
 
 ## Checkout a pull request
 

@@ -8,9 +8,9 @@ An interval in music is defined as a distance in pitch between any two notes.
 
 There are three characteristics of an interval:
 
-- The distance of the interval
-- The type of interval (the interval quality)
-- Is the interval harmonic or melodic?
+* The distance of the interval
+* The type of interval (the interval quality)
+* Is the interval harmonic or melodic?
 
 ### Interval Distance
 
@@ -32,41 +32,45 @@ interval is a 3rd. C to Eb is also a 3rd.
 
 ### Interval Quality
 
-- perfect
-  - To be a perfect interval the upper note has to be in the major scale of the low note
-  - There are three intervals that are what we call perfect intervals: perfect 4th,
-    perfect 5th, perfect 8ve
-  - For example C to F# is a 4th but is not a perfect 4th as F# is not in C major scale
+#### perfect
 
-- major
-  - There are four intervals that are called major intervals:
-    - major 2nd, major 3rd, major 6th, and major 7th
-  - If the upper note of an interval is in the major scale of the lower note (and it’s
-    not a 4th, 5th or 8ve) then it will be a major interval.
+To be a perfect interval the upper note has to be in the major scale of the low note
 
-- augmented
-  - An interval becomes augmented when we extend a major or perfect interval by one
-    semitone (half step) without changing the letter name.
-  - For example, given a major 2nd like F to G, change the G to G# to make an augmented
-    2nd.
-  - For example, given a perfect 5th like F to C, change the C to C# to make an
-    augmented 5th.
+There are three intervals that are what we call perfect intervals: perfect 4th,
+perfect 5th, perfect 8ve
 
-- minor
-  - Any major interval made smaller by one semitone is a minor interval
-  - For example, if we took C to E which is a major 3rd and flattened the E to make it
-    an Eb, it now becomes a minor 3rd.
-  - Because there are only four major intervals there are also only four minor intervals:
-  - minor 2nd, minor 3rd, minor 6th, minor 7th
+For example C to F# is a 4th but is not a perfect 4th as F# is not in C major scale
 
-- diminished
-  - Flatten any of the three perfect intervals (the 4th, 5th or 8ve) or any minor
-    interval (minor 2nd, minor 3rd, minor 6th, or minor 7th) by a semitone, to make a
-    diminished interval.
-  - For example, given A and D which is a perfect 4th, flatten the D to Db to make it a
-    diminished 4th.
-  - For example, given E and D which is a minor 7th, flatten D to Db to make it a
-    diminished 7th.
+#### major
+
+* There are four intervals that are called major intervals:
+    * major 2nd, major 3rd, major 6th, and major 7th
+* If the upper note of an interval is in the major scale of the lower note (and it’s
+  not a 4th, 5th or 8ve) then it will be a major interval.
+
+* augmented
+    * An interval becomes augmented when we extend a major or perfect interval by one
+      semitone (half step) without changing the letter name.
+    * For example, given a major 2nd like F to G, change the G to G# to make an augmented
+      2nd.
+    * For example, given a perfect 5th like F to C, change the C to C# to make an
+      augmented 5th.
+
+* minor
+    * Any major interval made smaller by one semitone is a minor interval
+    * For example, if we took C to E which is a major 3rd and flattened the E to make it
+      an Eb, it now becomes a minor 3rd.
+    * Because there are only four major intervals there are also only four minor intervals:
+    * minor 2nd, minor 3rd, minor 6th, minor 7th
+
+* diminished
+    * Flatten any of the three perfect intervals (the 4th, 5th or 8ve) or any minor
+      interval (minor 2nd, minor 3rd, minor 6th, or minor 7th) by a semitone, to make a
+      diminished interval.
+    * For example, given A and D which is a perfect 4th, flatten the D to Db to make it a
+      diminished 4th.
+    * For example, given E and D which is a minor 7th, flatten D to Db to make it a
+      diminished 7th.
 
 ### Interval Chart
 
@@ -123,13 +127,13 @@ and feel. Some sound happy, some sound mysterious and some sound sad or melancho
 
 Each notes in a scale are know as degrees. A scale has 7 degrees named as follows:
 
-- 1st degree: the tonic
-- 2nd degree: the supertonic (above the tonic)
-- 3rd degree: the mediant (middle of a triad chord, a 3rd ***above*** the tonic)
-- 4th degree: the subdominant (a 5th ***below*** the tonic)
-- 5th degree: the dominant (a 5th ***above*** the tonic)
-- 6th degree: the submediant (a 3rd ***below*** the tonic)
-- 7th degree: the leading note (or leading tone)
+* 1st degree: the tonic
+* 2nd degree: the supertonic (above the tonic)
+* 3rd degree: the mediant (middle of a triad chord, a 3rd ***above*** the tonic)
+* 4th degree: the subdominant (a 5th ***below*** the tonic)
+* 5th degree: the dominant (a 5th ***above*** the tonic)
+* 6th degree: the submediant (a 3rd ***below*** the tonic)
+* 7th degree: the leading note (or leading tone)
 
 The natural minor scale is different: the 7th degree of the scale is an interval of a
 tone (whole step) below the tonic instead of a semitone (half step) like the leading
@@ -243,13 +247,13 @@ steps) and five intervals that are tones (whole steps).
 
 There are seven types of modes:
 
-- Ionian mode
-- Dorian mode
-- Phrygian mode
-- Lydian mode
-- Mixolydian mode
-- Aeolian mode
-- Locrian mode
+* Ionian mode
+* Dorian mode
+* Phrygian mode
+* Lydian mode
+* Mixolydian mode
+* Aeolian mode
+* Locrian mode
 
 We can also categories these seven modes into two types, **major modes** and
 **minor modes**.
