@@ -78,6 +78,7 @@ nav:
       - Prototypical Inheritance: javascript/ultimate_javascript_mastery/08_prototypical_inheritance.md
       - ES6 Classes: javascript/ultimate_javascript_mastery/09_es6_classes.md
       - ES6 Tooling: javascript/ultimate_javascript_mastery/10_es6_tooling.md
+
     - Complete Node.js:
       - Introduction: javascript/complete_node_js/00_introduction.md
       - Getting Started: javascript/complete_node_js/01_getting_started.md
