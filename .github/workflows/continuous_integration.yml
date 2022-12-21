@@ -21,7 +21,7 @@ jobs:
       - name: Lint
         run: |
           npm install markdownlint-cli2 --global
-          markdownlint-cli2 '**/*.md'
+          markdownlint-cli2 README.md 'docs/**/*.md'
 
       - name: Setup Python
         uses: actions/setup-python@v4
