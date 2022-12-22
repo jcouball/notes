@@ -61,7 +61,17 @@ theme: 'material'
 nav:
   - About Me: index.md
   - Documentation Standards: documentation_standards.md
-  - Git Tips: git.md
+  - Git / GitHub:
+    - Git Tips: git/git.md
+    - Ultimate Git Course:
+      - Introduction: git/ultimate_git_course/00_introduction.md
+      - Getting Started: git/ultimate_git_course/01_getting_started.md
+      - Creating Snapshots: git/ultimate_git_course/02_creating_snapshots.md
+      - Browsing History: git/ultimate_git_course/03_browsing_history.md
+      - Branching: git/ultimate_git_course/04_branching.md
+      - Collaboration: git/ultimate_git_course/05_collaboration.md
+      - Rewriting History: git/ultimate_git_course/06_rewriting_history.md
+
   - Homebrew Tips: homebrew.md
   - Home Files: homefiles.md
   - Music Theory: music_theory.md
