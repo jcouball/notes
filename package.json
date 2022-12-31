@@ -1,7 +1,8 @@
 {
   "scripts": {
     "lint": "markdownlint-cli2 '**/*.md' '!node_modules'",
-    "serve": "markdownlint-cli2 '**/*.md' '!node_modules' && mkdocs serve"
+    "serve": "markdownlint-cli2 '**/*.md' '!node_modules' && mkdocs serve",
+    "install-mkdocs-extensions": "pip3 install mkdocs pymdown-extensions mkdocs-material markdown-include"
   },
   "devDependencies": {
     "markdownlint-cli2": "^0.5.1"

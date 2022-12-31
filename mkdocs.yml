@@ -114,3 +114,5 @@ nav:
 
   - Ruby:
     - Subprocesses: ruby/subprocesses.md
+
+  - Mermaid: mermaid.md
