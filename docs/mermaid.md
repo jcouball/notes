@@ -3,12 +3,19 @@
 Mermaid is a JavaScript based diagramming and charting tool that renders
 Markdown-inspired text definitions to create and modify diagrams dynamically.
 
+[Using Mermaid for each GitHub diagrams in Markdown-ish code](https://blog.jakelee.co.uk/using-mermaid-for-diagrams-on-github/)
+gives comprehensive Mermaid cheatsheets for each Mermaid graph type.
+
 This page includes Mermaid example diagrams.
 
 ## Class Diagram
 
-``` mermaid
+```mermaid
+---
+title: A Model of Online School
+---
 classDiagram
+  title This is the Title
   Person <|-- Student
   Person <|-- Professor
   Person : +String name
@@ -39,6 +46,9 @@ classDiagram
 ## Entity Relationship Diagram
 
 ``` mermaid
+---
+title: Invoicing Entity Relationship Diagram
+---
 erDiagram
   CUSTOMER }|..|{ DELIVERY-ADDRESS : has
   CUSTOMER ||--o{ ORDER : places
@@ -52,7 +62,15 @@ erDiagram
 
 ## Flow Chart
 
+A flowchart is a type of diagram that represents an algorithm, workflow or
+process. The flowchart shows the steps as boxes of various kinds, and their
+order by connecting the boxes with arrows. This diagrammatic representation
+illustrates a solution model to a given problem.
+
 ``` mermaid
+---
+title: Fix Error Flow Chart
+---
 graph LR
   A[Start] --> B{Error?};
   B -->|Yes| C[Hmm...];
@@ -64,21 +82,29 @@ graph LR
 ## Gaant Diagram
 
 ``` mermaid
+---
+title: Transformation Gantt Chart
+---
 gantt
   dateFormat  YYYY-MM-DD
-  title Adding GANTT diagram to mermaid
-  excludes weekdays 2014-01-10
 
-  section A section
-  Completed task            :done,    des1, 2014-01-06,2014-01-08
-  Active task               :active,  des2, 2014-01-09, 3d
-  Future task               :         des3, after des2, 5d
-  Future task2              :         des4, after des3, 5d
+  section Transformation Work
+    Project Start:     milestone, m0, 2022-01-05, 0d
+    Feasibility Study: done,      task1, after m0, 2022-01-08
+    Real Work Begins:  milestone, m1, after task1, 0d
+    Design:            active,    tast2, 2022-01-09, 4d
+    Coding:                       task3, after tast2, 10d
+    Acceptance:        crit,      task4, after task3, 5d
+    Project End:       milestone, m2, after task4, 0d
 ```
 
 ## GitGraph Diagram
 
 ``` mermaid
+---
+title: GitGraph Diagram
+---
+%%{init: { 'gitGraph': { 'mainBranchName': 'master'}} }%%
 gitGraph
   commit
   commit
@@ -86,7 +112,7 @@ gitGraph
   checkout develop
   commit
   commit
-  checkout main
+  checkout master
   merge develop
   commit
   commit
@@ -95,7 +121,10 @@ gitGraph
 ## Pie Chart
 
 ``` mermaid
-pie title Pets adopted by volunteers
+---
+title: Pets Adopted by Volunteers
+---
+pie
   "Dogs" : 386
   "Cats" : 85
   "Rats" : 15
@@ -104,6 +133,9 @@ pie title Pets adopted by volunteers
 ## Sequence Diagram
 
 ``` mermaid
+---
+title: Sequence Diagram
+---
 sequenceDiagram
   Alice->>John: Hello John, how are you?
   loop Healthcheck
@@ -118,6 +150,9 @@ sequenceDiagram
 ## State Diagram
 
 ``` mermaid
+---
+title: State Diagram
+---
 stateDiagram-v2
   state fork_state <<fork>>
     [*] --> fork_state
