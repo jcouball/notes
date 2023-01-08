@@ -1,4 +1,4 @@
 mkdocs
 pymdown-extensions
-mkdocs-material
+mkdocs-material ~= 9.0, >= 9.0.3
 markdown-include
