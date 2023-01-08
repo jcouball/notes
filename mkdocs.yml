@@ -14,13 +14,6 @@ extra:
     doc_owner_shortid: jcouball
     doc_owner_email: jcouball@yahoo.com
 
-extra_css:
-    - css/mermaid_local.css
-
-extra_javascript:
-    - js/mermaid.js
-    - js/mermaid_settings.js
-
 markdown_extensions:
     - admonition
     - attr_list
