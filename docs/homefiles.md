@@ -55,17 +55,17 @@ On my system:
 [Z Shell startup files](http://zsh.sourceforge.net/Intro/intro_3.html)
 showing the order (A, B, etc.) which files are sourced depending on how the shell was run.
 
-| File | Interactive<br/>Login | Interactive<br/>non-login | Script |
+| File | Always<br/>Sourced | Login<br/>Shell | Interactive<br/>Shell |
 | :----------- | :---: | :---: | :---: |
 | **STARTUP FILES** {: colspan=4 } | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
-| /etc/zshenv   | A     | A     | A     |
-| ~/.zshenv     | B     | B     | B     |
-| /etc/zprofile | C     | --    | --    |
-| ~/.zprofile   | D     | --    | --    |
-| /etc/zshrc    | E     | C     | --    |
-| ~/.zshrc      | F     | D     | --    |
-| /etc/zlogin   | G     | --    |       |
-| ~/.zlogin     | H     | --    |       |
+| /etc/zshenv   | X     |       |       |
+| ~/.zshenv     | X     |       |       |
+| /etc/zprofile |       | X     |       |
+| ~/.zprofile   |       | X     |       |
+| /etc/zshrc    |       |       | X     |
+| ~/.zshrc      |       |       | X     |
+| /etc/zlogin   |       | X     |       |
+| ~/.zlogin     |       | X     |       |
 | **SHUTDOWN FILES** {: colspan=4 } | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
 | ~/.zlogout    | I     | --    | --    |
 | /etc/zlogout  | J     | --    | --    |

@@ -54,6 +54,9 @@ theme: 'material'
 nav:
   - About Me: index.md
   - Documentation Standards: documentation_standards.md
+
+  - ChatGPT
+    - ChatGPT Prompt Engineering for Developers: chatgpt/chatgpt_prompt_engineering_for_developers.md
   - Git / GitHub:
     - Git Tips: git/git.md
     - Ultimate Git Course:
@@ -67,7 +70,6 @@ nav:
 
   - Homebrew Tips: homebrew.md
   - Home Files: homefiles.md
-  - Music Theory: music_theory.md
 
   - JavaScript/Node:
     - Ultimate JavaScript Mastery:
@@ -101,11 +103,15 @@ nav:
       - Test Driven Development: javascript/complete_node_js/14_test_driven_development.md
       - Deployment: javascript/complete_node_js/15_deployment.md
 
-  - systemd:
-    - Concepts: systemd/concepts.md
-    - systemctl: systemd/systemctl.md
+  - Mermaid: mermaid.md
+
+  - Music Theory: music_theory.md
 
   - Ruby:
     - Subprocesses: ruby/subprocesses.md
 
-  - Mermaid: mermaid.md
+  - systemd:
+    - Concepts: systemd/concepts.md
+    - systemctl: systemd/systemctl.md
+
+ - vscode: vscode.md
