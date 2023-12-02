@@ -52,7 +52,8 @@ Tell me about AeroGlide UltraSlim Smart Toothbrush by Boie
 
 ## Iterative Prompt Develelopment
 
-In this lesson, you'll iteratively analyze and refine your prompts to generate marketing copy from a product fact sheet.
+In this lesson, you'll iteratively analyze and refine your prompts to generate
+marketing copy from a product fact sheet.
 
 ``` mermaid
 ---
@@ -213,7 +214,10 @@ How would Yoda say "Hi, I would like to order a hamburger and french fries"
 
 ### Universal translator
 
-Imagine you are in charge of IT at a large multinational e-commerce company. Users are messaging you with IT issues in all their native languages. Your staff is from all over the world and speaks only their native languages. You need a universal translator!
+Imagine you are in charge of IT at a large multinational e-commerce company. Users
+are messaging you with IT issues in all their native languages. Your staff is from
+all over the world and speaks only their native languages. You need a universal
+translator!
 
 ```text
 user_messages = [
@@ -378,4 +382,3 @@ customer agent`.
 ```
 
 ### Remind the model to use details from the customer's email
-
