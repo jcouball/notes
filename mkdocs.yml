@@ -55,8 +55,9 @@ nav:
   - About Me: index.md
   - Documentation Standards: documentation_standards.md
 
-  - ChatGPT
+  - ChatGPT:
     - ChatGPT Prompt Engineering for Developers: chatgpt/chatgpt_prompt_engineering_for_developers.md
+
   - Git / GitHub:
     - Git Tips: git/git.md
     - Ultimate Git Course:
@@ -114,4 +115,4 @@ nav:
     - Concepts: systemd/concepts.md
     - systemctl: systemd/systemctl.md
 
- - vscode: vscode.md
+  - vscode: vscode.md
