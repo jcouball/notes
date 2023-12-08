@@ -165,3 +165,9 @@ stateDiagram-v2
     join_state --> State4
     State4 --> [*]
 ```
+
+## Mermaid Version
+
+```mermaid
+info
+```
