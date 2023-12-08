@@ -55,8 +55,9 @@ nav:
   - About Me: index.md
   - Documentation Standards: documentation_standards.md
 
-  - ChatGPT:
-    - ChatGPT Prompt Engineering for Developers: chatgpt/chatgpt_prompt_engineering_for_developers.md
+  - AI:
+    - ChatGPT Prompt Engineering for Developers: ai/chatgpt_prompt_engineering_for_developers.md
+    - Getting Started on Prompt Engineering: ai/getting_started_on_prompt_engineering.md
 
   - Git / GitHub:
     - Git Tips: git/git.md
