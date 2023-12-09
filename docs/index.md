@@ -38,6 +38,7 @@ I am the lead contributer or owner of the following gems:
 | **Continuous Integration Utilities** ||
 | [main-branch/create_github_release](https://github.com/main-branch/create_github_release) | A gem to manage releases of your gems including creating a release changelog as well as GitHub branch, PR, and release.
 | [main-branch/semverify](https://github.com/main-branch/semverify) | A replacement for the [bump](https://github.com/gregorym/bump) gem that parses and compares semver versions AND increments versions for Ruby Gems
+| [main-branch/github_pages_rake_tasks](https://github.com/main-branch/github_pages_rake_tasks) | Creates the rake task `github-pages:publish` which pushes the `doc` directory within the local copy of a repository to the same repository's `gh-pages` branch.
 | **Others** ||
 | [main-branch/process_executer](https://github.com/main-branch/process_executer) | An API for executing commands in a subprocess
 | [main-branch/active_model_persistence](https://github.com/main-branch/active_model_persistence) | A gem to add in-memory persistence to Models built with ActiveModel
