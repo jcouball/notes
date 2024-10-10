@@ -902,13 +902,13 @@ The following `npm` commands were discussed:
 | `npm init` | creates `package.json` file in the current directory |
 | `npm install NAME` | install a package |
 | `npm install NAME@VERSION` |  install a specific version of a package |
-| `npm install NAME {--save-dev | -D}` | install a package as a development dependency |
+| `npm install NAME {--save-dev \| -D}` | install a package as a development dependency |
 | `npm uninstall NAME` | uninstall a package |
 | `npm list` | list locally installed packages |
 | `npm view NAME` | view the registry metadata for a package |
 | `npm outdated` | list outdated packages |
 | `npm-check-updates` | updates the version for all dependencies in `package.json` |
 | `npm update` | update install packages to their latest version that satisify the criteria in `package.json` |
-| `npm version [<newversion> | major | minor | patch]` | update the version given in `package.json` |
+| `npm version [<newversion> \| major \| minor \| patch]` | update the version given in `package.json` |
 
 Use the `--global` or `-g` flag to operate on global packages instead of local packages.
