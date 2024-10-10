@@ -1,5 +1,89 @@
 # Git Tips
 
+* [Building git from source](#building-git-from-source)
+* [Syncing a fork](#syncing-a-fork)
+* [Change Git Remote URL](#change-git-remote-url)
+* [Revert one or more commits](#revert-one-or-more-commits)
+* [Git Log](#git-log)
+* [Show History of a File](#show-history-of-a-file)
+* [Find Author of a Line](#find-author-of-a-line)
+* [Git Show](#git-show)
+* [Merging and rebasing](#merging-and-rebasing)
+* [Reference previous Commits](#reference-previous-commits)
+* [Squash commits](#squash-commits)
+* [Rewrite commit message](#rewrite-commit-message)
+* [Stash](#stash)
+* [Checkout a pull request](#checkout-a-pull-request)
+* [Signing Commits](#signing-commits)
+* [Diff](#diff)
+* [Check index for staged changes](#check-index-for-staged-changes)
+* [Clean](#clean)
+* [ls-files](#ls-files)
+* [Determine if inside work tree](#determine-if-inside-work-tree)
+* [Determine if at the top level of the repository](#determine-if-at-the-top-level-of-the-repository)
+* [Determine default branch of remote](#determine-default-branch-of-remote)
+* [Undo create-release](#undo-create-release)
+* [Are there staged changes?](#are-there-staged-changes)
+* [Number of commits in the repository](#number-of-commits-in-the-repository)
+* [Is the repository empty?](#is-the-repository-empty)
+* [Number of commits in a feature branch](#number-of-commits-in-a-feature-branch)
+* [What does HEAD point to?](#what-does-head-point-to)
+* [Ways to determine the current branch](#ways-to-determine-the-current-branch)
+  * [Current branch states](#current-branch-states)
+    * [1. Branch Exists](#1-branch-exists)
+    * [2. Unborn Branch](#2-unborn-branch)
+    * [3. Detached HEAD](#3-detached-head)
+  * [Commands to determine HEAD branch state](#commands-to-determine-head-branch-state)
+  * [Commands to determine the current branch](#commands-to-determine-the-current-branch)
+
+## Building git from source
+
+See the page [How to install
+Git](https://www.atlassian.com/git/tutorials/install-git) from Atlassian.
+
+I have successfully used the instructions in the section "Build Git from source on OS
+X" on MacOS 15.
+
+1. From your terminal install XCode's Command Line Tools (if you haven't already):
+
+```shell
+xcode-select --install
+```
+
+2. Install [Homebrew](http://brew.sh/)
+
+3. Using Homebrew, install openssl:
+
+```shell
+brew install openssl
+```
+
+4. Download the source tarball from [here](https://mirrors.edge.kernel.org/pub/software/scm/git/) and extract it
+
+5. Build Git run make with the following command:
+
+```shell
+NO_GETTEXT=1 make CFLAGS="-I/usr/local/opt/openssl/include" LDFLAGS="-L/usr/local/opt/openssl/lib"
+```
+
+6. The newly built git command will be found at `bin-wrappers/git`
+
+7. Set the git gem to use your version
+
+```ruby
+require 'git'
+# set the binary path
+Git.configure { |config| config.binary_path = '/Users/james/Downloads/git-2.30.2/bin-wrappers/git' }
+# validate the version
+assert_equal([2, 30, 2], Git.binary_version)
+```
+
+or run tests with your newly built version:
+
+```shell
+GIT_PATH=/Users/james/Downloads/git-2.30.2/bin-wrappers bin/test
+```
+
 ## Syncing a fork
 
 Create the upstream remote for the fork:
@@ -493,3 +577,101 @@ git rev-parse --abbrev-ref --symbolic-full-name HEAD
 | Commits, Not Remote, Detached        | If there is only one branch, return it. If there is more than one branch and one of them is the configured `init.defaultBranch`, return it. Otherwise return the current branch. |
 | Commits, Remote, Not Detached        | Return the last known state of HEAD on the remote<br />`git symbolic-ref --short refs/remotes/origin/HEAD` |
 | Commits, Remote, Detached            | Return the last known state of HEAD on the remote<br />`git symbolic-ref --short refs/remotes/origin/HEAD` |
+
+## Number of commits in the repository
+
+This is all the *reachable* commits. Commits no longer reachable from any references
+are not counted.
+
+```
+git rev-list --all --count
+```
+
+## Is the repository empty?
+
+There are different methods:
+
+* `git show-ref` will output nothing and return exitcode 1
+* `git rev-list --count --max-count=1 --all` will output '0' and return exitcode 0
+
+## Number of commits in a feature branch
+
+Assumes that there are no branches created from the feature branch.
+
+```bash
+BRANCH_NAME=branch2
+git rev-list "${BRANCH_NAME}" --exclude="refs/heads/${BRANCH_NAME}" --not --all
+```
+
+Just the number of commits, add `--count`:
+
+```bash
+BRANCH_NAME=branch2
+git rev-list "${BRANCH_NAME}" --exclude="refs/heads/${BRANCH_NAME}" --not --all --count
+```
+
+## What does HEAD point to?
+
+The .git/HEAD file contains either:
+
+1. The reference to the current branch (e.g., ref: refs/heads/<branch-name>).
+
+   * If this reference points to a non-existent branch ref, the branch is in a new
+     state with no commits.
+   * If this reference points to an existing branch ref, that ref file contains the
+     SHA of the latest commit on the branch.
+
+2. The SHA of a commit, indicating that Git is in a detached HEAD state, pointing
+   directly to a specific commit rather than a branch.
+
+## Ways to determine the current branch
+
+### Current branch states
+
+The current branch is the one pointed to by `HEAD`. The state of `HEAD` determines
+the state of the current branch:
+
+#### 1. Branch Exists
+
+`HEAD` points to a branch reference, which in turn points to a commit representing
+the tip of that branch. This is the typical state when working on an active branch.
+
+#### 2. Unborn Branch
+
+`HEAD` points to a branch reference that does not yet exist because no commits have
+been made on that branch. This state occurs in two scenarios:
+
+* When a repository is newly initialized and no commits have been made on the
+  initial branch.
+* When a new branch is created using `git checkout --orphan <branch>`, starting a new
+  branch with no history.
+
+#### 3. Detached HEAD
+
+`HEAD` points directly to a specific commit (identified by its SHA) rather than a
+branch reference. This state occurs when you check out a commit, a tag, or any state
+that is not directly associated with a branch.
+
+### Commands to determine HEAD branch state
+
+### Commands to determine the current branch
+
+```bash
+git symbolic-ref --short HEAD
+```
+
+* **Branch Exists**: outputs the branch name and returns exitcode 0
+* **Unborn Branch**: outputs the unborn branch name and returns exitcode 0
+* **Detached HEAD**: Outputs 'fatal: ref HEAD is not a symbolic ref' to stderr and returns exitcode 128
+
+```bash
+git branch --show-current
+```
+
+* **Branch Exists**: outputs branch name and returns exitcode 0
+* **Unborn Branch**: outputs the unborn branch name and exitcode 0
+* **Detached HEAD**: outputs nothing and returns exitcode 0
+
+* **Branch Exists**:
+* **Unborn Branch**:
+* **Detached HEAD**:
