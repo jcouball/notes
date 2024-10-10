@@ -115,6 +115,9 @@ nav:
   - Ruby:
     - Subprocesses: ruby/subprocesses.md
 
+  - SSL/TLS:
+    - Cheat Sheet: ssl_tls.md
+    
   - systemd:
     - Concepts: systemd/concepts.md
     - systemctl: systemd/systemctl.md
