@@ -106,6 +106,6 @@ Update all individual packagers and formula:
 
 [Brew Bundle Brewfile Tips](https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f)
 
-Create .Brewfile: `brew bundle dump --describe --global --all --mas`
+Create .Brewfile: `brew bundle dump --describe --global --all --force`
 
 Install from .Brewfile: `brew bundle install --global`
