@@ -402,12 +402,12 @@ Focusing on metrics humans can look at and evaluate.
 Three objective metrics:
 
 * **Accuracy**:
-    * **Factual correctness**: the model answers with actual facts
-    * **Semantic correctness**: does it answer the question we ask
+  * **Factual correctness**: the model answers with actual facts
+  * **Semantic correctness**: does it answer the question we ask
 * **Speed**
-    * Processing speed: how long the answer takes to generate
-    * Response speed: how long it takes a user to receive a response (includes
-      network latency and other delays)
+  * Processing speed: how long the answer takes to generate
+  * Response speed: how long it takes a user to receive a response (includes
+    network latency and other delays)
 * **Relevancy**: is the answer relevant to the question we ask
 
 ### Subjective Metrics
@@ -422,23 +422,23 @@ Human opinions on coherence, tone, and clarity.
 ### Evaluation Techniques
 
 * Surveys and interviews
-    * Did the AI understand your prompt correctly?
-    * Was the response AI gave relevant to your prompt?
-    * Was the AI's response easy to understand?
-    * Did the AI provide a complete answer to your prompt, or did it miss anything?
-    * Did you find the Al's response helpful?
-    * Was the Al's response delivered in an appropriate tone?
-    * How satisfied are you with the speed of the Al's response?
-    * Did you feel the conversation with the Al flowed naturally?
+  * Did the AI understand your prompt correctly?
+  * Was the response AI gave relevant to your prompt?
+  * Was the AI's response easy to understand?
+  * Did the AI provide a complete answer to your prompt, or did it miss anything?
+  * Did you find the Al's response helpful?
+  * Was the Al's response delivered in an appropriate tone?
+  * How satisfied are you with the speed of the Al's response?
+  * Did you feel the conversation with the Al flowed naturally?
 
 * A/B Testing
-    * Example given for a customer service bot
-    * Use two different prompts to get the conversation started
-    * Which prompt led to more successful return transactions?
-    * Which prompt resulted in shorter conversation lengths (indicating possibly
-      smoother interactions)?
-    * *Which prompt received higher customer satisfaction scores in post-interaction
-      surveys?
+  * Example given for a customer service bot
+  * Use two different prompts to get the conversation started
+  * Which prompt led to more successful return transactions?
+  * Which prompt resulted in shorter conversation lengths (indicating possibly
+    smoother interactions)?
+  * *Which prompt received higher customer satisfaction scores in post-interaction
+    surveys?
 
 * The [OpenAI API Fine tuning
   guide](https://platform.openai.com/docs/guides/fine-tuning) can give further help
@@ -493,9 +493,9 @@ use. This is similar but different than temperature.
 * **Surveys and Interviews**: Questions about understanding, relevance, clarity,
   completeness, helpfulness, tone, response speed, and natural conversation flow.
 * **A/B Testing**:
-    * Example: Customer service bot interaction.
-    * Comparing different prompts for effectiveness in real-world scenarios.
-    * Metrics: Transaction success, conversation length, and customer satisfaction.
+  * Example: Customer service bot interaction.
+  * Comparing different prompts for effectiveness in real-world scenarios.
+  * Metrics: Transaction success, conversation length, and customer satisfaction.
 
 ### Example: Getting Better Results by Adjusting Parameters Summarized
 

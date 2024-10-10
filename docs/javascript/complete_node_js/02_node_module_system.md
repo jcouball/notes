@@ -581,15 +581,15 @@ console.log('Listening on port 3000...');
 In this section, I learned:
 
 * In Node:
-    * the `window` object does not exist
-    * The global object in Node is `global`
-    * Variables define are not global
+  * the `window` object does not exist
+  * The global object in Node is `global`
+  * Variables define are not global
 
 * Every file in a Node application is a module
-    * Node automatically wraps the code in each file with an IIFE (Immediately-invoked
-      Function Expression) to create scope.
-    * Variables and functions defined in one file are only scoped to that file and not
-      visible to other files unless explicitly exported.
+  * Node automatically wraps the code in each file with an IIFE (Immediately-invoked
+    Function Expression) to create scope.
+  * Variables and functions defined in one file are only scoped to that file and not
+    visible to other files unless explicitly exported.
 
 * To export a variable or function from a module, you need to add them to
   `module.exports`:
@@ -606,8 +606,8 @@ In this section, I learned:
 
 * EventEmitter is one of the core classes in Node that allows us to raise (emit) and
   handle events.
-    * Several built-in classes in Node derive from EventEmitter.
+  * Several built-in classes in Node derive from EventEmitter.
 
-    * To create a class with the ability to raise events, we should extend EventEmitter:
+  * To create a class with the ability to raise events, we should extend EventEmitter:
 
-        `class Logger extends EventEmitter { }`
+      `class Logger extends EventEmitter { }`
