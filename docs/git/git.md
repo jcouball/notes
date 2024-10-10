@@ -46,25 +46,26 @@ X" on MacOS 15.
 
 1. From your terminal install XCode's Command Line Tools (if you haven't already):
 
-```shell
-xcode-select --install
-```
+   ```shell
+   xcode-select --install
+   ```
 
 2. Install [Homebrew](http://brew.sh/)
 
 3. Using Homebrew, install openssl:
 
-```shell
-brew install openssl
-```
+   ```shell
+   brew install openssl
+   ```
 
-4. Download the source tarball from [here](https://mirrors.edge.kernel.org/pub/software/scm/git/) and extract it
+4. Download the source tarball from
+   [here](https://mirrors.edge.kernel.org/pub/software/scm/git/) and extract it
 
 5. Build Git run make with the following command:
 
-```shell
-NO_GETTEXT=1 make CFLAGS="-I/usr/local/opt/openssl/include" LDFLAGS="-L/usr/local/opt/openssl/lib"
-```
+   ```shell
+   NO_GETTEXT=1 make CFLAGS="-I/usr/local/opt/openssl/include" LDFLAGS="-L/usr/local/opt/openssl/lib"
+   ```
 
 6. The newly built git command will be found at `bin-wrappers/git`
 
@@ -237,31 +238,31 @@ Amend older commit messages:
 ## Stash
 
 * `git stash`
-    * [save “message”] - annotate a stash with a description
-    * [--include-untracked | -u] - include untracked files
-    * [--all | -a] - include ignored files
-    * [—patch | -p] - interactively choose which change hunks to save in the stash.
+  * [save “message”] - annotate a stash with a description
+  * [--include-untracked | -u] - include untracked files
+  * [--all | -a] - include ignored files
+  * [—patch | -p] - interactively choose which change hunks to save in the stash.
       Press ‘?’ for a list of hunk commands.
 * `git stash apply`
-    * re-apply a stash but keep the stash
+  * re-apply a stash but keep the stash
 * `git stash pop`
-    * re-apply the most recently created stash: stash@{0}
-    * [identifier] - re-apply a stash by identifier (see git stash list)
+  * re-apply the most recently created stash: stash@{0}
+  * [identifier] - re-apply a stash by identifier (see git stash list)
 * `git stash list`
-    * List all available stashes with identifier and message
+  * List all available stashes with identifier and message
 * `git stash show`
-    * View a summary of the last stash
-    * [identifier] - show the summary of a different stash
-    * [--patch | -p] - include a full diff of the stash
+  * View a summary of the last stash
+  * [identifier] - show the summary of a different stash
+  * [--patch | -p] - include a full diff of the stash
 * `git stash branch [branch-name]`
-    * check out a new branch based on the commit the last stash was created from and
-      then pops that stash’s changes onto it
-    * [identifier] - branch and pop from a different stash
+  * check out a new branch based on the commit the last stash was created from and
+    then pops that stash’s changes onto it
+  * [identifier] - branch and pop from a different stash
 * `git stash drop`
-    * Delete the last stash
-    * [identifier] - delete a different stash
+  * Delete the last stash
+  * [identifier] - delete a different stash
 * `git stash clean`
-    * Delete all stashes
+  * Delete all stashes
 
 ## Checkout a pull request
 
@@ -583,7 +584,7 @@ git rev-parse --abbrev-ref --symbolic-full-name HEAD
 This is all the *reachable* commits. Commits no longer reachable from any references
 are not counted.
 
-```
+```shell
 git rev-list --all --count
 ```
 
@@ -662,7 +663,8 @@ git symbolic-ref --short HEAD
 
 * **Branch Exists**: outputs the branch name and returns exitcode 0
 * **Unborn Branch**: outputs the unborn branch name and returns exitcode 0
-* **Detached HEAD**: Outputs 'fatal: ref HEAD is not a symbolic ref' to stderr and returns exitcode 128
+* **Detached HEAD**: Outputs 'fatal: ref HEAD is not a symbolic ref' to stderr and
+  returns exitcode 128
 
 ```bash
 git branch --show-current
