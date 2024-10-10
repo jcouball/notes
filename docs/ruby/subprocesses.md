@@ -8,35 +8,35 @@ communicating with external subprocesses.
 
 | **Method** | **Use Case** |
 | ---------- | ------------ |
-| [Backticks](#backticks) | Run a command and wait for the results. STDOUT from the subprocess is returned as a String.
-| [Kernel#system](#kernelsystem) | Run a command and wait for the results. By default STDOUT/STDERR are inherited from the parent.
-| [Kernel#spawn](#kernelspawn) | Run a command asynchronously. By default STDOUT/STDERR are inherited from the parent.
-| [Kernel#exec](#kernelexec) | Replace the current process by some other command. By default all file descriptors are inherited from the parent.
-| [Kernel#fork](#kernelfork) | Run Ruby code asynchronously in a subprocess. By default all file descriptors are inherited from the parent.
-| [IO.popen](#iopopen) | **TODO** Run a command asynchronously and interact with its STDOUT and STDIN via a pipe
-| [Open3.popen3](#open3popen3) | **TODO** Run a command asynchronously and interact with its STDOUT, STDERR, and STDIN via a pipe
-| [PTY.spawn](#ptyspawn) | **TODO** Run a command asynchronously and have it behave like it was run from a terminal
+| [Backticks](#backticks) | Run a command and wait for the results. STDOUT from the subprocess is returned as a String. |
+| [Kernel#system](#kernelsystem) | Run a command and wait for the results. By default STDOUT/STDERR are inherited from the parent. |
+| [Kernel#spawn](#kernelspawn) | Run a command asynchronously. By default STDOUT/STDERR are inherited from the parent. |
+| [Kernel#exec](#kernelexec) | Replace the current process by some other command. By default all file descriptors are inherited from the parent. |
+| [Kernel#fork](#kernelfork) | Run Ruby code asynchronously in a subprocess. By default all file descriptors are inherited from the parent. |
+| [IO.popen](#iopopen) | **TODO** Run a command asynchronously and interact with its STDOUT and STDIN via a pipe |
+| [Open3.popen3](#open3popen3) | **TODO** Run a command asynchronously and interact with its STDOUT, STDERR, and STDIN via a pipe |
+| [PTY.spawn](#ptyspawn) | **TODO** Run a command asynchronously and have it behave like it was run from a terminal |
 
 **How To Control Subprocesses**
 
 | **Topic** | **Description** |
 | --------- | --------------- |
-| [How Are Commands Run](#how-commands-are-run) | how to specify what command is run and how Ruby decides if the command will be run directly or via a subshell
-| [What Shell Is Used](#what-shell-is-used) | how Ruby selects which shell to use if the command is to be run in a subshell
-| [$CHILD_STATUS](#child_status) | the status of a running or terminated subprocess
-| [Detach](#detach) | tell Ruby you are not interested in the result of a subprocess
-| [Wait](#wait) | wait for a subprocess to finish and get its status
-| [Kill](#kill) | send an signal to a subprocess possibly causing it to terminate before it otherwise would
-| [Environment](#environment) | choose what variables are passed into the subprocess's environment
-| [Redirection](#redirection) | choose what is sent to a subprocess's stdin or where a subprocess's stdout and stderr are sent
-| [Limits](#limits) | **TODO** set the resource limits (like CPU time, memory used, and number of open files) of a subprocess
+| [How Are Commands Run](#how-commands-are-run) | how to specify what command is run and how Ruby decides if the command will be run directly or via a subshell |
+| [What Shell Is Used](#what-shell-is-used) | how Ruby selects which shell to use if the command is to be run in a subshell |
+| [$CHILD_STATUS](#child_status) | the status of a running or terminated subprocess |
+| [Detach](#detach) | tell Ruby you are not interested in the result of a subprocess |
+| [Wait](#wait) | wait for a subprocess to finish and get its status |
+| [Kill](#kill) | send an signal to a subprocess possibly causing it to terminate before it otherwise would |
+| [Environment](#environment) | choose what variables are passed into the subprocess's environment |
+| [Redirection](#redirection) | choose what is sent to a subprocess's stdin or where a subprocess's stdout and stderr are sent |
+| [Limits](#limits) | **TODO** set the resource limits (like CPU time, memory used, and number of open files) of a subprocess |
 
 **External References**
 
 | **Topic** | **Description** |
 | --------- | --------------- |
-| [Gems](#gems) | Useful gems to help create and control subprocesses
-| [References](#references) | Links to useful articles
+| [Gems](#gems) | Useful gems to help create and control subprocesses |
+| [References](#references) | Links to useful articles  |
 
 ## Backticks
 

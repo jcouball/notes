@@ -23,3 +23,5 @@ MD033: false
 
 # Allow emphasis to be used instead of a heading
 MD036: false
+
+MD055: { style: 'consistent' }
