@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "setup": "npm install && pip3 install -r requirements.txt",
+    "lint": "markdownlint-cli2 '**/*.md' '!node_modules'",
+    "build": "markdownlint-cli2 '**/*.md' '!node_modules' && mkdocs build",
+    "serve": "markdownlint-cli2 '**/*.md' '!node_modules' && mkdocs serve"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.14.0"
+  }
+}
