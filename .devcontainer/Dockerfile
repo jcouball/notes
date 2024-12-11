@@ -21,4 +21,5 @@ RUN cd /tmp/npm-tmp && \
     rm -rf /tmp/npm-tmp
 
 # Set the working directory
+RUN mkdir -p /workspace && chown -R vscode:vscode /workspace
 WORKDIR /workspace
