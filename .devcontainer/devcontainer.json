@@ -1,6 +1,7 @@
 {
   "name": "My Personal Tech Docs",
   "build": {
+    "context": "..",
     "dockerfile": "Dockerfile"
   },
   "customizations": {

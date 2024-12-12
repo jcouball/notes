@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Run the devcontainer:latest image manually from the command line
+
+# Get the directory the source code to mount into the container
+MOUNT_PATH="$(dirname "$(dirname "$(realpath "$0")")")"
+
+# Check if any arguments are passed, if not default to /bin/bash
+if [ $# -eq 0 ]; then
+  echo
+  echo "To run the mkdocs server either:"
+  echo "  * Exit the container and run: '$0 mkdocs serve -a 0.0.0.0:8000', OR"
+  echo "  * Run this command in the container: 'mkdocs serve -a 0.0.0.0:8000' within the container."
+  echo "Then browse to http://localhost:8000"
+  echo
+
+  docker run -it --rm -v "$MOUNT_PATH:/workspaces/notes" -p 8000:8000 devcontainer:latest /bin/bash
+else
+  docker run -it --rm -v "$MOUNT_PATH:/workspaces/notes" -p 8000:8000 devcontainer:latest "$@"
+fi
