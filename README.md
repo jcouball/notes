@@ -12,7 +12,8 @@ You can edit these notes by:
 * Cloning this repo locally and opening in VS Code
 
   You can do this by opening the following link in your browser:
-  vscode://vscode.git/clone?url=https://github.com/jcouball/notes
+
+  `vscode://vscode.git/clone?url=https://github.com/jcouball/notes`
 
 * Use your own editor or IDE
 
