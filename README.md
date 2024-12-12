@@ -5,6 +5,10 @@ These notes can be viewed on [GitHub pages](https://jcouball.github.io/notes/).
 These are my personal notes I have taken on many different technical and musical
 subjects.
 
+* [Getting Started](#getting-started)
+  * [Without a devcontainer](#without-a-devcontainer)
+  * [In VS Code](#in-vs-code)
+
 ## Getting Started
 
 You can edit these notes by:
@@ -16,6 +20,8 @@ You can edit these notes by:
   `vscode://vscode.git/clone?url=https://github.com/jcouball/notes`
 
 * Use your own editor or IDE
+
+### Without a devcontainer
 
 If you choose to edit these notes without a devcontainer you must do the following:
 
@@ -29,3 +35,9 @@ The following npm scripts are available to lint, build and serve the docs:
 * `npm run build`: run the markdown linter and build the mkdocs site
 * `npm run serve`: run the markdown linter, build the mkdocs site, and serve the site
   for testing
+
+### In VS Code
+
+If you use VS Code (locally, in a devcontainer, or in a GitHub Codespace), you can
+run the document server by selecting "Run without Debugging" from the VS Code "Run"
+menu (or use the Ctrl-F5 shortcut).
