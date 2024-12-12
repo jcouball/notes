@@ -27,6 +27,9 @@
         "bierner.markdown-mermaid",
         "esbenp.prettier-vscode",
         "davidanson.vscode-markdownlint",
+        "GitHub.vscode-pull-request-github",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
         "stkb.rewrap",
         "yzhang.markdown-all-in-one"
       ]
