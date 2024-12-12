@@ -6,13 +6,29 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
+        "editor.tabSize": 2,
+        "files.autoSave": "afterDelay",
+        "files.trimTrailingWhitespace": true,
+        "markdown.extension.toc.unorderedList.marker": "*",
+        "markdown.extension.toc.levels": "2..6",
+        "markdownlint.focusMode": false,
+        "markdownlint.lintWorkspaceGlobs": [
+          "**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
+          "!**/bower_components",
+          "!**/node_modules",
+          "!**/vendor",
+          "!**/.git",
+          "!.yardopts"
+        ],
+        "rewrap.wrappingColumn": 85,
+        "workbench.iconTheme": "vscode-icons"
       },
       "extensions": [
+        "bierner.markdown-mermaid",
         "esbenp.prettier-vscode",
         "davidanson.vscode-markdownlint",
-        "ms-python.python",
-        "ms-vscode.node-debug2"
+        "stkb.rewrap",
+        "yzhang.markdown-all-in-one"
       ]
     }
   },
