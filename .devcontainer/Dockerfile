@@ -20,7 +20,7 @@ COPY package.json requirements.txt /workspaces/notes/
 RUN mkdir -p /home/vscode/.local/bin && \
     # Create an alias for ls -al
     echo '#!/bin/sh' > /home/vscode/.local/bin/ll && \
-    echo 'ls -al "$@"' >> /home/vscode/.local/bin/ll && \
+    echo 'ls --color -alh "$@"' >> /home/vscode/.local/bin/ll && \
     chmod +x /home/vscode/.local/bin/ll && \
     # Install mkdocs and other Python dependencies
     pip3 install --no-cache-dir -r /workspaces/notes/requirements.txt && \
