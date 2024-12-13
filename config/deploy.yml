@@ -1,0 +1,22 @@
+service: notes
+
+image: jcouball/notes
+
+# Deploy to these servers.
+servers:
+  web:
+    - 192.168.1.29
+
+proxy:
+  ssl: false
+  healthcheck:
+    path: /healthcheck.html
+
+registry:
+  username: jcouball
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Configure builder setup.
+builder:
+  arch: amd64

@@ -1,0 +1,38 @@
+proxmox:
+  address: "192.168.1.20"
+
+service:
+  name: "notes"
+
+container_defaults:
+  template: "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+  rootfs_size: 16
+  swap: 512
+  password: "$HOST_PASSWORD"
+  start: 1
+  features: "nesting=1"
+  bridge: "vmbr0"
+  gateway: "192.168.1.1"
+
+containers:
+  - { id: "121", hostname: "notes", address: "192.168.1.29", cores: 1, memory: 256 }
+
+
+# pvesh create /pools --poolid "notes"
+
+# pct create "129" "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst" \
+#   --swap 512 \
+#   --password "$HOST_PASSWORD" \
+#   --start "1" \
+#   --hostname "notes" \
+#   --features "nesting=1" \
+#   --ssh-public-keys "/root/.ssh/id_rsa_notes_admin.pub" \
+#   --cores 1 \
+#   --memory 256 \
+#   --rootfs "local-lvm:16" \
+#   --net0 "name=eth0,bridge=vmbr0,ip=192.168.1.29/24,gw=192.168.1.1" \
+#   --pool "notes"
+
+# pct destroy 129
+
+# pvesh delete /pools --poolid "notes"
