@@ -8,6 +8,7 @@ subjects.
 * [Getting Started](#getting-started)
   * [Without a devcontainer](#without-a-devcontainer)
   * [In VS Code](#in-vs-code)
+  * [Deploying](#deploying)
 
 ## Getting Started
 
@@ -41,3 +42,19 @@ The following npm scripts are available to lint, build and serve the docs:
 If you use VS Code (locally, in a devcontainer, or in a GitHub Codespace), you can
 run the document server by selecting "Run without Debugging" from the VS Code "Run"
 menu (or use the Ctrl-F5 shortcut).
+
+### Deploying
+
+The deployment is configured with these files:
+
+* config/provision.yaml: Proxmox provisioning configuration
+* Dockerfile: creates the production deployment image which is deployed to docker hub
+  to [jcouball/notes](https://hub.docker.com/repository/docker/jcouball/notes/general)
+  * docker-build: a script to build the docker image locally
+  * docker-run: a script to run the docker image locally
+* config/deploy.yaml: Kamal 2 deployment configuration
+
+Currently, Proxmox configuration must be done manaully (see the commands at the
+bottom of the file).
+
+For deployment, use kamal 2 commands.

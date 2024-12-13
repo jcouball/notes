@@ -1,0 +1,3 @@
+#!/bin/bash
+# Browse docs at http://localhost:80
+docker run -p 80:80 notes-production:latest
