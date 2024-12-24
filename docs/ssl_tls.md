@@ -7,20 +7,20 @@ to a public key using a digital signature. A certificate contains an identity
 is either signed by a Certificate Authority or is Self-Signed.
 
 * [Self-Signed Certificates](#self-signed-certificates)
-  * [Generate CA](#generate-ca)
-  * [Optional Stage: View Certificate's Content](#optional-stage-view-certificates-content)
-  * [Generate Certificate](#generate-certificate)
+    * [Generate CA](#generate-ca)
+    * [Optional Stage: View Certificate's Content](#optional-stage-view-certificates-content)
+    * [Generate Certificate](#generate-certificate)
 * [Certificate Formats](#certificate-formats)
-  * [Convert Certs](#convert-certs)
+    * [Convert Certs](#convert-certs)
 * [Verify Certificates](#verify-certificates)
 * [Install the CA Cert as a trusted root CA](#install-the-ca-cert-as-a-trusted-root-ca)
-  * [On Android](#on-android)
-  * [On Arch](#on-arch)
-  * [On Debian \& Derivatives](#on-debian--derivatives)
-  * [On Fedora](#on-fedora)
-  * [On iOS](#on-ios)
-  * [On macOS](#on-macos)
-  * [On Windows](#on-windows)
+    * [On Android](#on-android)
+    * [On Arch](#on-arch)
+    * [On Debian and Derivatives](#on-debian-and-derivatives)
+    * [On Fedora](#on-fedora)
+    * [On iOS](#on-ios)
+    * [On macOS](#on-macos)
+    * [On Windows](#on-windows)
 
 ## Self-Signed Certificates
 
@@ -133,7 +133,7 @@ update-ca-trust
 
 wiki page  [here](https://wiki.archlinux.org/title/User:Grawity/Adding_a_trusted_CA_certificate)
 
-### On Debian & Derivatives
+### On Debian and Derivatives
 
 * Move the CA certificate (`ca.pem`) into `/usr/local/share/ca-certificates/ca.crt`.
 * Update the Cert Store with:

@@ -5,7 +5,7 @@
 This chapter will introduce the [express npm module](https://www.npmjs.com/package/express)
 for building scalable web applications.
 
-Recall that in [the HTTP module introduction](../02_node_module_system/#http-module),
+Recall that in [the HTTP module introduction](02_node_module_system.md/#http-module),
 we had this code to implement a simple web app that implemented responses for
 `/` and `/friends`:
 
@@ -144,7 +144,7 @@ const app = express();
 
  app.get('/', (req, res) => {
 
-  
+
  });
 
 ```

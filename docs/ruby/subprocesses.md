@@ -730,32 +730,32 @@ available system resources.
 See [Process.setrlimit](https://ruby-doc.org/core/Process.html#method-c-setrlimit)
 
 * Process.spawn rlimit options sets these limits
-  * limit_cpu # seconds of CPU time the scipt can use
+    * limit_cpu # seconds of CPU time the script can use
 
-  * rlimit_as # sets bound (in bytes) for address space made available to program
+    * rlimit_as # sets bound (in bytes) for address space made available to program
 
-  * Files open at a time, number of processes, etc.
+    * Files open at a time, number of processes, etc.
 
-  * Pay attention to the platform compatibility information listed for each
+    * Pay attention to the platform compatibility information listed for each
 
 * There is an option to set soft limits and hard limits
-  * Hard limits effects are both sudden and final usually resulting in the subprocess
-    being terminated
-  * If just one limit number is given, it is considered a hard limit:
-    * :limit_cpu => 2
-  * Soft limits raise a signal in the subprocess when the soft limit is hit (they can
-    be thought of as a warning to the subprocess):
-    * A hard limit needs to be specified along with the hard limit, the first number
-      is the soft limit and the second number is the hard limit:
-      * :limit_cpu = [1, 2]
-  * Example:
+    * Hard limits effects are both sudden and final usually resulting in the subprocess
+        being terminated
+    * If just one limit number is given, it is considered a hard limit:
+        * :limit_cpu => 2
+    * Soft limits raise a signal in the subprocess when the soft limit is hit (they can
+        be thought of as a warning to the subprocess):
+        * A hard limit needs to be specified along with the hard limit, the first number
+        is the soft limit and the second number is the hard limit:
+        * :limit_cpu = [1, 2]
+    * Example:
 
-      ```ruby
-      trap("XCPU") do
-        puts "Received SIGXCPU, shutting down"
-        exit
-      end
-      ```
+        ```ruby
+        trap("XCPU") do
+            puts "Received SIGXCPU, shutting down"
+            exit
+        end
+        ```
 
 ## Open Pipe
 
