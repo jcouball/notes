@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'dry-struct'
+require 'dry-types'
+require 'active_support'
+require 'active_support/core_ext/string'
+require 'fileutils'
+
+module Types
+  include Dry.Types()
+end
+
+class Chapter < Dry::Struct
+  attribute :name, Types::String
+  attribute :sections, Types::Array.of(Types::String)
+end
+
+class Course < Dry::Struct
+  attribute :category, Types::String
+  attribute :name, Types::String
+  attribute :chapters, Types::Array.of(Chapter)
+end
+
+def chapter_directory(course, chapter_num, chapter)
+  File.join(course.category.parameterize.underscore, course.name.parameterize.underscore, format('%02d', chapter_num + 1) + "_" + chapter.name.parameterize.underscore)
+end
+
+def section_file(chapter_directory, section_num, section)
+  File.join(chapter_directory, format('%02d', section_num + 1) + "_" + section.parameterize.underscore) + ".md"
+end
+
+def write_course_toc(file, course)
+  file.puts "  - #{course.category}:"
+  file.puts "    - #{course.name}:"
+  course.chapters.each_with_index do |chapter, chapter_num|
+    file.puts "      - #{chapter.name}:"
+    chapter_directory = chapter_directory(course, chapter_num, chapter)
+    chapter.sections.each_with_index do |section, section_num|
+      section_file = section_file(chapter_directory, section_num, section)
+      file.puts "        - #{section}: #{section_file}"
+    end
+  end
+end
+
+def write_course_files(course)
+  course.chapters.each_with_index do |chapter, chapter_num|
+    chapter_directory = chapter_directory(course, chapter_num, chapter)
+    chapter.sections.each_with_index do |section, section_num|
+      section_file = File.join('docs', section_file(chapter_directory, section_num, section))
+      FileUtils.mkdir_p(File.dirname(section_file))
+      File.write(section_file, "# #{section}\n")
+    end
+  end
+end
+
+def usage(error_message = nil)
+  STDERR.puts "ERROR: #{error_message}" if error_message
+  puts "USAGE: $0 FILE toc|files"
+  exit error_message ? 1 : 0
+end
+
+usage if ARGV == 0
+usage("Missing one or more arguments") if ARGV.size != 2
+
+course_file = ARGV[0]
+command = ARGV[1]
+
+usage("File does not exist: '${course_file}'") unless File.exist?(course_file)
+usage("Invalid command: '${command}'") unless %w[toc files].include?(command)
+
+yaml_data = YAML.load_file('course.yml', symbolize_names: true)
+course = Course.new(yaml_data)
+
+if ARGV[0] == "toc"
+  write_course_toc(STDOUT, course)
+elsif ARGV[0] == "files"
+  write_course_files(course)
+end

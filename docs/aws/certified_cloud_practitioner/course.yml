@@ -1,0 +1,384 @@
+category: AWS
+name: Certified Cloud Practitioner
+chapters:
+  - name: Introduction
+    sections:
+      - Meet Your Instructor
+      - Is CPP Right for Me?
+      - Exam Guide Walkthrough
+      - Study Habits Guide
+      - Practice Exam Sample
+      - Case Study Question Type
+      - Validators
+  - name: Cloud Concepts
+    sections:
+      - What is Cloud Computing?
+      - Evolution of Cloud Hosting
+      - What is Amazon?
+      - What is AWS?
+      - What is a Cloud Service Provider?
+      - Landscape of CSPs
+      - Gartner Magic Quadrant for Cloud
+      - Common Cloud Services
+      - AWS Technology Overview
+      - AWS Services Preview
+      - Evolution of Computing
+      - Types of Cloud Computing
+      - Cloud Computing Deployment Models
+      - Deployment Model Use Cases
+  - name: Getting Started
+    sections:
+      - Create an AWS Account
+      - Create IAM User
+      - AWS Region Selector
+      - Overbilling Story
+      - AWS Budgets
+      - AWS Free Tier
+      - Billing Alarm
+      - Turning on MFA
+  - name: Digital Transformation
+    sections:
+      - Innovation Waves
+      - Burning Platform
+      - Digital Transformation Checklist
+      - Evolution of Computing Power
+      - Amazon Braket
+  - name: The Benefits of Cloud
+    sections:
+      - The Benefits of the Cloud
+      - The Seven Advantages of Cloud
+  - name: AWS Global Infrastructure
+    sections:
+      - AWS Global Infrastructure Overview
+      - AWS Global Infrastructure Follow Along
+      - Regions
+      - Regional vs Global Services
+      - Availability Zones (AZs)
+      - Regions and AZ Visualized
+      - Selecting Regions and Azs Follow Along
+      - Fault Tolerance
+      - AWS Global Network
+      - Points of Presence (PoP)
+      - Tier 1
+      - AWS Services using PoPs
+      - AWS Direct Connect
+      - Direct Connect Locations
+      - AWS Local Zones
+      - Wavelength Zones
+      - Data Residency
+      - AWS for Government
+      - GovCloud
+      - AWS in China
+      - AWS in China Follow Along
+      - Sustainability
+      - Sustainability Follow Along
+      - AWS Ground Station
+      - AWS Outposts
+  - name: Cloud Architecture
+    sections:
+      - Cloud Architecture Terminologies
+      - High Availability
+      - High Scalability
+      - High Elasticity
+      - Fault Tolerance
+      - High Durability
+      - Business Continuity Plan
+      - Disaster Recovery Options
+      - RTO Visualized
+      - RPO Visualized
+      - Architectural diagram example
+      - HA Follow Along
+  - name: Management and Development Tools
+    sections:
+      - AWS API
+      - AWS API Follow Along
+      - AWS Management Console
+      - AWS Management Console Follow Along
+      - Service Console
+      - Service Console Follow Along
+      - AWS Account ID
+      - AWS Account ID Follow Along
+      - AWS Tools for PowerShell
+      - AWS Tools for Powershell Follow Along
+      - Amazon Resource Names
+      - ARN Follow Along
+      - AWS CLI
+      - AWS CLI Follow Along
+      - AWS SDK
+      - AWS SDK Follow Along
+      - AWS CloudShell
+      - Infrastructure as Code
+      - CloudFormation
+      - CloudFormation Follow Along
+      - CDK
+      - AWS Toolkit for VSCode
+      - Access Keys
+      - Access Keys Follow Along
+      - AWS Documentation
+      - AWS Documentation Follow Along
+  - name: Shared Responsibility Model
+    sections:
+      - Introduction to Shared Responsibility Model
+      - AWS Shared Responsibility Model
+      - Types of Cloud Responsibilities
+      - Shared Responsibility for Compute
+      - Shared Responsibility Model Alternate
+      - Shared Responsibility Model Architecture
+  - name: Compute
+    sections:
+      - EC2 Overview
+      - VMs, Containers and Serverless
+      - Compute Follow Along
+      - High Performance Computing (HPC)
+      - HPC Follow Along
+      - Edge and Hybrid
+      - Edge Computing Follow Along
+      - Cost & Capacity Management
+  - name: Storage
+    sections:
+      - Types of Storage Services
+      - Introduction to S3
+      - S3 Storage Classes
+      - AWS Snow Family
+      - Storage Services
+      - S3 Follow Along
+      - EBS Follow Along
+      - EFS Follow Along
+      - Snow Family Follow Along
+  - name: Databases
+    sections:
+      - What is a database?
+      - What is a data warehouse?
+      - What is a key value store?
+      - What is a document database?
+      - NoSQL Database Services
+      - Relational Database Services
+      - Other Database Services
+      - DynamoDB Follow Along
+      - RDS Follow Along
+      - Redshift Follow Along
+  - name: Networking
+    sections:
+      - Cloud-Native Networking Services
+      - Enterprise/Hybrid Networking Services
+      - Virtual Private Cloud (VPC) & Subnets
+      - Security Groups vs NACLs
+      - Security Groups vs NACLs Follow Along
+      - AWS CloudFront
+  - name: EC2
+    sections:
+      - Introduction to EC2
+      - EC2 Instance Families
+      - EC2 Instance Types
+      - Dedicated Host vs Dedicated Instances
+      - EC2 Tenancy
+      - Launch an EC2, SSH and Sessions Manager
+      - Elastic IP
+      - AMI and Launch Template
+      - Launch an ASG
+      - Launch an ALB
+      - Cleanup
+  - name: EC2 Pricing Models
+    sections:
+      - Ec2 Pricing Models
+      - On Demand
+      - Reserved Instances
+      - RI Attributes
+      - Regional and Zonal RI
+      - RI Limits
+      - Capacity Reservations
+      - Standard vs Convertible RI
+      - RI Marketplace
+      - Spot Instances
+      - Dedicated Instances
+      - Savings Plan
+  - name: Identity
+    sections:
+      - Zero-Trust Model
+      - Zero-Trust on AWS
+      - Zero-Trust on AWS with Third-Parties
+      - Directory Service
+      - Active Directory
+      - Identity Providers
+      - Single-Sign-On
+      - LDAP
+      - Multi-Factor-Authenication
+      - Security Keys
+      - AWS IAM
+      - Anatomy of an IAM Policy
+      - IAM Policies Follow Along
+      - Principle-of-Least-Privilege
+      - AWS Account Root User
+      - AWS SSO
+  - name: Application Integration
+    sections:
+      - Introduction to Application Integration
+      - Queueing and SQS
+      - Streaming and Kinesis
+      - Pub-Sub and SNS
+      - API Gateway and Amazon API Gateway
+      - State Machines and AWS Step Functions
+      - Event Bus and Amazon Event Bridge
+      - Application Integration Services
+  - name: 'Containers'
+    sections:
+      - VMs vs Containers
+      - What are Microservices?
+      - Kuberenetes
+      - Docker
+      - Podman
+      - Container Services
+  - name: 'Governance'
+    sections:
+      - Organizations and Accounts
+      - AWS Control Tower
+      - AWS Config
+      - AWS Config FollowAlong
+      - AWS Quick Starts
+      - AWS QuickStarts Follow Along
+      - Tagging
+      - Tag Name Follow Along
+      - Resource Groups
+      - Resource Groups Follow Along
+      - Business Centric Services
+  - name: 'Provisioning'
+    sections:
+      - Provisioning Services
+      - AWS Elastic Beanstalk
+      - AWS Elastic Beanstalk Follow Along
+  - name: 'Serverless Services'
+    sections:
+      - What is Serverless?
+      - Serverless Services
+  - name: 'Windows on AWS'
+    sections:
+      - Windows on AWS
+      - EC2 Windows Follow Along
+      - AWS License Manager
+  - name: 'Logging'
+    sections:
+      - Logging Services
+      - AWS Cloud Trail
+      - CloudWatch Alarm
+      - mastering attached flashcard
+      - Anatomy of an Alarm
+      - Log Streams and Events
+      - Log Insights
+      - CloudWatch Metrics
+      - AWS CloudTrail Follow Along
+  - name: 'ML and AI and Big Data'
+    sections:
+      - Introduction to ML and Al
+      - Al and ML Services
+      - BigData and Analytics Services
+      - Amazon QuickSight
+      - QuickSight Follow Along
+      - Machine Learning and Al Services - Extended
+      - Generative Al
+      - ML and DL Frameworks and Tools
+      - Apache MXNet
+      - What is Intel
+      - Intel Xeon Scalable and Intel Gaudi
+      - What is a GPU
+      - What is CUDA
+  - name: 'AWS Well-Architected Framework'
+    sections:
+      - AWS Well-Architected Framework
+      - General Defintions
+      - On Architecture
+      - Amazon Leadership Principles
+      - General Design Principles
+      - Anatomy of a Pillar
+      - Operational Excellence
+      - Security
+      - Reliability
+      - Performance Efficiency
+      - Cost Optimization
+      - AWS Well-Architected-Tool
+      - Well-Architected Framework and Tool- Follow Along
+      - AWS Architecture Center
+  - name: 'TCO and Migration'
+    sections:
+      - Total Cost of Ownership (TCO)
+      - CAPEX vS OPEX
+      - Shifting-IT Personnel
+      - AWS Pricing Calculator
+      - AWS Pricing Calculator Follow Along
+      - Migration Evaluator
+      - VM Import Export
+      - Database Migration Service
+      - Cloud Adoption Framework
+  - name: 'Billing, Pricing and Support'
+    sections:
+      - AWS Free Services
+      - AWS Support Plans
+      - Technical Account Manager
+      - AWS Support Follow Along
+      - AWS Marketplace
+      - AWS Marketplace Follow Along
+      - Consolidated Billing
+      - Consolidated Billing Volume Discounts
+      - AWS Trusted Advisor
+      - AWS Trusted Advisor Follow Along
+      - SLAS
+      - AWS SLA Examples
+      - AWS SLA Follow Along
+      - Service Health Dashboard
+      - AWS Personal Health Dashboard
+      - AWS Abuse
+      - AWS Abuse Report Follow Along
+      - AWS Free Tier
+      - AWS Credits
+      - AWS Partner Network
+      - AWS Budgets
+      - AWS Budget Reports
+      - AWS Cost and Usage Reports
+      - Cost Allocation Tags
+      - Billing Alarms
+      - AWS Cost Explorer
+      - AWS Cost Explorer Follow Along
+      - Programmatic Pricing APls
+      - AWS Savings Plan Follow Along
+  - name: 'Security'
+    sections:
+      - Defense-In-Depth
+      - CIA Triad
+      - Vulnerabilities
+      - Encryption
+      - Cyphers
+      - Cryptographic Keys
+      - Hashing and Salting
+      - Digital Signatures and Signing
+      - In-Transit vs At-Rest Encryption
+      - Compliance Programs
+      - AWS Compliance Programs Follow Along
+      - Pen Testing
+      - Pen Testing Follow Along
+      - AWS Artifact
+      - AWS Artifact Follow Along
+      - AWS Inspector
+      - DDoS
+      - AWS Shield
+      - AWS Guard Duty
+      - AWS Guard Duty Follow Along
+      - AWS VPN
+      - AWS WAF
+      - AWS WAF Follow Along
+      - Hardware Security Module
+      - AWS KMS
+      - AWS KMS Follow Along
+      - CloudHSM
+  - name: 'Variation Study'
+    sections:
+      - Know Your Initialisms
+      - AWS Config AWS AppConfig
+      - SNS vs SQS
+      - SNS vs SES vs PinPoint vs Workmail
+      - Amazon Inspector vs AWS Trusted Advisor
+      - Connect Named Services
+      - Elastic Transcoder vs MediaConvert
+      - AWS Artifact vs Amazon Inspector
+      - ELB variants
+  - name: 'Next Steps'
+    sections:
+      - Booking Your Exam

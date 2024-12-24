@@ -1,0 +1,1 @@
+# AMI and Launch Template
