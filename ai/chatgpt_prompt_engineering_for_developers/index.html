@@ -1,0 +1,2674 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation that the author finds useful in his day to day coding activities.">
+      
+      
+      
+      
+        <link rel="prev" href="../../documentation_standards/">
+      
+      
+        <link rel="next" href="../getting_started_on_prompt_engineering/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>ChatGPT Prompt Engineering for Developers - James Couball's Tech Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guidelines-for-prompting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-header__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            James Couball's Tech Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ChatGPT Prompt Engineering for Developers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-nav__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    James Couball's Tech Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ChatGPT Prompt Engineering for Developers
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ChatGPT Prompt Engineering for Developers
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principle-1-write-clear-and-specific-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle 1: Write clear and specific instructions**
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principle 1: Write clear and specific instructions**">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tactic-1-use-delimiters-to-clearly-indicate-distinct-parts-of-the-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 1: Use delimiters to clearly indicate distinct parts of the input
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-2-ask-for-a-structured-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 2: Ask for a structured output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-3-ask-the-model-to-check-whether-conditions-are-satisfied" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 3: Ask the model to check whether conditions are satisfied
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-4-few-shot-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 4: "Few-shot" prompting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principle-2-give-the-model-time-to-think" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle 2: Give the model time to “think”
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principle 2: Give the model time to “think”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tactic-1-specify-the-steps-required-to-complete-a-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 1: Specify the steps required to complete a task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-2-instruct-the-model-to-work-out-its-own-solution-before-rushing-to-a-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 2: Instruct the model to work out its own solution before rushing to a conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-limitations-hallucinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Limitations: Hallucinations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterative-prompt-develelopment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterative Prompt Develelopment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summarizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summarizing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summarizing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summarize-with-a-wordsentencecharacter-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summarize with a word/sentence/character count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summarize-with-a-particular-focus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summarize with a particular focus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-extract-instead-of-summarize" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try "extract" instead of "summarize"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inferring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inferring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-positivenegative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentiment (positive/negative)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-types-of-emotions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify types of emotions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify bias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-anger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify anger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract-specific-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract specific information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infer-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infer topics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-new-alert-for-certain-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make a new alert for certain topics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transforming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transforming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transforming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Translation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universal-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Universal translator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tone-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tone translation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format conversion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spell-check-grammer-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spell check / grammer check
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Expanding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automated-reply-to-a-customer-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated reply to a customer email
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remind-the-model-to-use-details-from-the-customers-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remind the model to use details from the customer's email
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started_on_prompt_engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started on Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prompt_engineering_best_practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prompt_engineering_for_improved_performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering for Improved Performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Git / GitHub
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Git / GitHub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate Git Course
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate Git Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/02_creating_snapshots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Snapshots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/03_browsing_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browsing History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/04_branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/05_collaboration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collaboration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/06_rewriting_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homebrew/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homebrew Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homefiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JavaScript/Node
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            JavaScript/Node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate JavaScript Mastery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate JavaScript Mastery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/01_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/02_control_flow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Control Flow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/03_objects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/04_arrays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/05_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/06_objects_revisited/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects Revisited
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/07_prototypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/08_prototypical_inheritance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypical Inheritance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/09_es6_classes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Classes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/10_es6_tooling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Tooling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Complete Node.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Complete Node.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/02_node_module_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Module System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/03_node_package_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Package Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/04_express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/05_express_advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/06_async_javascript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async JavaScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/07_crud_mongoose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crud with Mongoose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/08_mongo_data_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongo Data Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/09_mongoose_relationships/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongoose Relationships
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/10_auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11_errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling and Logging Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11b_refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/12_unit_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/13_integration_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integration Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/14_test_driven_development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Driven Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/15_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mermaid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mermaid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../music_theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Music Theory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ruby
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/subprocesses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subprocesses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ssl_tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    systemd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            systemd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/systemctl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    systemctl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vscode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principle-1-write-clear-and-specific-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle 1: Write clear and specific instructions**
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principle 1: Write clear and specific instructions**">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tactic-1-use-delimiters-to-clearly-indicate-distinct-parts-of-the-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 1: Use delimiters to clearly indicate distinct parts of the input
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-2-ask-for-a-structured-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 2: Ask for a structured output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-3-ask-the-model-to-check-whether-conditions-are-satisfied" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 3: Ask the model to check whether conditions are satisfied
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-4-few-shot-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 4: "Few-shot" prompting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principle-2-give-the-model-time-to-think" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle 2: Give the model time to “think”
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principle 2: Give the model time to “think”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tactic-1-specify-the-steps-required-to-complete-a-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 1: Specify the steps required to complete a task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tactic-2-instruct-the-model-to-work-out-its-own-solution-before-rushing-to-a-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tactic 2: Instruct the model to work out its own solution before rushing to a conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-limitations-hallucinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Limitations: Hallucinations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterative-prompt-develelopment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterative Prompt Develelopment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summarizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summarizing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summarizing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summarize-with-a-wordsentencecharacter-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summarize with a word/sentence/character count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summarize-with-a-particular-focus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summarize with a particular focus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-extract-instead-of-summarize" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try "extract" instead of "summarize"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inferring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inferring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inferring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-positivenegative" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentiment (positive/negative)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-types-of-emotions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify types of emotions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify bias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-anger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify anger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract-specific-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract specific information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infer-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infer topics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-new-alert-for-certain-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Make a new alert for certain topics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transforming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transforming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transforming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Translation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universal-translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Universal translator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tone-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tone translation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format conversion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spell-check-grammer-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spell check / grammer check
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expanding
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Expanding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automated-reply-to-a-customer-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated reply to a customer email
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remind-the-model-to-use-details-from-the-customers-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remind the model to use details from the customer's email
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="guidelines-for-prompting">Guidelines for Prompting<a class="headerlink" href="#guidelines-for-prompting" title="Permanent link">&para;</a></h1>
+<h2 id="principle-1-write-clear-and-specific-instructions">Principle 1: Write clear and specific instructions**<a class="headerlink" href="#principle-1-write-clear-and-specific-instructions" title="Permanent link">&para;</a></h2>
+<h3 id="tactic-1-use-delimiters-to-clearly-indicate-distinct-parts-of-the-input">Tactic 1: Use delimiters to clearly indicate distinct parts of the input<a class="headerlink" href="#tactic-1-use-delimiters-to-clearly-indicate-distinct-parts-of-the-input" title="Permanent link">&para;</a></h3>
+<p>Delimiters can be anything like: <code>``, """, &lt; &gt;,</code><tag> </tag><code>,</code>:`</p>
+<h3 id="tactic-2-ask-for-a-structured-output">Tactic 2: Ask for a structured output<a class="headerlink" href="#tactic-2-ask-for-a-structured-output" title="Permanent link">&para;</a></h3>
+<p>For instance, ask for JSON, HTML, Markdown, etc.</p>
+<h3 id="tactic-3-ask-the-model-to-check-whether-conditions-are-satisfied">Tactic 3: Ask the model to check whether conditions are satisfied<a class="headerlink" href="#tactic-3-ask-the-model-to-check-whether-conditions-are-satisfied" title="Permanent link">&para;</a></h3>
+<p>For example: "If the text does not contain a sequence of instructions, then simply
+write 'No steps provided.'"</p>
+<h3 id="tactic-4-few-shot-prompting">Tactic 4: "Few-shot" prompting<a class="headerlink" href="#tactic-4-few-shot-prompting" title="Permanent link">&para;</a></h3>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Your task is to answer in a consistent style.
+
+&lt;child&gt;: Teach me about patience.
+
+&lt;grandparent&gt;: The river that carves the deepest \
+valley flows from a modest spring; the \
+grandest symphony originates from a single note; \
+the most intricate tapestry begins with a solitary thread.
+
+&lt;child&gt;: Teach me about resilience.
+</code></pre></div>
+<h2 id="principle-2-give-the-model-time-to-think">Principle 2: Give the model time to “think”<a class="headerlink" href="#principle-2-give-the-model-time-to-think" title="Permanent link">&para;</a></h2>
+<h3 id="tactic-1-specify-the-steps-required-to-complete-a-task">Tactic 1: Specify the steps required to complete a task<a class="headerlink" href="#tactic-1-specify-the-steps-required-to-complete-a-task" title="Permanent link">&para;</a></h3>
+<h3 id="tactic-2-instruct-the-model-to-work-out-its-own-solution-before-rushing-to-a-conclusion">Tactic 2: Instruct the model to work out its own solution before rushing to a conclusion<a class="headerlink" href="#tactic-2-instruct-the-model-to-work-out-its-own-solution-before-rushing-to-a-conclusion" title="Permanent link">&para;</a></h3>
+<h2 id="model-limitations-hallucinations">Model Limitations: Hallucinations<a class="headerlink" href="#model-limitations-hallucinations" title="Permanent link">&para;</a></h2>
+<p>ChatGPT might try to answer questions about obscure topics and can
+make things up that sound plausible but are not actually true. This
+kinds of fabricated ideas are called hallucinations.</p>
+<p>In this example, Boie is a real company, the product name is not real:</p>
+<div class="highlight"><pre><span></span><code>Tell me about AeroGlide UltraSlim Smart Toothbrush by Boie
+</code></pre></div>
+<h2 id="iterative-prompt-develelopment">Iterative Prompt Develelopment<a class="headerlink" href="#iterative-prompt-develelopment" title="Permanent link">&para;</a></h2>
+<p>In this lesson, you'll iteratively analyze and refine your prompts to generate
+marketing copy from a product fact sheet.</p>
+<pre class="mermaid"><code>---
+title: Iterative Prompt Development
+---
+graph LR
+  A[Idea] --&gt; B[Implementation];
+  B --&gt; C[Experimental Result];
+  C --&gt; D[Error Analysis];
+  D --&gt; A;</code></pre>
+<p>Prompt development is an interative process where you
+1. try something
+2. analyze where the result did not give you what you want
+3. clarify the instructions and/or give the model more time to think
+4. Refine prompts with a batch of examples</p>
+<p>The key to being an effective prompt engineer isn't about knowing the perfect
+prompt. It is about having a good process to develop prompts that are effective
+for your application.</p>
+<h2 id="summarizing">Summarizing<a class="headerlink" href="#summarizing" title="Permanent link">&para;</a></h2>
+<p>You can summarize articles so you have time to read many more articles.</p>
+<h3 id="summarize-with-a-wordsentencecharacter-count">Summarize with a word/sentence/character count<a class="headerlink" href="#summarize-with-a-wordsentencecharacter-count" title="Permanent link">&para;</a></h3>
+<p>Example using the browser plugin using ChatGPT 4:</p>
+<div class="highlight"><pre><span></span><code>Summarize the review at the URL that follows in at most 200 words:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="summarize-with-a-particular-focus">Summarize with a particular focus<a class="headerlink" href="#summarize-with-a-particular-focus" title="Permanent link">&para;</a></h3>
+<p>Focus the summary on what is more relevant to you.</p>
+<div class="highlight"><pre><span></span><code>Summarize the review at the URL that follows in at most 200 words focusing on the details of the charges against Trump:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="try-extract-instead-of-summarize">Try "extract" instead of "summarize"<a class="headerlink" href="#try-extract-instead-of-summarize" title="Permanent link">&para;</a></h3>
+<p>Extract exact information rather than producing a summary.</p>
+<div class="highlight"><pre><span></span><code>Extract the number of charges against Trump in the following article:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h2 id="inferring">Inferring<a class="headerlink" href="#inferring" title="Permanent link">&para;</a></h2>
+<p>Infer sentiment and topics from product reviews and news articles.</p>
+<h3 id="sentiment-positivenegative">Sentiment (positive/negative)<a class="headerlink" href="#sentiment-positivenegative" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>What is the sentiment of the following article:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="identify-types-of-emotions">Identify types of emotions<a class="headerlink" href="#identify-types-of-emotions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Identify a list of emotions that the writer of the following review is expressing. Include no more than five items in the list. Format the result as a markdown list.
+
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="identify-bias">Identify bias<a class="headerlink" href="#identify-bias" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Read the following article and identify the bias shown by the author:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="identify-anger">Identify anger<a class="headerlink" href="#identify-anger" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Read the following article and tell me if the writer is expressing anger:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="extract-specific-information">Extract specific information<a class="headerlink" href="#extract-specific-information" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Identify the name of Trump&#39;s lawyer given in the following article:
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="infer-topics">Infer topics<a class="headerlink" href="#infer-topics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Determine five topics that are being discussed in the following article.
+
+Make each item one or two words long.
+
+Format your response as a list of items separated by commas.
+
+https://www.cnn.com/2023/06/10/politics/takeaways-trump-nauta-indictment/index.html
+</code></pre></div>
+<h3 id="make-a-new-alert-for-certain-topics">Make a new alert for certain topics<a class="headerlink" href="#make-a-new-alert-for-certain-topics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>List the top news stories about former president Donald Trump that appear on the CNN home page at https://cnn.com. Format the results as a markdown list where each list item is a link to the article.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>List the top articles about the Apple Vision Pro that appear on the Ars Technica home page at https://arstechnica.com. Format the result as a markdown list of articles where each list item is a link to the article.
+</code></pre></div>
+<h2 id="transforming">Transforming<a class="headerlink" href="#transforming" title="Permanent link">&para;</a></h2>
+<p>Large language models are very good at transforming its input to a
+different format, such as inputting a
+piece of text in one language and transforming
+it or translating it to a different language,
+or helping with spelling and grammar corrections.</p>
+<p>This makes it great for use as a proof-reader.</p>
+<h3 id="translation">Translation<a class="headerlink" href="#translation" title="Permanent link">&para;</a></h3>
+<p>Translate text:</p>
+<div class="highlight"><pre><span></span><code>Translate the following English text to Spanish:
+&quot;Hi, I would like to order a hamberger and french fries&quot;
+</code></pre></div>
+<p>Determine the language of given text:</p>
+<div class="highlight"><pre><span></span><code>Tell me which language this is:
+&quot;Combien coûte le lampadaire?&quot;
+
+Multiple translations at once:
+
+```text
+Translate the following  text to French and Spanish
+and English pirate:
+&quot;Hi, I would like to order a hamberger and french fries&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Translate the following text to Spanish in both the formal
+and informal forms:
+&quot;Would you like to order a hamberger and french fries?&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>How would Yoda say &quot;Hi, I would like to order a hamburger and french fries&quot;
+</code></pre></div>
+<h3 id="universal-translator">Universal translator<a class="headerlink" href="#universal-translator" title="Permanent link">&para;</a></h3>
+<p>Imagine you are in charge of IT at a large multinational e-commerce company. Users
+are messaging you with IT issues in all their native languages. Your staff is from
+all over the world and speaks only their native languages. You need a universal
+translator!</p>
+<div class="highlight"><pre><span></span><code>user_messages = [
+  &quot;La performance du système est plus lente que d&#39;habitude.&quot;,  # System performance is slower than normal
+  &quot;Mi monitor tiene píxeles que no se iluminan.&quot;,              # My monitor has pixels that are not lighting
+  &quot;Il mio mouse non funziona&quot;,                                 # My mouse is not working
+  &quot;Mój klawisz Ctrl jest zepsuty&quot;,                             # My keyboard has a broken control key
+  &quot;我的屏幕在闪烁&quot;                                               # My screen is flashing
+]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>for issue in user_messages:
+    prompt = f&quot;Tell me what language this is: ```{issue}```&quot;
+    lang = get_completion(prompt)
+    print(f&quot;Original message ({lang}): {issue}&quot;)
+
+    prompt = f&quot;&quot;&quot;
+    Translate the following  text to English \
+    and Korean: ```{issue}```
+    &quot;&quot;&quot;
+    response = get_completion(prompt)
+    print(response, &quot;\n&quot;)
+</code></pre></div>
+<h3 id="tone-translation">Tone translation<a class="headerlink" href="#tone-translation" title="Permanent link">&para;</a></h3>
+<p>What is tone in writing? Tone in writing is the attitude your words employ. Just
+like tone of voice, tone in writing gives much more context beyond the words used.
+It can reveal intention or conceal it.</p>
+<p>Writing can vary based on the intended audience. ChatGPT can produce different tones.</p>
+<div class="highlight"><pre><span></span><code>Translate the following from slang to a business letter:
+
+Hey man, what the heck is going on with the Browser project. It looks like it is
+hella late so I wanted to get the 411 from you before I blast that status to the
+company.
+</code></pre></div>
+<p><strong>15 Types of Tone You Can Use in Your Writing</strong></p>
+<p>Honing your prose style depends on what effect you wish to achieve. What tone do
+you want to set? What feelings or mood do you want to evoke? What kind of language
+will best deliver the story you want to tell? Many words can be used to describe
+an author’s tone. If you’re writing a novel, short story, or poem, you might consider
+your tone to be one or more of the following:</p>
+<ol>
+<li>Cheerful</li>
+<li>Dry</li>
+<li>Assertive</li>
+<li>Puckish</li>
+<li>Lighthearted</li>
+<li>Facetious</li>
+<li>Regretful</li>
+<li>Humorous</li>
+<li>Pessimistic</li>
+<li>Nostalgic</li>
+<li>Joyful</li>
+<li>Sarcastic</li>
+<li>Persuasive</li>
+<li>Uneasy</li>
+<li>Inspirational</li>
+</ol>
+<h3 id="format-conversion">Format conversion<a class="headerlink" href="#format-conversion" title="Permanent link">&para;</a></h3>
+<p>ChatGPT can translate between formats. The prompt should describe the input and
+output formats.</p>
+<div class="highlight"><pre><span></span><code>Output the following JSON into an HTML table with column headerss and title:
+
+[
+  {
+    &quot;firstName&quot;: &quot;John&quot;,
+    &quot;lastName&quot;: &quot;Doe&quot;,
+    &quot;joinDate&quot;: &quot;2023-01-02&quot;
+  },
+  {
+    &quot;firstName&quot;: &quot;Jane&quot;,
+    &quot;lastName&quot;: &quot;Smith&quot;,
+    &quot;joinDate&quot;: &quot;2022-06-15&quot;
+  },
+  {
+    &quot;firstName&quot;: &quot;Mike&quot;,
+    &quot;lastName&quot;: &quot;Johnson&quot;,
+    &quot;joinDate&quot;: &quot;2021-12-25&quot;
+  }
+]
+</code></pre></div>
+<h3 id="spell-check-grammer-check">Spell check / grammer check<a class="headerlink" href="#spell-check-grammer-check" title="Permanent link">&para;</a></h3>
+<p>To signal to the LLM that you want it to proofread your text, you instruct the
+model to 'proofread' or 'proofread and correct'.</p>
+<div class="highlight"><pre><span></span><code>Proofread and correct the each of the following quoted lines of text and rewrite
+the corrected version. If you don&#39;t find and errors, just say &quot;No errors found&quot;.
+Don&#39;t use any punctuation around the text:
+
+&quot;The girl with the black and white puppies have a ball.&quot;,  # The girl has a ball.
+&quot;Yolanda has her notebook.&quot;, # ok
+&quot;Its going to be a long day. Does the car need it’s oil changed?&quot;,  # Homonyms
+&quot;Their goes my freedom. There going to bring they’re suitcases.&quot;,  # Homonyms
+&quot;Your going to need you’re notebook.&quot;,  # Homonyms
+&quot;That medicine effects my ability to sleep. Have you heard of the butterfly affect?&quot;, # Homonyms
+&quot;This phrase is to cherck chatGPT for speling abilitty&quot;  # spelling
+</code></pre></div>
+<h2 id="expanding">Expanding<a class="headerlink" href="#expanding" title="Permanent link">&para;</a></h2>
+<p>Expanding is the task of taking a shorter piece of text, such as a set of
+instructions or a list of topics, and having the large language model generate a
+longer piece of text, such as an email or an essay about some topic.</p>
+<h3 id="automated-reply-to-a-customer-email">Automated reply to a customer email<a class="headerlink" href="#automated-reply-to-a-customer-email" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>You are a customer service AI assistant. Your task is to send an email reply to a
+valued customer. Given the customer email delimited by ---, Generate a reply to thank
+the customer for their review. If the sentiment is positive or neutral, thank them
+for their review. If the sentiment is negative, apologize and suggest that they can
+reach out to customer service. Make sure to use specific details from the review.
+Write in a concise and professional tone. Sign the email as `AI customer agent`.
+
+---
+So, they still had the 17 piece system on seasonal sale for around $49 in the month
+of November, about half off, but for some reason (call it price gouging) around the
+second week of December the prices all went up to about anywhere from between $70-$89
+for the same system. And the 11 piece system went up around $10 or so in price also
+from the earlier sale price of $29. So it looks okay, but if you look at the base,
+the part where the blade locks into place doesn’t look as good as in previous
+editions from a few years ago, but I plan to be very gentle with it (example, I crush
+very hard items like beans, ice, rice, etc. in the blender first then pulverize them
+in the serving size I want in the blender then switch to the whipping blade for a
+finer flour, and use the cross cutting blade first when making smoothies, then use
+the flat blade if I need them finer/less pulpy). Special tip when making smoothies,
+finely cut and freeze the fruits and vegetables (if using spinach-lightly stew soften
+the spinach then freeze until ready for use-and if making sorbet, use a small to
+medium sized food processor) that you plan to use that way you can avoid adding so
+much ice if at all-when making your smoothie. After about a year, the motor was
+making a funny noise. I called customer service but the warranty expired already, so
+I had to buy another one. FYI: The overall quality has gone done in these types of
+products, so they are kind of counting on brand recognition and consumer loyalty to
+maintain sales. Got it in about two days.
+---
+</code></pre></div>
+<p>Another possibility:</p>
+<div class="highlight"><pre><span></span><code>You are a customer service AI assistant. Your task is to send an email reply to a
+valued customer. Given the customer email delimited by ---, generate 3 possible
+emails responses each with a different tone to thank the customer for their review.
+If the sentiment is positive or neutral, thank them for their review. If the
+sentiment is negative, apologize and suggest that they can reach out to customer
+service. Make sure to use specific details from the review. Sign the email as `AI
+customer agent`.
+</code></pre></div>
+<h3 id="remind-the-model-to-use-details-from-the-customers-email">Remind the model to use details from the customer's email<a class="headerlink" href="#remind-the-model-to-use-details-from-the-customers-email" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>

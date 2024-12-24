@@ -1,0 +1,2968 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation that the author finds useful in his day to day coding activities.">
+      
+      
+      
+      
+        <link rel="prev" href="../../music_theory/">
+      
+      
+        <link rel="next" href="../../ssl_tls/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Subprocesses - James Couball's Tech Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-subprocesses-in-ruby" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-header__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            James Couball's Tech Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Subprocesses
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-nav__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    James Couball's Tech Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/chatgpt_prompt_engineering_for_developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChatGPT Prompt Engineering for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/getting_started_on_prompt_engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started on Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/prompt_engineering_best_practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/prompt_engineering_for_improved_performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering for Improved Performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Git / GitHub
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Git / GitHub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate Git Course
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate Git Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/02_creating_snapshots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Snapshots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/03_browsing_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browsing History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/04_branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/05_collaboration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collaboration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/06_rewriting_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homebrew/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homebrew Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homefiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JavaScript/Node
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            JavaScript/Node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate JavaScript Mastery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate JavaScript Mastery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/01_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/02_control_flow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Control Flow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/03_objects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/04_arrays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/05_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/06_objects_revisited/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects Revisited
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/07_prototypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/08_prototypical_inheritance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypical Inheritance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/09_es6_classes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Classes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/10_es6_tooling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Tooling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Complete Node.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Complete Node.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/02_node_module_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Module System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/03_node_package_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Package Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/04_express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/05_express_advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/06_async_javascript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async JavaScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/07_crud_mongoose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crud with Mongoose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/08_mongo_data_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongo Data Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/09_mongoose_relationships/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongoose Relationships
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/10_auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11_errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling and Logging Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11b_refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/12_unit_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/13_integration_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integration Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/14_test_driven_development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Driven Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/15_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mermaid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mermaid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../music_theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Music Theory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ruby
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Subprocesses
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Subprocesses
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#backticks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backticks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#system
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelspawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#spawn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelexec" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#exec
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelfork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#fork
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iopopen" class="md-nav__link">
+    <span class="md-ellipsis">
+      IO.popen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open3popen3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open3.popen3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ptyspawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      PTY.spawn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-commands-are-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Commands Are Run
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-shell-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Shell Is Used
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#child_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      $CHILD_STATUS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detach
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wait" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wait
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kill" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kill
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Pipe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subprocess-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subprocess Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Isolation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spawn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      System
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ssl_tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    systemd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            systemd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/systemctl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    systemctl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vscode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#backticks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backticks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#system
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelspawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#spawn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelexec" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#exec
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelfork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel#fork
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iopopen" class="md-nav__link">
+    <span class="md-ellipsis">
+      IO.popen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open3popen3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open3.popen3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ptyspawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      PTY.spawn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-commands-are-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Commands Are Run
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-shell-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Shell Is Used
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#child_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      $CHILD_STATUS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detach
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wait" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wait
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kill" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kill
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Pipe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gems
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subprocess-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subprocess Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Isolation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spawn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      System
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="running-subprocesses-in-ruby">Running Subprocesses in Ruby<a class="headerlink" href="#running-subprocesses-in-ruby" title="Permanent link">&para;</a></h1>
+<p>Ruby has many ways of running subprocesses. This guide will help you to choose the
+right method for your needs. Ruby comes with a rich-set of tools for spawning and
+communicating with external subprocesses.</p>
+<p><strong>How To Start Subprocesses</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Method</strong></th>
+<th><strong>Use Case</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#backticks">Backticks</a></td>
+<td>Run a command and wait for the results. STDOUT from the subprocess is returned as a String.</td>
+</tr>
+<tr>
+<td><a href="#kernelsystem">Kernel#system</a></td>
+<td>Run a command and wait for the results. By default STDOUT/STDERR are inherited from the parent.</td>
+</tr>
+<tr>
+<td><a href="#kernelspawn">Kernel#spawn</a></td>
+<td>Run a command asynchronously. By default STDOUT/STDERR are inherited from the parent.</td>
+</tr>
+<tr>
+<td><a href="#kernelexec">Kernel#exec</a></td>
+<td>Replace the current process by some other command. By default all file descriptors are inherited from the parent.</td>
+</tr>
+<tr>
+<td><a href="#kernelfork">Kernel#fork</a></td>
+<td>Run Ruby code asynchronously in a subprocess. By default all file descriptors are inherited from the parent.</td>
+</tr>
+<tr>
+<td><a href="#iopopen">IO.popen</a></td>
+<td><strong>TODO</strong> Run a command asynchronously and interact with its STDOUT and STDIN via a pipe</td>
+</tr>
+<tr>
+<td><a href="#open3popen3">Open3.popen3</a></td>
+<td><strong>TODO</strong> Run a command asynchronously and interact with its STDOUT, STDERR, and STDIN via a pipe</td>
+</tr>
+<tr>
+<td><a href="#ptyspawn">PTY.spawn</a></td>
+<td><strong>TODO</strong> Run a command asynchronously and have it behave like it was run from a terminal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How To Control Subprocesses</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Topic</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#how-commands-are-run">How Are Commands Run</a></td>
+<td>how to specify what command is run and how Ruby decides if the command will be run directly or via a subshell</td>
+</tr>
+<tr>
+<td><a href="#what-shell-is-used">What Shell Is Used</a></td>
+<td>how Ruby selects which shell to use if the command is to be run in a subshell</td>
+</tr>
+<tr>
+<td><a href="#child_status">$CHILD_STATUS</a></td>
+<td>the status of a running or terminated subprocess</td>
+</tr>
+<tr>
+<td><a href="#detach">Detach</a></td>
+<td>tell Ruby you are not interested in the result of a subprocess</td>
+</tr>
+<tr>
+<td><a href="#wait">Wait</a></td>
+<td>wait for a subprocess to finish and get its status</td>
+</tr>
+<tr>
+<td><a href="#kill">Kill</a></td>
+<td>send an signal to a subprocess possibly causing it to terminate before it otherwise would</td>
+</tr>
+<tr>
+<td><a href="#environment">Environment</a></td>
+<td>choose what variables are passed into the subprocess's environment</td>
+</tr>
+<tr>
+<td><a href="#redirection">Redirection</a></td>
+<td>choose what is sent to a subprocess's stdin or where a subprocess's stdout and stderr are sent</td>
+</tr>
+<tr>
+<td><a href="#limits">Limits</a></td>
+<td><strong>TODO</strong> set the resource limits (like CPU time, memory used, and number of open files) of a subprocess</td>
+</tr>
+</tbody>
+</table>
+<p><strong>External References</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Topic</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#gems">Gems</a></td>
+<td>Useful gems to help create and control subprocesses</td>
+</tr>
+<tr>
+<td><a href="#references">References</a></td>
+<td>Links to useful articles</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backticks">Backticks<a class="headerlink" href="#backticks" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/core/Kernel.html#method-i-60">`command` ⭢ string</a></strong></p>
+<p><strong>Use Case</strong>: Run a command and wait for the results. STDOUT from the subprocess is
+returned as a String.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>
+<p><code>command</code> the command and its arguments</p>
+<p>Behaves like a <a href="https://ruby-doc.org/core/doc/syntax/literals_rdoc.html#label-Strings">double-quote string literal</a>,
+in that it allows escape characters and interpolation.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;grep&#39;</span>
+<span class="n">arguments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;--verbose&#39;</span>
+<span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="n">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;file1 file2 file3&#39;</span>
+<span class="n">command_stdout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">#{</span><span class="n">command</span><span class="si">}</span><span class="sb"> </span><span class="si">#{</span><span class="n">arguments</span><span class="si">}</span><span class="sb"> </span><span class="si">#{</span><span class="n">pattern</span><span class="si">}</span><span class="sb"> </span><span class="si">#{</span><span class="n">files</span><span class="si">}</span><span class="sb">`</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<p><strong>Returns</strong>: the stdout of the subprocess is returned as a string</p>
+<p><strong>Raises</strong>:</p>
+<ul>
+<li><code>Errno::ENOENT</code> if the command could not be found in the PATH</li>
+<li><code>Errno::EACCES</code> if the command exists but is not executable or is not a regular file</li>
+</ul>
+<p><strong>Side Effects</strong></p>
+<ul>
+<li>The command exit status is saved in <code>$CHILD_STATUS</code>.
+  See <a href="#subprocess-status">Subprocess Status</a> for more details.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<p>With backticks, the subprocess blocks the parent process until it completes so it should
+be used for short-running programs.</p>
+<p>The subprocess's <code>stderr</code> is sent to the parent process's <code>stderr</code>. <code>stderr</code> can be redirected
+to <code>stdout</code> to capture both in a single string by using shell redirection as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">stdout_and_stderr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`ls /usr/local/bin 2&gt;&amp;1`</span>
+</code></pre></div>
+<p>The built in syntax <code>%x</code> is equivalent to the backtick operator.</p>
+<div class="highlight"><pre><span></span><code><span class="n">stdout_and_stderr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">%x{ls /usr/local/bin 2&gt;&amp;1}</span>
+</code></pre></div>
+<p>When using backticks, there is no way to supress Ruby's shell detection to avoid shell expansion.
+See <a href="#how-commands-are-run">How Commands Are Run</a> for more details. Use
+<a href="#kernel-system">Kernel#system</a> to avoid shell expansion.</p>
+<p>When using backticks, there is no way to control the subprocess's environment (it gets the
+global ENV from the parent) or give other subprocess special options like process
+group, umask, current directory, limits or redirection.</p>
+<h2 id="kernelsystem">Kernel#system<a class="headerlink" href="#kernelsystem" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/core/Kernel.html#method-i-system">system([env], command..., [options], exception: false) ⭢ true, false, nil</a></strong></p>
+<p><strong>Use Case</strong>: Ideal for (1) a short running command, (2) where it is ok for stdout and stderr
+  to be output as it runs, and (3) it only matters if the command succeeds or fails.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li><strong>env</strong> [Hash] <em>(defaults to: { })</em> — updates the environment of the subprocess.
+  See <a href="#environment-isolation">Environment Isolation</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>command</strong> [String, Array&lt;String&gt;] — the command to run.
+  See <a href="#how-commands-are-run">How Commands Are Run</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>options</strong> [Hash] <em>(defaults to: { })</em> — used to set various subprocess attributes.
+  See <a href="https://ruby-doc.org/core/Kernel.html#method-i-spawn">Kernel#spawn</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>exception</strong> [Boolean] <em>(defaults to: false)</em> — if <code>exception: true</code> is passed, the
+  method raises an exception instead of returning false or nil.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>true</code> if the command exits with 0 exit status</li>
+<li><code>false</code> if the command exits with a non-zero exit status</li>
+<li><code>nil</code> if the command could not be run.</li>
+</ul>
+<p><strong>Raises</strong>: only raises an error if the <strong>exception</strong> param is <code>true</code>.</p>
+<ul>
+<li><code>Errno::ENOENT</code> if the command could not be found in the PATH</li>
+<li><code>Errno::EACCES</code> if the command exists but is not executable or is not a regular file</li>
+</ul>
+<p><strong>Side Effects</strong></p>
+<ul>
+<li>The command exit status is saved in <code>$CHILD_STATUS</code>.
+  See <a href="#subprocess-status">Subprocess Status</a> for more details.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Blocks until the subprocess exits.</li>
+</ul>
+<ul>
+<li>
+<p>The subprocess output is sent to the parent process's stdout and stderr. The subprocess
+  output can be redirected using either <a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html">shell redirection</a>
+  by embedding the redirection directives in the command:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;ls &gt; file.txt&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>or by using the <strong>options</strong> param to specify redirection (see <a href="#redirection">Redirection</a>
+for more details):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">out</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;file.txt&#39;</span><span class="o">]</span><span class="w"> </span><span class="p">})</span>
+</code></pre></div>
+</li>
+</ul>
+<h2 id="kernelspawn">Kernel#spawn<a class="headerlink" href="#kernelspawn" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/core/Kernel.html#method-i-spawn">spawn([env,] command... [,options]) ⭢ pid</a></strong></p>
+<p><strong>Use Case</strong>: Ideal for running multiple commands in parallel</p>
+<p><strong>Params</strong></p>
+<ul>
+<li><strong>env</strong> [Hash] <em>(defaults to: { })</em> — updates the environment of the subprocess.
+  See <a href="#environment-isolation">Environment Isolation</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>command</strong> [String, Array&lt;String&gt;] — the command to run.
+  See <a href="#how-commands-are-run">How Commands Are Run</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>options</strong> [Hash] <em>(defaults to: { })</em> — used to set various subprocess attributes.
+  See <a href="https://ruby-doc.org/core/Kernel.html#method-i-spawn">Kernel#spawn</a> for more details.</li>
+</ul>
+<p><strong>Returns</strong>: the pid of the running subprocess</p>
+<p><strong>Raises</strong>:</p>
+<ul>
+<li><code>Errno::ENOENT</code> if the command could not be found in the PATH</li>
+<li><code>Errno::EACCES</code> if the command exists but is not executable or is not a regular file</li>
+</ul>
+<p><strong>Side Effects</strong></p>
+<ul>
+<li>The command exit status is saved in <code>$CHILD_STATUS</code> after ithas been reaped via <a href="#wait">wait</a>.
+  See <a href="#subprocess-status">Subprocess Status</a> for more details.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<p>This method is similar to <a href="#kernel-system">Kernel#system</a> but it doesn't wait for the
+subprocess to end.</p>
+<p>Manage the subprocess using the following:</p>
+<ul>
+<li>Use <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a>
+  to wait for the subprocesses to end and collect its termination status</li>
+</ul>
+<ul>
+<li>Use <a href="https://ruby-doc.org/core/Process.html#method-c-detach">Process.detach</a> to register
+  disinterest in a subprocess's status to avoid creating zombies</li>
+</ul>
+<ul>
+<li>Use <a href="https://ruby-doc.org/core/Process.html#method-c-kill">Process.kill</a> to prematurely
+  end the process</li>
+</ul>
+<p>See <a href="#detach">Detach</a>, <a href="#wait">Wait</a>, and <a href="#kill">Kill</a> for more details.</p>
+<h2 id="kernelexec">Kernel#exec<a class="headerlink" href="#kernelexec" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/core/Kernel.html#method-i-exec">exec([env,] command... [,options])</a></strong></p>
+<p><strong>Use Case</strong>: Replace the current process by some other command</p>
+<p><strong>Params</strong></p>
+<ul>
+<li><strong>env</strong> [Hash] <em>(defaults to: { })</em> — updates the environment of the subprocess.
+  See <a href="#environment-isolation">Environment Isolation</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>command</strong> [String, Array&lt;String&gt;] — the command to run.
+  See <a href="#how-commands-are-run">How Commands Are Run</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>options</strong> [Hash] <em>(defaults to: { })</em> — used to set various subprocess attributes.
+  See <a href="https://ruby-doc.org/core/Kernel.html#method-i-spawn">Kernel#spawn</a> for more details.</li>
+</ul>
+<p><strong>Returns</strong>: N/A - does not return unless an error is raised</p>
+<p><strong>Raises</strong></p>
+<ul>
+<li><code>Errno::ENOENT</code> if the command could not be found in the PATH</li>
+<li><code>Errno::EACCES</code> if the command exists but is not executable or is not a regular file</li>
+<li><code>SystemCallError</code> if the command could not be run for some other reason (eg. if exec is
+  not supported on the platform)</li>
+</ul>
+<p><strong>Side Effects</strong>: N/A</p>
+<p><strong>Notes</strong></p>
+<p>Replaces the current process by running the given external command. The new process retains
+the original process's ID. The new process may inherit the original process's environment
+including open file descriptors.</p>
+<p>Exec (and fork) is only available on UNIX-like systems. A SystemCallError is raised if the
+command can't be run.</p>
+<p>Limits modified via the <code>options</code> parameter are retained if the command can not be run
+because hard limits are not restorable. These limits can be set to a different value but
+not unset.</p>
+<h2 id="kernelfork">Kernel#fork<a class="headerlink" href="#kernelfork" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/core/Kernel.html#method-i-fork">fork ⭢ integer or nil</a></strong></p>
+<p><strong><a href="https://ruby-doc.org/core/Kernel.html#method-i-fork">fork { block } ⭢ integer or nil</a></strong></p>
+<p><strong>Use Case</strong>: Run a block of the program's Ruby code asynchronously in a subprocess</p>
+<p><strong>Examples</strong></p>
+<p>▸ called with a block</p>
+<div class="highlight"><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/fork_with_block.rb&quot;</span>
+</code></pre></div>
+<p>▸ called without a block</p>
+<div class="highlight"><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/fork_without_block.rb&quot;</span>
+</code></pre></div>
+<p><strong>Params</strong></p>
+<ul>
+<li><strong>block</strong> — the optional block of Ruby code to run in a subprocess</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>(Integer, nil)</code> - Returns the subprocess's pid in the parent process or nil in the subprocess</li>
+</ul>
+<p><strong>Raises</strong>:</p>
+<ul>
+<li><code>Errno::ENOENT</code> if the command could not be found in the PATH</li>
+<li><code>Errno::EACCES</code> if the command exists but is not executable or is not a regular file</li>
+<li><code>SystemCallError</code> if the command could not be run for some other reason (eg. if exec is
+  not supported on the platform)</li>
+</ul>
+<p><strong>Side Effects</strong>:</p>
+<ul>
+<li>The command exit status is saved in <code>$CHILD_STATUS</code> after ithas been reaped via <a href="#wait">wait</a>.
+  See <a href="#subprocess-status">Subprocess Status</a> for more details.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<p>Fork creates a new process that is a duplicate of the current process. Both processes are
+running the same Ruby program, at the same point, with the same state.</p>
+<p>If fork is called <em>with a block</em>:</p>
+<ul>
+<li>execution in the child process continues in the block and exits with a status of zero
+  when the block ends</li>
+<li>execution of the parent process continues with fork returning the pid of the child process
+  (the block is not executed).</li>
+</ul>
+<p>If fork is called <em>without a block</em>:</p>
+<ul>
+<li>execution of the child process continues with fork returning <code>nil</code></li>
+<li>execution of the parent process continues with fork returning the pid of the child process</li>
+</ul>
+<p>Manage the subprocess using the following:</p>
+<ul>
+<li>Use <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a>
+  to wait for the subprocesses to end and collect its termination status</li>
+</ul>
+<ul>
+<li>Use <a href="https://ruby-doc.org/core/Process.html#method-c-detach">Process.detach</a> to register
+  disinterest in a subprocess's status to avoid creating zombies</li>
+</ul>
+<ul>
+<li>Use <a href="https://ruby-doc.org/core/Process.html#method-c-kill">Process.kill</a> to prematurely
+  end the process</li>
+</ul>
+<p>See <a href="#detach">Detach</a>, <a href="#wait">Wait</a>, and <a href="#kill">Kill</a> for more details.</p>
+<p>The subprocess can exit with <code>exit!</code> to avoid any exit handlers setup by the parent process.</p>
+<p>Fork is only available on UNIX-like systems (check Process.respond_to?(:fork)). Use Kernel#spawn
+on systems that don't support fork. Raises <code>SystemCallError</code> if called on a platform that does
+not support fork.</p>
+<h2 id="iopopen">IO.popen<a class="headerlink" href="#iopopen" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/core/IO.html#method-c-popen">popen([env,] cmd, mode="r" [, options]) ⭢ io</a></strong></p>
+<p><strong><a href="https://ruby-doc.org/core/IO.html#method-c-popen">popen([env,] cmd, mode="r" [, options]) { |io or nil| block } ⭢ obj</a></strong></p>
+<p><strong>Use Case</strong>: Ideal for use cases where you want to stream a lot of data to the subprocess's
+  stdin or from the subprocess's stdout and don't need to hold the whole result at one time</p>
+<p><strong>Params</strong></p>
+<ul>
+<li><strong>env</strong> [Hash] <em>(defaults to: { })</em> — updates the environment of the subprocess.
+  See <a href="#environment-isolation">Environment Isolation</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>command</strong> [String, Array&lt;String&gt;] — the command to run.
+  See <a href="#how-commands-are-run">How Commands Are Run</a> for more details.</li>
+</ul>
+<ul>
+<li><strong>options</strong> [Hash] <em>(defaults to: { })</em> — used to set various subprocess attributes.
+  See <a href="https://ruby-doc.org/core/Kernel.html#method-i-spawn">Kernel#spawn</a> for more details.</li>
+</ul>
+<p><strong>Returns</strong>: an IO stream connected to the subprocess.  Writing to it sends data to the
+  subprocesses's stdin.  Reading from it retrieves data from the subprocess's stdout.</p>
+<p><strong>Side Effects</strong>:</p>
+<p><strong>Notes</strong></p>
+<ul>
+<li>When to use: you need to interact with the standard out and standard in of a program
+  and are not interested in stderr</li>
+</ul>
+<p><a href="#spawn">spawn</a> can be used instead of IO.popen as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># similar to r = IO.popen(command)</span>
+<span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">IO</span><span class="o">.</span><span class="n">pipe</span>
+<span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spawn</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="o">=&gt;</span><span class="n">w</span><span class="p">)</span><span class="w">   </span><span class="c1"># r, w is closed in the child process.</span>
+<span class="n">w</span><span class="o">.</span><span class="n">close</span>
+</code></pre></div>
+<h2 id="open3popen3">Open3.popen3<a class="headerlink" href="#open3popen3" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/stdlib/libdoc/open3/rdoc/Open3.html#method-c-popen3">popen3([env,] cmd... [, opts]) { |stdin, stdout, stderr, wait_thr| }</a></strong></p>
+<p><strong><a href="https://ruby-doc.org/stdlib/libdoc/open3/rdoc/Open3.html#method-c-popen3">popen3([env,] cmd... [, opts]) ⭢ [stdin, stdout, stderr, wait_thr]</a></strong></p>
+<p><strong>Use Case</strong>:</p>
+<p><strong>Params</strong></p>
+<p><strong>Returns</strong>:</p>
+<p><strong>Side Effects</strong>:</p>
+<p><strong>Notes</strong></p>
+<p>Unfortunately, the docs don’t mention one crucial point — whatever redirections you pass will
+be ignored, because <code>popen3</code> always overrides the redirection options with its own pipes.</p>
+<p>So if you do need to inherit <code>stdin</code> and <code>Kernel#system</code> won’t do, <code>IO.popen</code> may be your only
+choice. e.g. to inherit <code>stdin</code> and read <code>stdout</code> as a string:</p>
+<h2 id="ptyspawn">PTY.spawn<a class="headerlink" href="#ptyspawn" title="Permanent link">&para;</a></h2>
+<p><strong><a href="https://ruby-doc.org/stdlib/libdoc/pty/rdoc/PTY.html#method-c-spawn">spawn(cmd...) { |r, w, pid| }</a></strong></p>
+<p><strong><a href="https://ruby-doc.org/stdlib/libdoc/pty/rdoc/PTY.html#method-c-spawn">spawn(cmd...) ⭢ [r, w, pid]</a></strong></p>
+<p><strong>Use Case</strong>:</p>
+<p><strong>Params</strong></p>
+<p><strong>Returns</strong>:</p>
+<p><strong>Side Effects</strong>:</p>
+<p><strong>Notes</strong></p>
+<h2 id="how-commands-are-run">How Commands Are Run<a class="headerlink" href="#how-commands-are-run" title="Permanent link">&para;</a></h2>
+<p>Most Ruby methods that run a subprocess
+(such as <a href="https://ruby-doc.org/core/Kernel.html#method-i-system">Kernel#system</a>)
+allow the command to be run to be specified in one of the following ways:</p>
+<ul>
+<li><code>commandline</code> a single string specifying the command and its arguments</li>
+<li><code>cmdName, arg1, ...</code> command name and one or more arguments passed as separate parameters</li>
+<li><code>[cmdName, arg0], arg1, ...</code> command name and argv[0] passed as an array and zero or more
+  arguments passed  as separate parameters</li>
+</ul>
+<p>When running a command in a subprocess (eg. via exec, fork et al.), Ruby may run the command
+via a subshell or execute the command directly. Ruby uses the following rules to determine
+which to do:</p>
+<p>When the command is a single string:</p>
+<ul>
+<li>When the command does not contain special shell syntax, the command is executed
+  directly</li>
+<li>
+<p>When the string contains special shell syntax, the command is passed to a subshell so the
+  shell syntax can be interpreted. The subshell, in turn, runs the command.</p>
+<p>Special shell syntax includes redirection, shell variables starting with '$' or a semicolon.</p>
+</li>
+</ul>
+<p>When passing the command broken up into an Array:</p>
+<ul>
+<li>Ruby will always execute the command directly without a subshell</li>
+</ul>
+<h2 id="what-shell-is-used">What Shell Is Used<a class="headerlink" href="#what-shell-is-used" title="Permanent link">&para;</a></h2>
+<p>To determine which shell to run, Ruby first checks the environment variables
+(in this order): <code>RUBYSHELL</code>, <code>SHELL</code>, or <code>COMSPEC</code>. If none of those environment variables
+are set, <code>/bin/sh</code> is used.</p>
+<h2 id="child_status">$CHILD_STATUS<a class="headerlink" href="#child_status" title="Permanent link">&para;</a></h2>
+<p><a href="#backticks">Backticks</a> and <a href="#system">system</a> set the global variable <code>$CHILD_STATUS</code>
+(aka <code>$?</code>) based on the exit status of the subprocess that was run. <a href="#wait">wait</a> (and similar
+methods) set <code>$CHILD_STATUS</code> when it reports that an asynchronuous subprocess has terminated.</p>
+<p><code>$CHILD_STATUS</code> is either <code>nil</code> or an instance of
+<a href="https://ruby-doc.org/core/Process/Status.html">Process::Status</a>.
+This class encapsulates the information on the status of a running or terminated subprocess.
+It stores the pid of the process, the exitstatus of the subprocess, the signal that terminated
+the subprocess, and if the subprocess core dumped.</p>
+<p><code>$CHILD_STATUS</code> is thread-global variable which can have different values in different threads.</p>
+<h2 id="detach">Detach<a class="headerlink" href="#detach" title="Permanent link">&para;</a></h2>
+<p>Some operating systems retain the status of terminated child processes until the parent
+collects that status. In Ruby, this is normally done by using some variant of
+<a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a>).</p>
+<p>If the parent never collects this status, the process is considered a
+<a href="https://en.wikipedia.org/wiki/Zombie_process">a zombie process</a>.
+A zombie process is a process has completed execution but still has an entry
+in the OS process table.</p>
+<p>If you don't care about the result of a subprocess, call
+<a href="https://ruby-doc.org/core/Process.html#method-c-detach">Process.detach</a>
+register your disinterest in the result of the process.</p>
+<p>In the background, this starts a Ruby thread to automatically reap the subprocess
+status information when the subprocess exits. Once the OS knows we have this information,
+it can clear it out of the process table.</p>
+<h2 id="wait">Wait<a class="headerlink" href="#wait" title="Permanent link">&para;</a></h2>
+<p>Use <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> to wait for
+one or more subprocesses to finish.</p>
+<p><strong>Waiting For A Single Subprocess</strong></p>
+<p>Pass a single pid to <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> to
+block until the subprocess has completed.
+<a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> returns the pid of the
+process that finished and sets <code>$CHILD_STATUS</code> to the exit status of the subprocess.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/wait1.rb&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Waiting For Multiple Subprocesses I</strong></p>
+<p>The most naive way to wait several subprocess to complete is to wait
+for them serially, one at a time.  This can be accomplished using
+<a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> as follows.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/wait2.rb&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>Because of the way this has been implemented, subprocess completion is reported in the order
+that the subprocesses were created, not necessarily in the order that they terminate.</p>
+<p><strong>Waiting For Multiple Subprocesses II</strong></p>
+<p>In order to report on each subprocess as it finishes, supply the special flag value
+<code>-1</code> to <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> instead
+of waiting on a specific pid. This blocks until any subprocess to terminates.</p>
+<p>Just like the previous example, the pid of the terminated subprocess is returned and
+<code>$CHILD_STATUS</code> is set to the subprocess's exit status.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/wait3.rb&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>With this implementation the subprocesses are report in the order they terminate.</p>
+<p><strong>Get Signaled When Subprocesses Finish</strong></p>
+<p>To be notified of subprocess completion in a totally asynchronous fashion, register to receive
+a signal from the operating system as subprocesses are completed using a signal trap.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Signal_(IPC)">signal</a> is an asynchronous notification sent
+by the operating system to a process in order to notify it of an event that occurred.</p>
+<p>When a signal is sent, the operating system interrupts the target process' normal flow of
+execution to deliver the signal. If the process has registered a trap handler for
+that signal, that handler is executed.</p>
+<p><a href="https://ruby-doc.org/core/Kernel.html#method-i-trap">Kernel#trap</a> allows a Ruby program to
+specify how signals are handled. It takes two arguments: the name of the signal to trap and
+the block of code to run when the named signal is received.</p>
+<p>The block passed to <a href="https://ruby-doc.org/core/Kernel.html#method-i-trap">Kernel#trap</a>
+must be <a href="https://en.wikipedia.org/wiki/Reentrancy_(computing)">reentrant</a> and
+thread-safe. For detailed guidance on what is safe to call in a trap block, see the
+article <a href="https://ruby-doc.org/core/doc/signals_rdoc.html">Caveats for implementing Signal.trap callbacks</a>.
+To avoid problems in the trap block, the main thread of the program is blocked while
+the trap block is executed.</p>
+<p>The operating system will tell Ruby about subprocesses terminating with the <code>SIGCHLD</code> signal.</p>
+<p>Ruby may call the trap after <strong><em>multiple</em></strong> subprocesses have ended. To handle this
+situation, call <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> in
+a loop with the <code>Process::WNOHANG</code> flag. This flag tells
+<a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a> to return <code>nil</code>
+rather than blocking if there are no more subprocesses that have terminated.</p>
+<p>A complete implementation of the previous examples using a signal handler follows.  The
+example shows a dashboard of the processes along with the elapsed time.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/signal.rb&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>The trap might be called for one or more processes exiting, hence the while loop in
+the example above.</p>
+<h2 id="kill">Kill<a class="headerlink" href="#kill" title="Permanent link">&para;</a></h2>
+<p>In the previous examples, <a href="https://ruby-doc.org/core/Process.html#method-c-wait">Process.wait</a>
+waits for the subprocess to terminate on its own.
+<a href="https://ruby-doc.org/core/Process.html#method-c-kill">Process.kill</a>
+can be used to terminate a process before it would otherwise do so on its own.</p>
+<p><a href="https://ruby-doc.org/core/Process.html#method-c-kill">Process.kill</a> is based on the Unix
+process API of the same name for sending a signal to a process. Originally, the kill command
+could only kill a process. Later it was enhanced to allow you to send any signal.</p>
+<p><a href="https://ruby-doc.org/core/Signal.html#method-c-list">Signal.list</a> names all the signals
+that Ruby understands. The Wikipedia <a href="https://en.wikipedia.org/wiki/Signal_(IPC)">Signals</a>
+page defines typial POSIX signals.</p>
+<p>Which signal to send to a subprocess to make it terminate early depends on the subprocess.
+There are three signals typically used to terminate a subprocess:</p>
+<ul>
+<li><strong>SIGINT</strong> The SIGINT signal is sent to a process by its controlling terminal when a user
+  wishes to interrupt the process. This is typically initiated by pressing Ctrl+C.</li>
+</ul>
+<ul>
+<li><strong>SIGTERM</strong> The SIGTERM signal is sent to a process to request its termination. It can be
+  caught and interpreted or ignored by the process. This allows the process to perform nice
+  termination releasing resources and saving state if appropriate. SIGTERM is nearly identical
+  to SIGINT.</li>
+</ul>
+<ul>
+<li>
+<p><strong>SIGKILL</strong> The SIGKILL signal is sent to a process to cause it to terminate immediately.
+  In contrast to SIGTERM and SIGINT, this signal cannot be caught or ignored, and the receiving
+  process cannot perform any clean-up upon receiving this signal.</p>
+<p>SIGKILL should be used as a last resort when terminating processes if it does not voluntarily
+exit in response to SIGTERM.</p>
+</li>
+</ul>
+<p>The following example uses
+<a href="https://ruby-doc.org/core/Process.html#method-c-kill">Process.kill</a> to stop any
+subprocess that is still running after 3 seconds. In this case, the SIGINT signal is
+used.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span><span class="w"> </span><span class="s2">&quot;examples/kill.rb&quot;</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
+<p>Without any action, the subprocess gets a copy of the parent process's environment.</p>
+<p>Some methods take an <code>env</code> hash which can be used to add, change, or remove environment
+variables destined for the subprocesses environment.</p>
+<p>For these methods, the environment passed to the subprocess is the parent's environment merged
+with <code>env</code>.</p>
+<p>Additionally, any key in <code>env</code> whose value is <code>nil</code> is removed from the subprocess's environment.</p>
+<p>The subprocess's environment is effectively set to: <code>ENV.merge(env).compact</code></p>
+<p>For methods that also take an <code>options</code> hash, if <code>options[:unsetenv_others]</code> is truthy,
+then <code>ENV</code> is not passed to the subprocess's environment. The subprocess's environment is
+instead effectively set to <code>env.compact</code>.</p>
+<p>When using <code>options[:unsetenv_others]</code> be especially mindful about <code>PATH</code> and <code>HOME</code> environment
+variables since system and user scripts often depend on them being set.</p>
+<h2 id="redirection">Redirection<a class="headerlink" href="#redirection" title="Permanent link">&para;</a></h2>
+<p>Spawn, system and other subprocess starting commands takes several options for
+redirecting output. For instance, to map stderr in the subprocess to the parent processes
+stdout:</p>
+<div class="highlight"><pre><span></span><code><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:err</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="ss">:out</span><span class="p">)</span>
+</code></pre></div>
+<p>Using these options, the key is the stream (<code>:err</code> above) in the subprocess and
+the value (<code>:out</code> above) is the stream in the parent process.</p>
+<p>To redirect to a file map a stream to a filename:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;1</span><span class="se">\n</span><span class="s1">2</span><span class="se">\n</span><span class="s1">3&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;stdout.txt&quot;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;stdout.txt&#39;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;Error:</span><span class="se">\n</span><span class="s1">NOT FOUND&quot; &gt;&amp;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:err</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;stderr.txt&quot;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;stderr.txt&#39;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;Error:</span><span class="se">\n</span><span class="s2">NOT FOUND</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>The same works for input:</p>
+<div class="highlight"><pre><span></span><code><span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;name.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;John Smith&quot;</span><span class="p">)</span>
+<span class="nb">system</span><span class="p">(</span><span class="s1">&#39;read -p &quot;Name: &quot; username; echo &quot;You entered </span><span class="se">\&#39;</span><span class="s1">$username</span><span class="se">\&#39;</span><span class="s1">&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">in</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;name.txt&#39;</span><span class="p">)</span>
+<span class="no">You</span><span class="w"> </span><span class="n">entered</span><span class="w"> </span><span class="s1">&#39;John Smith&#39;</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+</code></pre></div>
+<p>Specify open mode and permissions by specifying the file as an array:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;Line 1</span><span class="se">\n</span><span class="s1">Line2&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;stdout.txt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="w"> </span><span class="mo">0644</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1"># overwrite</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;Line 3</span><span class="se">\n</span><span class="s1">Line4&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;stdout.txt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="c1"># append</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;stdout.txt&#39;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;Line 1</span><span class="se">\n</span><span class="s2">Line2</span><span class="se">\n</span><span class="s2">Line 3</span><span class="se">\n</span><span class="s2">Line4</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>To redirect into an already open file:</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;Line 1</span><span class="se">\n</span><span class="s1">Line 2&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">file</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">nil</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;Line 1</span><span class="se">\n</span><span class="s2">Line 2</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>To redirect into a Tempfile:</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Tempfile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">)</span>
+<span class="k">begin</span>
+<span class="w">  </span><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;Line 1</span><span class="se">\n</span><span class="s1">Line 2&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">file</span><span class="p">)</span>
+<span class="w">  </span><span class="n">file</span><span class="o">.</span><span class="n">close</span>
+<span class="w">  </span><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="k">ensure</span>
+<span class="w">  </span><span class="n">file</span><span class="o">.</span><span class="n">delete</span>
+<span class="k">end</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;Line 1</span><span class="se">\n</span><span class="s2">Line 2</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>To redirect to a pipe objects to capture output:</p>
+<div class="highlight"><pre><span></span><code><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">IO</span><span class="o">.</span><span class="n">pipe</span>
+<span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;Line 1</span><span class="se">\n</span><span class="s1">Line 2&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">:out</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="n">input</span><span class="o">.</span><span class="n">close</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">nil</span>
+<span class="n">output</span><span class="o">.</span><span class="n">read</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;Line 1</span><span class="se">\n</span><span class="s2">Line 2</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Pipes and asynchronous subprocesses allow us to do sophisticated things like
+processing output as it is produced in a streaming fashion.</p>
+<p>Multiple streams can be mapped a single destination by using an Array of stream names as
+the key of the redirect:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;1</span><span class="se">\n</span><span class="s1">2&quot;; echo &quot;3</span><span class="se">\n</span><span class="s1">4&quot; &gt;&amp;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="ss">:out</span><span class="p">,</span><span class="w"> </span><span class="ss">:err</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;out.txt&quot;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+<span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;out.txt&#39;</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3</span><span class="se">\n</span><span class="s2">4</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>To supress all output, redirect to /dev/null (using the device name given by
+<code>IO::NULL</code> for portability):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">system</span><span class="p">(</span><span class="s1">&#39;echo &quot;1</span><span class="se">\n</span><span class="s1">2&quot;; echo &quot;3</span><span class="se">\n</span><span class="s1">4&quot; &gt;&amp;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="ss">:out</span><span class="p">,</span><span class="w"> </span><span class="ss">:err</span><span class="o">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">IO</span><span class="o">::</span><span class="no">NULL</span><span class="p">)</span>
+<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kp">true</span>
+</code></pre></div>
+<h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
+<p>Sets boundaries for subprocesses: limit damage from buggy jobs that might eat up all
+available system resources.</p>
+<p>See <a href="https://ruby-doc.org/core/Process.html#method-c-setrlimit">Process.setrlimit</a></p>
+<ul>
+<li>
+<p>Process.spawn rlimit options sets these limits</p>
+<ul>
+<li>limit_cpu # seconds of CPU time the script can use</li>
+</ul>
+<ul>
+<li>rlimit_as # sets bound (in bytes) for address space made available to program</li>
+</ul>
+<ul>
+<li>Files open at a time, number of processes, etc.</li>
+</ul>
+<ul>
+<li>Pay attention to the platform compatibility information listed for each</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>There is an option to set soft limits and hard limits<ul>
+<li>Hard limits effects are both sudden and final usually resulting in the subprocess
+    being terminated</li>
+<li>If just one limit number is given, it is considered a hard limit:<ul>
+<li>:limit_cpu =&gt; 2</li>
+</ul>
+</li>
+<li>Soft limits raise a signal in the subprocess when the soft limit is hit (they can
+    be thought of as a warning to the subprocess):<ul>
+<li>A hard limit needs to be specified along with the hard limit, the first number
+is the soft limit and the second number is the hard limit:</li>
+<li>:limit_cpu = [1, 2]</li>
+</ul>
+</li>
+<li>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">trap</span><span class="p">(</span><span class="s2">&quot;XCPU&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">puts</span><span class="w"> </span><span class="s2">&quot;Received SIGXCPU, shutting down&quot;</span>
+<span class="w">    </span><span class="nb">exit</span>
+<span class="k">end</span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="open-pipe">Open Pipe<a class="headerlink" href="#open-pipe" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sense if being run in a console with $stdout.tty?</li>
+<li>Open an output stream and pipe to an external program</li>
+<li>
+<p>To do this, add a pipe to the beginning of the filename in an open call.  For example,
+  to pipe all output to a pager if you are running on an interactive console:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="vg">$stdout</span><span class="o">.</span><span class="n">tty?</span>
+<span class="w">  </span><span class="n">pager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;| less”, &quot;</span><span class="n">w</span><span class="err">”</span><span class="p">)</span>
+<span class="w">  </span><span class="nb">at_exit</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pager</span><span class="o">.</span><span class="n">close</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="vg">$stdout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pager</span>
+<span class="k">end</span>
+</code></pre></div>
+</li>
+</ul>
+<ul>
+<li>Make sure to close the pipe so the output is flushed in a timely fashion.</li>
+</ul>
+<h2 id="gems">Gems<a class="headerlink" href="#gems" title="Permanent link">&para;</a></h2>
+<ul>
+<li>mixlib-shellout</li>
+<li>shell</li>
+<li>subprocess</li>
+<li>tty-command</li>
+</ul>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://devver.wordpress.com/2009/06/30/a-dozen-or-so-ways-to-start-sub-processes-in-ruby-part-1/">A Dozen (or so) Ways to Start Subprocesses in Ruby: Part 1</a></li>
+<li><a href="https://devver.wordpress.com/2009/07/13/a-dozen-or-so-ways-to-start-sub-processes-in-ruby-part-2/">A Dozen (or so) Ways to Start Subprocesses in Ruby: Part 2</a></li>
+<li><a href="https://devver.wordpress.com/2009/10/12/ruby-subprocesses-part_3/">A Dozen (or so) Ways to Start Subprocesses in Ruby: Part 3</a></li>
+<li><a href="https://stackoverflow.com/questions/7212573/when-to-use-each-method-of-launching-a-subprocess-in-ruby/7263556#7263556">When to use each method of launching a subprocess in Ruby</a></li>
+<li><a href="https://toasterlovin.com/using-the-pty-class-to-test-interactive-cli-apps-in-ruby/">Using the PTY Class to Test Interactive Apps in Ruby</a></li>
+<li><a href="https://mensfeld.pl/2016/12/ruby-stream-processing-of-shell-command-results/">Stream processing of shell command results</a></li>
+</ul>
+<ul>
+<li><a href="https://thoughtbot.com/blog/io-in-ruby">IO in Ruby</a></li>
+<li><a href="http://www.linusakesson.net/programming/tty/">The TTY demystified</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Signal_(IPC)">Signal</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Reentrancy_(computing)">Reentrancy</a></li>
+</ul>
+<ul>
+<li><a href="https://timuruski.net/blog/2014/signals-traps-and-rescues/">Signals, Traps, and Rescues</a></li>
+<li><a href="https://ruby-doc.org/core/doc/signals_rdoc.html">Caveats for implementing Signal.trap callbacks</a></li>
+<li><a href="https://kirshatrov.com/2017/04/17/ruby-signal-trap/">Signal handling in Ruby and its internals</a></li>
+<li><a href="https://gist.github.com/mvidner/bf12a0b3c662ca6a5784">Signal handling and Ruby</a></li>
+<li><a href="https://www.exceptionalcreatures.com/bestiary/SignalException.html">SignalException</a></li>
+<li><a href="https://www.rubytapas.com/references/signals/">Signals Referenced in RubyTapas Episodes</a></li>
+</ul>
+<h2 id="subprocess-status">Subprocess Status<a class="headerlink" href="#subprocess-status" title="Permanent link">&para;</a></h2>
+<h2 id="kernel-system">Kernel System<a class="headerlink" href="#kernel-system" title="Permanent link">&para;</a></h2>
+<h2 id="environment-isolation">Environment Isolation<a class="headerlink" href="#environment-isolation" title="Permanent link">&para;</a></h2>
+<h2 id="spawn">Spawn<a class="headerlink" href="#spawn" title="Permanent link">&para;</a></h2>
+<h2 id="system">System<a class="headerlink" href="#system" title="Permanent link">&para;</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>

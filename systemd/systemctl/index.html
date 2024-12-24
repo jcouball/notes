@@ -1,0 +1,2218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation that the author finds useful in his day to day coding activities.">
+      
+      
+      
+      
+        <link rel="prev" href="../concepts/">
+      
+      
+        <link rel="next" href="../../vscode/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>systemctl - James Couball's Tech Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#systemctl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-header__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            James Couball's Tech Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              systemctl
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-nav__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    James Couball's Tech Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/chatgpt_prompt_engineering_for_developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChatGPT Prompt Engineering for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/getting_started_on_prompt_engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started on Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/prompt_engineering_best_practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/prompt_engineering_for_improved_performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering for Improved Performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Git / GitHub
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Git / GitHub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate Git Course
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate Git Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/02_creating_snapshots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Snapshots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/03_browsing_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browsing History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/04_branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/05_collaboration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collaboration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/06_rewriting_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homebrew/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homebrew Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homefiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JavaScript/Node
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            JavaScript/Node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate JavaScript Mastery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate JavaScript Mastery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/01_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/02_control_flow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Control Flow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/03_objects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/04_arrays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/05_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/06_objects_revisited/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects Revisited
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/07_prototypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/08_prototypical_inheritance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypical Inheritance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/09_es6_classes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Classes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/10_es6_tooling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Tooling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Complete Node.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Complete Node.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/02_node_module_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Module System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/03_node_package_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Package Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/04_express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/05_express_advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/06_async_javascript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async JavaScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/07_crud_mongoose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crud with Mongoose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/08_mongo_data_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongo Data Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/09_mongoose_relationships/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongoose Relationships
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/10_auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11_errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling and Logging Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11b_refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/12_unit_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/13_integration_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integration Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/14_test_driven_development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Driven Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/15_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mermaid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mermaid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../music_theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Music Theory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ruby
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/subprocesses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subprocesses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ssl_tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    systemd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            systemd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    systemctl
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    systemctl
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unit-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-file-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit file commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Machine commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manager-lifecycle-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manager lifecycle commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      System commands
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vscode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unit-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-file-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit file commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Machine commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manager-lifecycle-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manager lifecycle commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      System commands
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="systemctl">systemctl<a class="headerlink" href="#systemctl" title="Permanent link">&para;</a></h1>
+<p>The <strong>systemctl</strong> utility is used to introspect and control the state of the
+<strong>systemd</strong> system and service manager.</p>
+<p>It is used to view units and their status and enable or disable units.</p>
+<p>Some <strong>systemctl</strong> commands (like those that change configuration) require root privileges.</p>
+<p>The default command if none is specified is <code>list-units</code>.</p>
+<h2 id="unit-commands">Unit commands<a class="headerlink" href="#unit-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-list-units"></a><code>list‑units</code></td>
+<td><code>list-units [PATTERN...]</code><br /><br />List units that systemd currently has in memory.<br/>By default  only units which are active, have pending jobs, or have failed are shown.<br /><br /><code>--all</code> additionally shows units which are loaded but not active<br /><code>--type</code>,  <code>--scope</code>, <code>--state</code> can be used to filter the units shown</td>
+</tr>
+<tr>
+<td><a name="systemctl-list-sockets"></a><code>list‑sockets</code></td>
+<td><code>list-sockets [PATTERN...]</code><br /><br />List socket units currently in memory, ordered by listening address. If one or more PATTERNs are specified, only socket units matching one of them are shown.</td>
+</tr>
+<tr>
+<td><a name="systemctl-list-timers"></a><code>list‑timers</code></td>
+<td><code>list-timers [PATTERN...]</code><br /><br />List timer units currently in memory, ordered by the time they elapse next. If one or more PATTERNs are specified, only units matching one of them are shown.</td>
+</tr>
+<tr>
+<td><a name="systemctl-start"></a><code>start</code></td>
+<td><code>start PATTERN...</code><br /><br />Start (activate) one or more units specified on the command line.</td>
+</tr>
+<tr>
+<td><a name="systemctl-stop"></a><code>stop</code></td>
+<td><code>stop PATTERN...</code><br /><br/> Stop (deactivate) one or more units specified on the command line.</td>
+</tr>
+<tr>
+<td><a name="systemctl-reload"></a><code>reload</code></td>
+<td><code>reload PATTERN...</code><br /><br />Asks all units listed on the command line to reload their configuration. Note that this will reload the service-specific configuration, not the unit configuration file of systemd.<br /><br />If you want systemd to reload the configuration file of a unit, use the  <code>daemon-reload</code> command.</td>
+</tr>
+<tr>
+<td><a name="systemctl-restart"></a><code>restart</code></td>
+<td><code>restart PATTERN...</code><br/><br />Stop and then start one or more units specified on the command line. If the units are not running yet, they will be started.</td>
+</tr>
+<tr>
+<td><a name="systemctl-try-restart"></a><code>try‑restart</code></td>
+<td><code>try-restart PATTERN...</code><br/><br />Stop and then start one or more units specified on the command line if the units are running. This does nothing if units are not running.</td>
+</tr>
+<tr>
+<td><a name="systemctl-reload-or-restart"></a><code>reload‑or‑restart</code></td>
+<td><code>reload-or-restart PATTERN...</code><br /><br/>Reload one or more units if they support it. If not, stop and then start them instead. If the units are not running yet, they will be started.</td>
+</tr>
+<tr>
+<td><a name="systemctl-try-reload-or-restart"></a><code>try‑reload‑or‑restart</code></td>
+<td><code>try-reload-or-restart PATTERN...</code><br /><br/>Reload one or more units if they support it. If not, stop and then start them instead. This does nothing if the units are not running.</td>
+</tr>
+<tr>
+<td><a name="systemctl-isolate"></a><code>isolate</code></td>
+<td><code>isolate UNIT</code><br/><br />Start the unit specified on the command line and its dependencies and stop all others, unless they have <code>IgnoreOnIsolate=yes</code>.<br /><br />If a unit name with no extension is given, an extension of ".target" will be assumed.</td>
+</tr>
+<tr>
+<td><a name="systemctl-kill"></a><code>kill</code></td>
+<td><code>kill PATTERN...</code><br /><br/>Send a signal to one or more processes of the unit. Use <code>--kill-who=</code> to select which process to kill. Use <code>--signal=</code> to select the signal to send.</td>
+</tr>
+<tr>
+<td><a name="systemctl-freeze"></a><code>freeze</code></td>
+<td><code>freeze PATTERN...</code><br /><br/>Freeze one or more units specified on the command line using cgroup freezer.<br /><br />Freezing the unit will cause all processes contained within the cgroup corresponding to the unit to be suspended. Being suspended means that unit's processes won't be scheduled to run on CPU until thawed.<br /><br /><code>freeze</code> is only supported on systems that use unified cgroup hierarchy.</td>
+</tr>
+<tr>
+<td><a name="systemctl-thaw"></a><code>thaw</code></td>
+<td><code>thaw PATTERN...</code><br /><br/>Thaw (unfreeze) one or more units specified on the command line.<br/><br/>This is the inverse operation to the freeze command and resumes the execution of processes in the unit's cgroup.</td>
+</tr>
+<tr>
+<td><a name="systemctl-is-active"></a><code>is‑active</code></td>
+<td><code>is-active PATTERN...</code><br /><br />Check whether any of the specified units are active (i.e. running). Returns an exit code <code>0</code> if at least one is active, or non-zero otherwise. Unless <code>--quiet</code> is specified, this will also print the current unit state to standard output.</td>
+</tr>
+<tr>
+<td><a name="systemctl-is-failed"></a><code>is‑failed</code></td>
+<td><code>is-failed PATTERN...</code><br /><br />Check whether any of the specified units are in a "failed" state. Returns an exit code 0 if at least one has failed, non-zero otherwise. Unless --quiet is specified, this will also print the current unit state to standard output.</td>
+</tr>
+<tr>
+<td><a name="systemctl-status"></a><code>status</code></td>
+<td><code>status [PATTERN...[PID...]]</code><br /><br />Show terse runtime status information about one or more units, followed by most recent log data from the journal. If no units are specified, show system status.<br /><br />Show terse runtime status information about one or more units including: name, description, unit file path, enabled/disabled state, vendor preset, and running state.<br /><br />If combined with <code>--all</code>, also show the status of all units (subject to limitations specified with <code>-t</code>). If a PID is passed, show information about the unit the process belongs to.</td>
+</tr>
+<tr>
+<td><a name="systemctl-show"></a><code>show</code></td>
+<td><code>show [PATTERN...\|JOB...]</code><br /><br />Show properties of one or more units, jobs, or the manager itself. If no argument is specified, properties of the manager will be shown. If a unit name is specified, properties of the unit are shown, and if a job ID is specified, properties of the job are shown.<br /><br />By default, empty properties are suppressed. Use<code>--all</code> to show those too. To select specific properties to show, use --property=.<br /><br />This command is intended to be used whenever computer-parsable output is required. Use <code>status</code> if you are looking for formatted human-readable output.</td>
+</tr>
+<tr>
+<td><a name="systemctl-cat"></a><code>cat</code></td>
+<td><code>cat PATTERN...</code><br /><br/>Show backing files of one or more units. Prints the "fragment" and "drop-ins" (source files) of units. Each file is preceded by a comment which includes the file name. Note that this shows the contents of the backing files on disk, which may not match the system manager's understanding of these units if any unit files were updated on disk and the <code>daemon-reload</code> command wasn't issued since.</td>
+</tr>
+<tr>
+<td><a name="systemctl-set-property"></a><code>set‑property</code></td>
+<td><code>set-property UNIT PROPERTY=VALUE...</code><br /><br/>Set the specified unit properties at runtime where this is supported. This allows changing configuration parameter properties such as resource control settings at runtime. Not all properties may be changed at runtime, but many resource control settings. The changes are applied immediately, and stored on disk for future boots, unless <code>--runtime</code> is passed, in which case the settings only apply until the next reboot. The syntax of the property assignment follows closely the syntax of assignments in unit files.<br /><br />Example: <code>systemctl set-property foobar.service CPUShares=777</code></td>
+</tr>
+<tr>
+<td><a name="systemctl-help"></a><code>help</code></td>
+<td><code>help PATTERN...\|PID...</code><br /><br />Show manual pages for one or more units, if available. If a PID is given, the manual pages for the unit the process belongs to are shown.</td>
+</tr>
+<tr>
+<td><a name="systemctl-restart-failed"></a><code>restart‑failed</code></td>
+<td><code>reset-failed [PATTERN...]</code><br /><br/>Reset the "failed" state of the specified units, or if no unit name is passed, reset the state of all units. When a unit fails in some way (i.e. process exiting with non-zero error code, terminating abnormally or timing out), it will automatically enter the "failed" state and its exit code and status is recorded for introspection by the administrator until the service is stopped/re-started or reset with this command.</td>
+</tr>
+<tr>
+<td><a name="systemctl-list-dependencies"></a><code>list‑dependencies</code></td>
+<td>list-dependencies [UNIT]<br/><br />Shows units required and wanted by the specified unit. This recursively lists units following the <u>Requires=</u>, <u>Requisite=</u>, <u>ConsistsOf=</u>, <u>Wants=</u>, <u>BindsTo=</u> dependencies. If no unit is specified, default.target is implied.<br/><br/>By default, only target units are recursively expanded. When <code>--all</code> is passed, all other units are recursively expanded as well.<br/><br/>Options <code>--reverse</code>, <code>--after</code>, <code>--before</code> may be used to change what types of dependencies are shown.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="unit-file-commands">Unit file commands<a class="headerlink" href="#unit-file-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-list-unit-files"></a><code>list‑unit‑files</code></td>
+<td><code>list-unit-files [PATTERN...]</code><br /><br />List unit files installed on the system, in combination with their enablement state (as reported by <code>is-enabled</code>)</td>
+</tr>
+<tr>
+<td><a name="systemctl-enable"></a><code>enable</code></td>
+<td><code>enable UNIT...</code>, <code>enable PATH...</code><br /><br />Enable one or more units or unit instances.<br /><br />Note that this does not have the effect of also starting any of the units being enabled. If this is desired, combine this command with the <code>--now</code> switch, or invoke start with appropriate arguments later.<br /><br />This command will print the file system operations executed. This output may be suppressed by passing <code>--quiet</code>.<br /><br />Depending on whether <code>--system</code>, <code>--user</code>, <code>--runtime</code>, or <code>--global</code> is specified, this enables the unit for the system, for the calling user only, for only this boot of the system, or for all future logins of all users.</td>
+</tr>
+<tr>
+<td><a name="systemctl-disable"></a><code>disable</code></td>
+<td><code>disable UNIT...</code><br /><br />Disables one or more units.<br /><br />This command expects valid unit names only, it does not accept paths to unit files.<br /><br />Note that this command does not implicitly stop the units that are being disabled. If this is desired, either combine this command with the <code>--now</code> switch, or invoke the stop command with appropriate arguments later.<br /><br />This command will print information about the file system operations executed. This output may be suppressed by passing <code>--quiet</code>.<br/><br/>This command honors <code>--system</code>, <code>--user</code>, <code>--runtime</code> and <code>--global</code> in a similar way as <code>enable</code>.</td>
+</tr>
+<tr>
+<td><a name="systemctl-reenable"></a><code>reenable</code></td>
+<td><code>reenable UNIT...</code><br /><br />Reenable one or more units, as specified on the command line. This is a combination of <code>disable</code> and <code>enable</code> and is useful to reset the symlinks a unit file is enabled with to the defaults configured in its "[Install]" section. This command expects a unit name only, it does not accept paths to unit files.</td>
+</tr>
+<tr>
+<td><a name="systemctl-preset"></a><code>preset</code></td>
+<td><code>preset UNIT...</code><br /><br/>Reset the enable/disable status one or more unit files, as specified on the command line, to the defaults configured in the preset policy files. This has the same effect as disable or enable, depending how the unit is listed in the preset files.<br /><br />Use --preset-mode= to control whether units shall be enabled and disabled, or only enabled, or only disabled.</td>
+</tr>
+<tr>
+<td><a name="systemctl-preset-all"></a><code>preset‑all</code></td>
+<td><code>preset-all</code><br /><br/>Resets all installed unit files to the defaults configured in the preset policy file.<br/><br/>Use <code>--preset-mode=</code> to control whether units shall be enabled and disabled, or only enabled, or only disabled.</td>
+</tr>
+<tr>
+<td><a name="systemctl-is-enabled"></a><code>is‑enabled</code></td>
+<td><code>is-enabled UNIT...</code><br /><br />Checks whether any of the specified unit files are enabled (as with enable). Returns an exit code <code>0</code> if at least one is enabled, non-zero otherwise. Prints the current enable status. To suppress this output, use <code>--quiet</code>. To show installation targets, use <code>--full</code>.</td>
+</tr>
+<tr>
+<td><a name="systemctl-mask"></a><code>mask</code></td>
+<td><code>mask UNIT...</code><br /><br/>Mask one or more units, as specified on the command line. This will link these unit files to /dev/null, making it impossible to start them. This is a stronger version of <code>disable</code>, since it prohibits all kinds of activation of the unit, including enablement  and manual activation.</td>
+</tr>
+<tr>
+<td><a name="systemctl-umask"></a><code>umask</code></td>
+<td><code>unmask UNIT...</code><br /><br/>Unmask one or more unit files, as specified on the command line. This will undo the effect of <code>mask</code>. This command expects valid unit names only, it does not accept unit file paths.</td>
+</tr>
+<tr>
+<td><a name="systemctl-link"></a><code>link</code></td>
+<td><code>link PATH...</code><br /><br/>Link a unit file that is not in the unit file search paths into the unit file search path. This command expects an absolute path to a unit file. The effect of this may be undone with <code>disable</code>.<br /><br />The effect of this command is that a unit file is made available for commands such as <code>start</code>, even though it is not installed directly in the unit search path.<br /><br />The file system where the linked unit files are located must be accessible when systemd is started (e.g. anything underneath /home or /var is not allowed, unless those directories are located on the root file system).</td>
+</tr>
+<tr>
+<td><a name="systemctl-revert"></a><code>revert</code></td>
+<td><code>revert UNIT...</code><br /><br/>Revert one or more unit files to their vendor versions. This command removes drop-in configuration files that modify the specified units, as well as any user-configured unit file that overrides a matching vendor supplied unit file.<br /><br />Effectively, this command may be used to undo all changes made with systemctl edit, <code>systemctl set-property</code> and <code>systemctl mask</code> and puts the original unit file with its settings back in effect.</td>
+</tr>
+<tr>
+<td><a name="systemctl-add-wants"></a><code>add‑wants</code></td>
+<td><code>add-wants TARGET UNIT...</code>, <code>add-requires TARGET UNIT...</code><br /><br/>Adds "Wants=" or "Requires=" dependencies, respectively, to the specified TARGET for one or more units.<br/><br/>This command honors <code>--system</code>, <code>--user</code>, <code>--runtime</code> and <code>--global</code> in a way similar to enable.</td>
+</tr>
+<tr>
+<td><a name="systemctl-edit"></a><code>edit</code></td>
+<td><code>edit UNIT...</code><br /><br/>Edit a drop-in snippet or a whole replacement file if <code>--full</code> is specified, to extend or override the specified unit.<br /><br />Depending on whether <code>--system</code> (the default), <code>--user</code>, or <code>--global</code> is specified, this  command creates a drop-in file for each unit either for the system, for the calling  user, or for all futures logins of all users. Then, the editor is invoked on temporary files which will be written to the real location if the editor exits successfully.<br /><br />If <code>--full</code> is specified, this will copy the original units instead of creating drop-in  files. If <code>--force</code> is specified and any units do not already exist, new unit files will be  opened for editing. If <code>--runtime</code> is specified, the changes will be made temporarily in <code>/run</code> and they will be lost on the next reboot.<br /><br />If the temporary file is empty upon exit, the modification of the related unit is canceled.<br/><br/>After the units have been edited, systemd configuration is reloaded (in a way that is  equivalent to <code>daemon-reload</code>).</td>
+</tr>
+<tr>
+<td><a name="systemctl-get-default"></a><code>get‑default</code></td>
+<td><code>get-default</code><br /><br/>Return the default target to boot into. This returns the target unit name default.target is aliased (symlinked) to.</td>
+</tr>
+<tr>
+<td><a name="systemctl-set-default"></a><code>set‑default</code></td>
+<td><code>set-default TARGET</code><br /><br/>Set the default target to boot into. This sets (symlinks) the default.target alias to the given target unit.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="machine-commands">Machine commands<a class="headerlink" href="#machine-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-list-machines"></a><code>list‑machines</code></td>
+<td><code>list-machines [PATTERN...]</code><br /><br/>List the host and all running local containers with their state. If one or more PATTERNs are specified, only containers matching one of them are shown.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="job-commands">Job commands<a class="headerlink" href="#job-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-list-jobs"></a><code>list‑jobs</code></td>
+<td><code>list-jobs [PATTERN...]</code><br /><br/>List jobs that are in progress. If one or more PATTERNs are specified, only jobs for units matching one of them are shown.<br/><br/>When combined with <code>--after</code> or <code>--before</code> the list is augmented with information on which other job each job is waiting for, and which other jobs are waiting for it, see above.</td>
+</tr>
+<tr>
+<td><a name="systemctl-cancel"></a><code>cancel</code></td>
+<td><code>cancel JOB...</code><br /><br/>Cancel one or more jobs specified on the command line by their numeric job IDs. If no job ID is specified, cancel all pending jobs.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="environment-commands">Environment commands<a class="headerlink" href="#environment-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-show-environment"></a><code>show‑environment</code></td>
+<td><code>show-environment</code><br /><br/>Dump the systemd manager environment block. This is the environment block that is passed to all processes the manager spawns. The environment block will be dumped in straight-forward form suitable for sourcing into most shells.</td>
+</tr>
+<tr>
+<td><a name="systemctl-set-environment"></a><code>set‑environment</code></td>
+<td><code>set-environment VARIABLE=VALUE...</code><br /><br/>Set one or more systemd manager environment variables, as specified on the command line.</td>
+</tr>
+<tr>
+<td><a name="systemctl-unset-environment"></a><code>unset‑environment</code></td>
+<td><code>unset-environment VARIABLE...</code><br /><br/>Unset one or more systemd manager environment variables. If only a variable name is specified, it will be removed regardless of its value. If a variable and a value are specified, the variable is only removed if it has the specified value.</td>
+</tr>
+<tr>
+<td><a name="systemctl-import-environment"></a><code>import‑environment</code></td>
+<td><code>import-environment [VARIABLE...]</code><br /><br/>Import all, one or more environment variables set on the client into the systemd manager environment block. If no arguments are passed, the entire environment block is imported. Otherwise, a list of one or more environment variable names should be passed, whose client-side values are then imported into the manager's environment block.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="manager-lifecycle-commands">Manager lifecycle commands<a class="headerlink" href="#manager-lifecycle-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-daemon-reload"></a><code>daemon‑reload</code></td>
+<td>Reload the systemd manager configuration. This will rerun all generators, reload all unit files, and recreate the entire dependency tree. While the daemon is being reloaded, all sockets systemd listens on behalf of user configuration will stay accessible.<br/><br/>This command should not be confused with the <code>reload</code> command.</td>
+</tr>
+<tr>
+<td><a name="systemctl-daemon-exec"></a><code>daemon‑exec</code></td>
+<td><code>daemon-reexec</code><br /><br/>Reexecute the systemd manager. This will serialize the manager state, reexecute the process and deserialize the state again. This command is of little use except for debugging and package upgrades. Sometimes, it might be helpful as a heavy-weight <code>daemon-reload</code>. While the daemon is being reexecuted, all sockets systemd listening on behalf of user configuration will stay accessible.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-commands">System commands<a class="headerlink" href="#system-commands" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="systemctl-is-system-running"></a><code>is‑system‑running</code></td>
+<td><code>is-system-running</code><br /><br/>Checks whether the system is operational. This returns success (exit code 0) when the system is fully up and running, specifically not in startup, shutdown or maintenance mode, and with no failed services. Failure is returned otherwise (exit code non-zero).<br /><br />In addition, the current state is printed in a short string to standard output, see the table below. Use <code>--quiet</code> to suppress this output.</td>
+</tr>
+<tr>
+<td><a name="systemctl-default"></a><code>default</code></td>
+<td><code>default</code><br /><br/>Enter default mode. This is equivalent to <code>systemctl isolate default.target</code>. This operation is blocking by default, use <code>--no-block</code> to request asynchronous behavior.</td>
+</tr>
+<tr>
+<td><a name="systemctl-rescue"></a><code>rescue</code></td>
+<td><code>rescue</code><br /><br/>Enter rescue mode. This is equivalent to <code>systemctl isolate rescue.target</code>. This operation is blocking by default, use<code>--no-block</code> to request asynchronous behavior.</td>
+</tr>
+<tr>
+<td><a name="systemctl-emergency"></a><code>emergency</code></td>
+<td><code>emergency</code><br /><br/>Enter emergency mode. This is equivalent to <code>systemctl isolate emergency.target</code>. This operation is blocking by default, use <code>--no-block</code> to request asynchronous behavior.</td>
+</tr>
+<tr>
+<td><a name="systemctl-halt"></a><code>halt</code></td>
+<td><code>halt</code><br /><br />Shut down and halt the system. This is mostly equivalent to <code>systemctl start halt.target --job-mode=replace-irreversibly --no-block</code>, but also prints a wall message to all users. This command is asynchronous; it will return after the halt operation is enqueued, without waiting for it to complete.<br /><br />Note that this operation will simply halt the OS kernel after shutting down, leaving the hardware powered on. Use <code>systemctl poweroff</code> for powering off the system.</td>
+</tr>
+<tr>
+<td><a name="systemctl-poweroff"></a><code>poweroff</code></td>
+<td><code>poweroff</code><br /><br />Shut down and power-off the system. This is mostly equivalent to <code>systemctl start poweroff.target --job-mode=replace-irreversibly --no-block</code>, but also prints a wall message to all users. This command is asynchronous; it will return after the power-off operation is enqueued, without waiting for it to complete.<br /><br />If combined with <code>--force</code>, shutdown of all running services is skipped, however all processes are killed and all file systems are unmounted or mounted read-only, immediately followed by the powering off.<br /><br />If <code>--force</code> is specified twice, the operation is immediately executed without terminating any processes or unmounting any file systems. This may result in data loss. Note that when <code>--force</code> is specified twice the power-off operation is executed by systemctl itself, and the system manager is not contacted. This means the command should succeed even when the system manager has crashed.</td>
+</tr>
+<tr>
+<td><a name="systemctl-reboot"></a><code>reboot</code></td>
+<td><code>reboot [arg]</code><br /><br/>Shut down and reboot the system. This is mostly equivalent to <code>systemctl start reboot.target --job-mode=replace-irreversibly --no-block</code>, but also prints a wall message to all users. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/><code>--force</code> works the same as the <code>poweroff</code> command.<br /><br/>If the optional argument arg is given, it will be passed as the optional argument to the reboot(2) system call. The value is architecture and firmware specific. As an example, "recovery" might be used to trigger system recovery, and "fota" might be used to trigger a “firmware over the air” update.</td>
+</tr>
+<tr>
+<td><a name="systemctl-kexec"></a><code>kexec</code></td>
+<td><code>kexec</code><br /><br />Shut down and reboot the system via <code>kexec</code>. This is equivalent to <code>systemctl start kexec.target --job-mode=replace-irreversibly --no-block</code>. This command is asynchronous; it will return after the reboot operation is enqueued, without waiting for it to complete.<br/><br/>If combined with <code>--force</code>, shutdown of all running services is skipped, however all processes are killed and all file systems are unmounted or mounted read-only, immediately followed by the reboot.</td>
+</tr>
+<tr>
+<td><a name="systemctl-exit"></a><code>exit</code></td>
+<td><code>exit [EXIT_CODE]</code><br /><br/>Ask the service manager to quit. This is only supported for user service managers (i.e. in conjunction with the <code>--user</code> option) or in containers and is equivalent to <code>poweroff</code> otherwise. This command is asynchronous; it will return after the exit operation is enqueued, without waiting for it to complete.<br/><br/>The service manager will exit with the specified exit code, if EXIT_CODE is passed.</td>
+</tr>
+<tr>
+<td><a name="systemctl-switch-root"></a><code>switch‑root</code></td>
+<td><code>switch-root ROOT [INIT]</code><br /><br/>Switches to a different root directory and executes a new system manager process below it. Thisis intended for usage in initial RAM disks ("initrd"), and will transition from the initrd's system manager process (a.k.a. "init" process) to the main system manager process which is loaded from the actual host volume.</td>
+</tr>
+<tr>
+<td><a name="systemctl-suspend"></a><code>suspend</code></td>
+<td><code>suspend</code><br/><br />Suspend the system. This will trigger activation of the special target unit suspend.target. This command is asynchronous, and will return after the suspend operation is successfully enqueued. It will not wait for the suspend/resume cycle to complete.</td>
+</tr>
+<tr>
+<td><a name="systemctl-hibernate"></a><code>hibernate</code></td>
+<td><code>hibernate</code><br/><br />Hibernate the system. This will trigger activation of the special target unit hibernate.target. This command is asynchronous, and will return after the hibernation operation is successfully enqueued. It will not wait for the hibernate/thaw cycle to complete.</td>
+</tr>
+<tr>
+<td><a name="systemctl-hybrid-sleep"></a><code>hybrid‑sleep</code></td>
+<td><code>hybrid-sleep</code><br/><br />Hibernate and suspend the system. This will trigger activation of the special target unit <code>hybrid-sleep.target</code>. This command is asynchronous, and will return after the hybrid sleep operation is successfully enqueued. It will not wait for the sleep/wake-up cycle to complete.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>

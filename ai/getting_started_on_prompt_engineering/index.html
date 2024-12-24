@@ -1,0 +1,3252 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation that the author finds useful in his day to day coding activities.">
+      
+      
+      
+      
+        <link rel="prev" href="../chatgpt_prompt_engineering_for_developers/">
+      
+      
+        <link rel="next" href="../prompt_engineering_best_practices/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Getting Started on Prompt Engineering - James Couball's Tech Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-on-prompt-engineering-with-generative-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-header__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            James Couball's Tech Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started on Prompt Engineering
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-nav__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    James Couball's Tech Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chatgpt_prompt_engineering_for_developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChatGPT Prompt Engineering for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Getting Started on Prompt Engineering
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started on Prompt Engineering
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-1-course-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1: Course Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-2-introduction-to-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2: Introduction to Prompt Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 2: Introduction to Prompt Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-look-at-prompts-in-the-real-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Look at Prompts in the Real World
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Prompt Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-you-will-learn-in-this-course" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn in this Course
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-3-creating-effective-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 3: Creating Effective Prompts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 3: Creating Effective Prompts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-anatomy-of-a-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Anatomy of a Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-for-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interfaces for Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#factual-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factual Responses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-summarizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Summarizing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#math-and-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Math and Reasoning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-4-evaluating-prompt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 4: Evaluating Prompt Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 4: Evaluating Prompt Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ways-to-evaluate-prompt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ways to Evaluate Prompt Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subjective-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subjective Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-getting-better-results-by-adjusting-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Getting Better Results by Adjusting Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-techniques-summarized" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Techniques Summarized
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-getting-better-results-by-adjusting-parameters-summarized" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Getting Better Results by Adjusting Parameters Summarized
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-5-using-advanced-prompt-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 5: Using Advanced Prompt Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 5: Using Advanced Prompt Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-prompting-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Prompting Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-shot-and-few-shot-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero-shot and Few-shot Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-of-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chain of Thought
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#least-to-most-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least to Most Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-knowledge-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generated Knowledge Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 5
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-6-ethical-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 6: Ethical Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 6: Ethical Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-overview-of-ethical-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      An Overview of Ethical Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misinformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misinformation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biasfairness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias/fairness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ownershipcopyright" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ownership/copyright
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transperency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transperency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-7-best-practices-and-future-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 7: Best Practices and Future Direction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 7: Best Practices and Future Direction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Prompt Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trends-and-future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trends and Future Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prompt_engineering_best_practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prompt_engineering_for_improved_performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering for Improved Performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Git / GitHub
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Git / GitHub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate Git Course
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate Git Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/02_creating_snapshots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Snapshots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/03_browsing_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browsing History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/04_branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/05_collaboration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collaboration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/ultimate_git_course/06_rewriting_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homebrew/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homebrew Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homefiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JavaScript/Node
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            JavaScript/Node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate JavaScript Mastery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate JavaScript Mastery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/01_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/02_control_flow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Control Flow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/03_objects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/04_arrays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/05_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/06_objects_revisited/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects Revisited
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/07_prototypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/08_prototypical_inheritance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypical Inheritance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/09_es6_classes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Classes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/10_es6_tooling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Tooling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Complete Node.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Complete Node.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/02_node_module_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Module System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/03_node_package_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Package Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/04_express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/05_express_advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/06_async_javascript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async JavaScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/07_crud_mongoose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crud with Mongoose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/08_mongo_data_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongo Data Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/09_mongoose_relationships/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongoose Relationships
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/10_auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11_errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling and Logging Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11b_refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/12_unit_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/13_integration_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integration Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/14_test_driven_development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Driven Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/15_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mermaid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mermaid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../music_theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Music Theory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ruby
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/subprocesses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subprocesses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ssl_tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    systemd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            systemd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/systemctl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    systemctl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vscode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-1-course-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1: Course Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-2-introduction-to-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2: Introduction to Prompt Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 2: Introduction to Prompt Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-look-at-prompts-in-the-real-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Look at Prompts in the Real World
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Prompt Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-you-will-learn-in-this-course" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn in this Course
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-3-creating-effective-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 3: Creating Effective Prompts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 3: Creating Effective Prompts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-anatomy-of-a-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Anatomy of a Prompt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-for-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interfaces for Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#factual-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factual Responses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-summarizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Summarizing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#math-and-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Math and Reasoning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-4-evaluating-prompt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 4: Evaluating Prompt Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 4: Evaluating Prompt Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ways-to-evaluate-prompt-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ways to Evaluate Prompt Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objective-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subjective-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subjective Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-getting-better-results-by-adjusting-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Getting Better Results by Adjusting Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-techniques-summarized" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Techniques Summarized
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-getting-better-results-by-adjusting-parameters-summarized" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Getting Better Results by Adjusting Parameters Summarized
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-5-using-advanced-prompt-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 5: Using Advanced Prompt Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 5: Using Advanced Prompt Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-prompting-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Prompting Techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-shot-and-few-shot-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zero-shot and Few-shot Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-of-thought" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chain of Thought
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#least-to-most-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least to Most Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-knowledge-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generated Knowledge Prompting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 5
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-6-ethical-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 6: Ethical Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 6: Ethical Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-overview-of-ethical-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      An Overview of Ethical Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misinformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misinformation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biasfairness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias/fairness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ownershipcopyright" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ownership/copyright
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transperency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transperency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-module-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Module 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-7-best-practices-and-future-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 7: Best Practices and Future Direction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module 7: Best Practices and Future Direction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices for Prompt Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trends-and-future-directions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trends and Future Directions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="getting-started-on-prompt-engineering-with-generative-ai">Getting Started on Prompt Engineering with Generative AI<a class="headerlink" href="#getting-started-on-prompt-engineering-with-generative-ai" title="Permanent link">&para;</a></h1>
+<h2 id="module-1-course-overview">Module 1: Course Overview<a class="headerlink" href="#module-1-course-overview" title="Permanent link">&para;</a></h2>
+<p>Prompt Engineering: The art and science of designing effective queries or
+instructions to get desired responses.</p>
+<p>In other words: asking better questions to get better answers.</p>
+<p>The output is only as good as the input.</p>
+<p>What you will learn in this course:</p>
+<ul>
+<li>Foundation understanding</li>
+<li>Different types of prompts</li>
+<li>More advanced techniques</li>
+<li>Ethical consideration</li>
+<li>Best practrices</li>
+</ul>
+<p>By the end of this course you'll have the skills and knowledge of prompt engineering
+to get more from your generative AI models.</p>
+<h2 id="module-2-introduction-to-prompt-engineering">Module 2: Introduction to Prompt Engineering<a class="headerlink" href="#module-2-introduction-to-prompt-engineering" title="Permanent link">&para;</a></h2>
+<h3 id="a-look-at-prompts-in-the-real-world">A Look at Prompts in the Real World<a class="headerlink" href="#a-look-at-prompts-in-the-real-world" title="Permanent link">&para;</a></h3>
+<p>(conversation with a friend about what to get for dinner)
+(lots of questions back and forth)</p>
+<h3 id="what-is-prompt-engineering">What is Prompt Engineering<a class="headerlink" href="#what-is-prompt-engineering" title="Permanent link">&para;</a></h3>
+<p>What is a prompt?</p>
+<p>The input you give to get a desired output.</p>
+<p>What is prompt engineering?</p>
+<p>A lot of context setting was needed to get to a good answer.</p>
+<p>Use prompt engineering to get more precise, creative, and domain-specific answers AND
+eliminate some common challenges.</p>
+<p>Common Challenges</p>
+<ul>
+<li><strong>Model bias</strong>: AI is trained on information from the internet which contains a lot
+  of bias.</li>
+<li><strong>Unpredictability</strong>: generative AI is taking informed guesses as to what comes
+  next. Those guesses can be unpredictable. Giving more context will help get the
+  answer you are looking for.</li>
+<li><strong>Lack of real-world knowledge</strong>: models do not have real world experience or
+  knowledge to draw from.</li>
+<li><strong>Language and cultural nuances</strong>: models may not understand idioms and colloquial
+  language which can lead to unexpected results</li>
+</ul>
+<h3 id="what-you-will-learn-in-this-course">What You Will Learn in this Course<a class="headerlink" href="#what-you-will-learn-in-this-course" title="Permanent link">&para;</a></h3>
+<p>Course overview</p>
+<ul>
+<li>Introduction to prompt engineering</li>
+<li>Creating effective prompts</li>
+<li>Evaluating prompt performance</li>
+<li>Using advanced prompt techniques</li>
+<li>Ethical considerations</li>
+<li>Best practices and Future Directions</li>
+</ul>
+<h2 id="module-3-creating-effective-prompts">Module 3: Creating Effective Prompts<a class="headerlink" href="#module-3-creating-effective-prompts" title="Permanent link">&para;</a></h2>
+<h3 id="the-anatomy-of-a-prompt">The Anatomy of a Prompt<a class="headerlink" href="#the-anatomy-of-a-prompt" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Persona:</strong> What role should the model play? e.g. respond a scientist or a software
+engineer.</li>
+<li><strong>Instructions:</strong> What should the model do? This typically starts wiht an action
+word. The heart of the prompt. Should be clear and concise.</li>
+<li><strong>Input Content:</strong> Text to be processed by the model. e.g. could be a piece of text
+to summarize or extract from.</li>
+<li><strong>Format:</strong> Requirements around format for the output, if any. e.g. you want results
+in a CSV format or markdown format. Or you want a formal report.</li>
+<li><strong>Additional Information:</strong> Any other helpful context or background or constraints.</li>
+</ul>
+<h3 id="interfaces-for-prompting">Interfaces for Prompting<a class="headerlink" href="#interfaces-for-prompting" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Microsfot Bing</li>
+<li>OpenAI ChatGPT/Playground</li>
+<li>Google Bard</li>
+</ul>
+<p>OpenAI Playground offers more parameters and features to make it easier to get the
+output you are looking for.</p>
+<p>Modes:</p>
+<p>Determines which parameters are available to you.</p>
+<ul>
+<li><strong>Chat:</strong> access to newer models</li>
+<li><strong>Complete (Legacy):</strong> some of the older models</li>
+</ul>
+<p>Input</p>
+<ul>
+<li><strong>System:</strong> you give the persona and background</li>
+<li><strong>User:</strong> where you give the instructions and other prompt parts</li>
+</ul>
+<p>Parameters:</p>
+<ul>
+<li><strong>Temperature:</strong> how variable or creative the response is.</li>
+<li><strong>Maximum length:</strong> controls the length of the response.</li>
+<li><strong>Top P:</strong> controls diversity. 0.5 means half of all likelihood-weighted options
+  are considered.</li>
+<li><strong>Frequency penalty:</strong> controls likelihood of repeating the same line verbatim.</li>
+<li><strong>Presence penalty:</strong> Controls likelihood of talking about new topics.</li>
+</ul>
+<p>Presets:</p>
+<p>Gives examples of parameters for various purposes.</p>
+<h3 id="factual-responses">Factual Responses<a class="headerlink" href="#factual-responses" title="Permanent link">&para;</a></h3>
+<p>Asking questions and getting ansswers.</p>
+<p>e.g. "what is the value of PI"</p>
+<p>Reduce possibility of hallucination or making things up but telling the model what to
+do if it does not know the answer.</p>
+<p>Lowering the temperature will result in more factual confident answers.</p>
+<p>You can ask it to tailor its answers for a certain audience like for a 5 year old or
+for my grandma.</p>
+<h3 id="text-summarizing">Text Summarizing<a class="headerlink" href="#text-summarizing" title="Permanent link">&para;</a></h3>
+<p>Give it a piece of text or code to summarize.</p>
+<p>It is helpful to give the format of the output. "Give a bulleted list of the key
+topics of the following text"</p>
+<p>It is also help to put constraints on the output. "Give a bulleted list of the top 5
+key topics of the following text."</p>
+<p>Best practice: use a delimiter such as ###, """, or ---.</p>
+<h3 id="text-extraction">Text Extraction<a class="headerlink" href="#text-extraction" title="Permanent link">&para;</a></h3>
+<p>Extract something from a piece of text that is passed in.</p>
+<p>For example, "extract all companies, schools, and skills from the following resume".</p>
+<p>Helpful to specify the desired format of the output. For example:</p>
+<div class="highlight"><pre><span></span><code>Desired format:
+COMPANIES: [Companies in a comma delimited list]
+SCHOOLS: [Schools in a comma delimited list]
+SKILLS: [Skills in bullet points]
+</code></pre></div>
+<h3 id="text-classification">Text Classification<a class="headerlink" href="#text-classification" title="Permanent link">&para;</a></h3>
+<h4 id="example-sentiment-analysis">Example: Sentiment Analysis<a class="headerlink" href="#example-sentiment-analysis" title="Permanent link">&para;</a></h4>
+<p>"Classify the following comment's sentiment as positive, neutral, or negative.</p>
+<p>Helpful hint: setup the model to answer in the prompt:</p>
+<div class="highlight"><pre><span></span><code>Classify the following comment&#39;s sentiment as positive, neutral, or negative.
+
+###
+
+Comment: &quot;Great course! I&#39;ve learned so much!&quot;
+Sentiment:
+</code></pre></div>
+<p>Can classify more than one sentiment at a time:</p>
+<div class="highlight"><pre><span></span><code>Classify the sentiment for the following comments:
+
+1. &quot;It&#39;s good&quot;
+2. &quot;I haven&#39;t finished it yet&quot;
+3. &quot;Yuck&quot;
+4. &quot;A lot of complex topics&quot;
+5. &quot;Loved it.&quot;
+Sentiment:
+</code></pre></div>
+<h4 id="example-support-ticket-classification">Example: Support Ticket Classification<a class="headerlink" href="#example-support-ticket-classification" title="Permanent link">&para;</a></h4>
+<p>Route support tickets based on their content.</p>
+<div class="highlight"><pre><span></span><code>Given the customer support ticket below, please classify it into one of the following
+categories: &#39;Technical Issues&#39;, &#39;Billing&#39;, &#39;Inquiries&#39;, &#39;Complaints&#39;.
+
+---
+
+Ticket: Hello, I just received my new phone that I ordered from your website. But
+I am unable to start it. I&#39;ve charged it for a few hours but it is not responding. I
+need help to fix this.
+
+Category:
+</code></pre></div>
+<h3 id="conversation">Conversation<a class="headerlink" href="#conversation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>The following is a conversation with an AI robot and a human. The robot is very
+intelligent, sarcastic, and funny.
+
+Human: Hello. How are you?
+
+Robot: Well, considering that I&#39;m caught in the gravitational pull of life&#39;s black
+hole, I&#39;m suprisingly upbeat. Must be my radiant personality!
+
+Human: I&#39;m bored. What should I do today?
+
+Robot:
+</code></pre></div>
+<p>Increase the temperature to get more varied, more creative responsive.</p>
+<h3 id="code-generation">Code Generation<a class="headerlink" href="#code-generation" title="Permanent link">&para;</a></h3>
+<p>To get started, use a comment to specify the code you want:</p>
+<div class="highlight"><pre><span></span><code># Write a Ruby script to calculate the mean distance between an array of points
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><code># Ruby
+# Write a method that given a url returns true if the url is valid
+# Use a regex to validate the url
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Ruby
+# Write a method that given a url returns true if the url is valid
+</code></pre></div>
+<p>Get the model started by writing the method declaration and let it fill in the rest</p>
+<div class="highlight"><pre><span></span><code># Ruby
+def valid_url?(url)
+</code></pre></div>
+<p>You can generate data:</p>
+<div class="highlight"><pre><span></span><code># Ruby
+# 1. Create a list of first names
+# 2. Create a list of last names
+# 3. Combine them randomly into a list of 10 full names
+</code></pre></div>
+<p>Convert code from one language to another:</p>
+<div class="highlight"><pre><span></span><code># Ruby to Python
+Ruby:
+first_names = [&#39;James&#39;, &#39;Bob&#39;, &#39;Sam&#39;, &#39;Donny&#39;]
+last_names = [&#39;Smith&#39;, &#39;Doe&#39;, &#39;Jones&#39;]
+5.times do
+  puts &quot;#{first_names.sample} #{last_names.sample}&quot;
+end
+
+Python:
+</code></pre></div>
+<p>You can use a model to explain code:</p>
+<div class="highlight"><pre><span></span><code>// MyFunction
+var fullNames = I];
+for (var i = 0; i &lt; 50; i++)
+fullNames.push(names[Math.floor (Math.random
+() * names.length)]
++ &quot; &quot; +
+lastNames[Math.floor (Math. random() * lastNames. length)I) ;
+
+// What does MyFunction do?
+</code></pre></div>
+<p>You can ask a model to fix code:</p>
+<div class="highlight"><pre><span></span><code>##### Fix bugs in the below function
+
+### Buggy Python
+import Random
+a = random. randint (1,12)
+b = random. randint (1,12)
+for i in range (10):
+  question = &quot;What is &quot;+a+&quot; × &quot;+b+&quot;?
+  answer = input(question)
+  if answer = a*b
+    print (Well done!)
+  else:
+    print (&quot;No.&quot;)
+
+### Fixed Python
+</code></pre></div>
+<p>You may want to get an explaination of what was wrong with the code to by changing
+the instruction:</p>
+<div class="highlight"><pre><span></span><code>##### Fix bugs in the below function and explain what was wrong
+</code></pre></div>
+<p>You can also ask the model what an error code means or give the error and the code
+for more details.</p>
+<h3 id="math-and-reasoning">Math and Reasoning<a class="headerlink" href="#math-and-reasoning" title="Permanent link">&para;</a></h3>
+<p>ChatGPT's responses are generated based on the patterns and information it has
+learned from its training data.</p>
+<p>If you have complex math problems or require precise and accurate calculations, it's
+advisable to consult reliable mathematical resources or specialized tools.</p>
+<p>Simple math or algebra should be no problem.</p>
+<div class="highlight"><pre><span></span><code>Solve for x in the equation
+2x + 3 = 9
+</code></pre></div>
+<p>Word problems can also be solved by the model:</p>
+<div class="highlight"><pre><span></span><code>If a shirt costs $29 and is discounted 25%, what was the original price?
+</code></pre></div>
+<p>Models can answer simple dedctive reasoning:</p>
+<div class="highlight"><pre><span></span><code>All dogs bark. Rex is a dog. Does Rex bark?
+</code></pre></div>
+<p>Interesting twist:</p>
+<div class="highlight"><pre><span></span><code>All dogs bark. Rex is a dog. Does Rex bite?
+</code></pre></div>
+<p>Simple predictive reasoning:</p>
+<div class="highlight"><pre><span></span><code>If it is cloudy and the humitity is very high, what might happen?
+</code></pre></div>
+<p>Another interesting twist:</p>
+<div class="highlight"><pre><span></span><code>If it is cloudy and the humitity is very high, what might happen if there are zombies nearby?
+</code></pre></div>
+<h3 id="summary-of-module-3">Summary of Module 3<a class="headerlink" href="#summary-of-module-3" title="Permanent link">&para;</a></h3>
+<h4 id="1-anatomy-of-a-prompt"><strong>1. Anatomy of a Prompt</strong><a class="headerlink" href="#1-anatomy-of-a-prompt" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Persona</strong>: Define AI's role (e.g., scientist, software engineer).</li>
+<li><strong>Instructions</strong>: Clear, concise directive starting with an action word.</li>
+<li><strong>Input Content</strong>: Text for AI to process (e.g., text to summarize).</li>
+<li><strong>Format</strong>: Specify output format requirements (e.g., CSV, markdown).</li>
+<li><strong>Additional Information</strong>: Context, background, constraints.</li>
+</ul>
+<h4 id="2-interfaces-for-prompting"><strong>2. Interfaces for Prompting</strong><a class="headerlink" href="#2-interfaces-for-prompting" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Interfaces include Microsoft Bing, OpenAI ChatGPT/Playground, Google Bard.</li>
+<li>OpenAI Playground offers extensive customization parameters.</li>
+</ul>
+<h4 id="3-prompting-modes-and-parameters"><strong>3. Prompting Modes and Parameters</strong><a class="headerlink" href="#3-prompting-modes-and-parameters" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Modes include 'Chat' and 'Complete (Legacy)'.</li>
+<li>Parameters cover Temperature, Maximum length, Top P, Frequency penalty, Presence
+  penalty.</li>
+<li>Presets for various use cases.</li>
+</ul>
+<h4 id="4-specific-prompt-types"><strong>4. Specific Prompt Types</strong><a class="headerlink" href="#4-specific-prompt-types" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Factual Responses</strong>: Use lower temperature for factual answers.</li>
+<li><strong>Text Summarizing</strong>: Define output format and constraints.</li>
+<li><strong>Text Extraction</strong>: Specify format for extracted data.</li>
+<li><strong>Text Classification</strong>: Sentiment analysis, support ticket classification.</li>
+<li><strong>Conversation</strong>: Adjust temperature for varied responses.</li>
+<li><strong>Code Generation</strong>: Code requests, conversions, explanations, debugging.</li>
+<li><strong>Math and Reasoning</strong>: Simple math, algebra, word problems, basic reasoning.</li>
+</ul>
+<h2 id="module-4-evaluating-prompt-performance">Module 4: Evaluating Prompt Performance<a class="headerlink" href="#module-4-evaluating-prompt-performance" title="Permanent link">&para;</a></h2>
+<h3 id="ways-to-evaluate-prompt-performance">Ways to Evaluate Prompt Performance<a class="headerlink" href="#ways-to-evaluate-prompt-performance" title="Permanent link">&para;</a></h3>
+<p>We will learn how to evaluate how well the model is performing.</p>
+<p>Focusing on metrics humans can look at and evaluate.</p>
+<h3 id="objective-metrics">Objective Metrics<a class="headerlink" href="#objective-metrics" title="Permanent link">&para;</a></h3>
+<p>Three objective metrics:</p>
+<ul>
+<li><strong>Accuracy</strong>:<ul>
+<li><strong>Factual correctness</strong>: the model answers with actual facts</li>
+<li><strong>Semantic correctness</strong>: does it answer the question we ask</li>
+</ul>
+</li>
+<li><strong>Speed</strong><ul>
+<li>Processing speed: how long the answer takes to generate</li>
+<li>Response speed: how long it takes a user to receive a response (includes
+    network latency and other delays)</li>
+</ul>
+</li>
+<li><strong>Relevancy</strong>: is the answer relevant to the question we ask</li>
+</ul>
+<h3 id="subjective-metrics">Subjective Metrics<a class="headerlink" href="#subjective-metrics" title="Permanent link">&para;</a></h3>
+<p>Human opinions on coherence, tone, and clarity.</p>
+<ul>
+<li><strong>Coherence</strong>: whether a response makes logical and linguistic sense in its own
+  right</li>
+<li><strong>Tone</strong>: the preceived emptional quality or "mood" of a message</li>
+<li><strong>Clarity</strong>: how understsandable or clear responses are</li>
+</ul>
+<h3 id="evaluation-techniques">Evaluation Techniques<a class="headerlink" href="#evaluation-techniques" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Surveys and interviews<ul>
+<li>Did the AI understand your prompt correctly?</li>
+<li>Was the response AI gave relevant to your prompt?</li>
+<li>Was the AI's response easy to understand?</li>
+<li>Did the AI provide a complete answer to your prompt, or did it miss anything?</li>
+<li>Did you find the Al's response helpful?</li>
+<li>Was the Al's response delivered in an appropriate tone?</li>
+<li>How satisfied are you with the speed of the Al's response?</li>
+<li>Did you feel the conversation with the Al flowed naturally?</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>A/B Testing<ul>
+<li>Example given for a customer service bot</li>
+<li>Use two different prompts to get the conversation started</li>
+<li>Which prompt led to more successful return transactions?</li>
+<li>Which prompt resulted in shorter conversation lengths (indicating possibly
+    smoother interactions)?</li>
+<li>*Which prompt received higher customer satisfaction scores in post-interaction
+    surveys?</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>The <a href="https://platform.openai.com/docs/guides/fine-tuning">OpenAI API Fine tuning
+  guide</a> can give further help</li>
+</ul>
+<h3 id="example-getting-better-results-by-adjusting-parameters">Example: Getting Better Results by Adjusting Parameters<a class="headerlink" href="#example-getting-better-results-by-adjusting-parameters" title="Permanent link">&para;</a></h3>
+<p>You can tweak parameters for better output.</p>
+<p>Start with a temperature of 0 to see what you get.</p>
+<p>The "show probabilities" parameters shows the probability of the words that were
+selected and the other words that were considered.</p>
+<p>You can dial up the "temperature" to get less probable words. They will be highlighed
+in the response if "show probabilities" is one.</p>
+<p>Increase the "frequency penalty" to directs the model to avoid using the same
+phrases. This makes things more unique and engaging.</p>
+<p>Increase the "presence penalty" to make the model use words it wouldn't typcially
+use. This is similar but different than temperature.</p>
+<h3 id="summary-of-module-4">Summary of Module 4<a class="headerlink" href="#summary-of-module-4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This module focuses on how to evaluate the performance of generative AI models in
+  response to prompts.</li>
+<li>It covers both objective and subjective metrics.</li>
+</ul>
+<h4 id="objective-metrics_1">Objective Metrics<a class="headerlink" href="#objective-metrics_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Accuracy</strong>:<ul>
+<li><em>Factual correctness</em>: Ensuring the model provides factually accurate
+    information.</li>
+<li><em>Semantic correctness</em>: Assessing if the model's response is relevant to the
+    posed question.</li>
+</ul>
+</li>
+<li><strong>Speed</strong>:<ul>
+<li><em>Processing speed</em>: Time taken for the model to generate a response.</li>
+<li><em>Response speed</em>: Total time for the user to receive a response, including
+    potential delays like network latency.</li>
+</ul>
+</li>
+<li><strong>Relevancy</strong>: Evaluating if the model's response is pertinent to the question
+   asked.</li>
+</ol>
+<h4 id="subjective-metrics_1">Subjective Metrics<a class="headerlink" href="#subjective-metrics_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Evaluations based on human perceptions:
+  1. <strong>Coherence</strong>: Logical and linguistic consistency of the response.
+  2. <strong>Tone</strong>: Emotional quality or mood of the message.
+  3. <strong>Clarity</strong>: Understandability of the response.</li>
+</ul>
+<h3 id="evaluation-techniques-summarized">Evaluation Techniques Summarized<a class="headerlink" href="#evaluation-techniques-summarized" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Surveys and Interviews</strong>: Questions about understanding, relevance, clarity,
+  completeness, helpfulness, tone, response speed, and natural conversation flow.</li>
+<li><strong>A/B Testing</strong>:<ul>
+<li>Example: Customer service bot interaction.</li>
+<li>Comparing different prompts for effectiveness in real-world scenarios.</li>
+<li>Metrics: Transaction success, conversation length, and customer satisfaction.</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-getting-better-results-by-adjusting-parameters-summarized">Example: Getting Better Results by Adjusting Parameters Summarized<a class="headerlink" href="#example-getting-better-results-by-adjusting-parameters-summarized" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tips on tweaking AI parameters for improved output.</li>
+<li>Adjustments include the "temperature" setting and "frequency penalty" to enhance
+  uniqueness and creativity.</li>
+<li>The "show probabilities" feature to understand word selection probabilities.</li>
+</ul>
+<h3 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li>For more in-depth guidance, refer to the <a href="https://platform.openai.com/docs/guides/fine-tuning">OpenAI API Fine Tuning
+  Guide</a>.</li>
+</ul>
+<h2 id="module-5-using-advanced-prompt-techniques">Module 5: Using Advanced Prompt Techniques<a class="headerlink" href="#module-5-using-advanced-prompt-techniques" title="Permanent link">&para;</a></h2>
+<h3 id="advanced-prompting-techniques">Advanced Prompting Techniques<a class="headerlink" href="#advanced-prompting-techniques" title="Permanent link">&para;</a></h3>
+<p>Depending on the complexity of the task, you may need to use more advanced prompting
+techniques to get the desired results. This includes:</p>
+<ul>
+<li>Zero-shot and few-shot</li>
+<li>Chain of thought</li>
+<li>Least to most</li>
+<li>Generated knowledge</li>
+</ul>
+<h3 id="zero-shot-and-few-shot-prompting">Zero-shot and Few-shot Prompting<a class="headerlink" href="#zero-shot-and-few-shot-prompting" title="Permanent link">&para;</a></h3>
+<p>In zero-shot prompting, the prompt is simple and includes zero examples.</p>
+<p>The model was not expliccitly training for the task; rather, it uses general
+knowledge acquired during training.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Classify the sentiment for the following text.
+
+Text: This course is awesome!
+Sentiment:
+</code></pre></div>
+<p>Few-shot prompting is a prompt with a few contextual examples to enhance the model's
+perfoemance for a given task.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Classify the sentiment for the following text as superb, meh, or neutral.
+
+Text: This course is awesome!
+Sentiment: Superb
+Text: I&#39;m really confused by this course!
+Sentiment: Meh
+Text: It was so-so.
+Sentiment: Neutral
+Text: I loved it!
+Sentiment:
+</code></pre></div>
+<h3 id="chain-of-thought">Chain of Thought<a class="headerlink" href="#chain-of-thought" title="Permanent link">&para;</a></h3>
+<p>Use these types of prompts to solve complex problems by breaking them into smaller
+steps</p>
+<p>Incrementally walk the model through the process of answering the query.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Q: I have a rectangular garden that&#39;s 20 feet long and 10 feet wide.
+How many square feet is that?
+
+A: That&#39;s 200 square feet.
+
+
+Q: I want to cover the garden in mulch. One bag of mulch covers 25 square
+feet. How many bags do I need?
+
+A: You need 8 bags of mulch.
+
+
+Q: Each bag costs $5. How much will it cost me to cover the garden?
+
+A: It will cost $40.
+</code></pre></div>
+<p>This might have been able to be done in one step:</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>I have a rectangular garden that&#39;s 20 feet long and 10 feet wide. A bag of mulch
+covers 25 square feet. Each bag costs $5.
+
+How much will it cost me to cover the garden in mulch?
+
+Think step by step:
+</code></pre></div>
+<h3 id="least-to-most-prompting">Least to Most Prompting<a class="headerlink" href="#least-to-most-prompting" title="Permanent link">&para;</a></h3>
+<p>Least to mosts is a similar technique where you break a problem down into smaller
+problems.</p>
+<p>In this example, the AI usually gets the wrong answer:</p>
+<div class="highlight"><pre><span></span><code>It takes Elbra 10 minutes to play the first half of a miniature golf game. It takes
+her 7 minutes to play the second half of the game. The golf course closes in 3 hours.
+How many more rounds of golf can she play before the course closes?
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>It takes Elbra 10 minutes to play the first half of a miniature golf game.
+It takes her 7 minutes to play the second half of the game.
+
+How long does one total game take?
+
+One total game takes 17 minutes.
+
+How many minutes are in 3 hours?
+
+There are 180 minutes in 3 hours.
+
+What is 180 minutes / 17 minutes?
+180 minutes / 17 minutes = 10.58
+
+Round down to the nearest whole number.
+10
+</code></pre></div>
+<h3 id="generated-knowledge-prompting">Generated Knowledge Prompting<a class="headerlink" href="#generated-knowledge-prompting" title="Permanent link">&para;</a></h3>
+<p>Provides additional knowledge or context to improve the performance of complex tasks,
+such as reasoning.</p>
+<p>After giving a zero shot prompt, if the answer isn't exactly what you want, you can
+give additional knowledge to influence/guide the answer.</p>
+<p>For example, if you have a coding question and the answer isn't accurate or is out of
+date, you could give it API code or docuementation.</p>
+<p>This is "giving the model new knowledge" to use in the response.</p>
+<h3 id="summary-of-module-5">Summary of Module 5<a class="headerlink" href="#summary-of-module-5" title="Permanent link">&para;</a></h3>
+<p>Module 5 of the "Getting Started on Prompt Engineering with Generative AI" course
+covered various advanced prompting techniques essential for enhancing the performance
+of AI models in complex tasks. These techniques included Zero-shot and Few-shot
+Prompting, Chain of Thought, Least to Most Prompting, and Generated Knowledge
+Prompting.</p>
+<ol>
+<li>
+<p><strong>Zero-shot and Few-shot Prompting</strong>: This section explained how zero-shot prompts
+   require no prior examples and rely on the AI's general knowledge. In contrast,
+   few-shot prompts include a few contextual examples to guide the AI's response more
+   accurately.</p>
+</li>
+<li>
+<p><strong>Chain of Thought</strong>: This technique involves breaking down complex problems into
+   smaller, more manageable steps, guiding the AI through the process of answering a
+   query incrementally.</p>
+</li>
+<li>
+<p><strong>Least to Most Prompting</strong>: Similar to the Chain of Thought, this method involves
+   breaking down a problem into smaller sub-problems. It's particularly useful in
+   scenarios where the AI might struggle to find the correct answer initially.</p>
+</li>
+<li>
+<p><strong>Generated Knowledge Prompting</strong>: This approach involves providing additional
+   knowledge or context to the AI, especially useful when the initial response is not
+   accurate or needs to be updated with the latest information.</p>
+</li>
+</ol>
+<p>Overall, Module 5 provided a comprehensive understanding of how to effectively use
+advanced prompt techniques to improve the outcomes of AI-generated responses,
+especially in complex problem-solving scenarios.</p>
+<h2 id="module-6-ethical-considerations">Module 6: Ethical Considerations<a class="headerlink" href="#module-6-ethical-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="an-overview-of-ethical-considerations">An Overview of Ethical Considerations<a class="headerlink" href="#an-overview-of-ethical-considerations" title="Permanent link">&para;</a></h3>
+<p>This module gives an overview of ethical considerations in generative AI and prompt
+engineering and gives strategies for addressing these concerns.</p>
+<p>The ethical concerns in generative AI:</p>
+<ul>
+<li><strong>Privacy</strong>: can be used to generate personal and sensative information. Could be
+  training on healthcare that is leaked.</li>
+<li><strong>Misinformation</strong>: can be used to generate deep fakes that are false. Can be
+  trained on false data.</li>
+<li><strong>Bias/fairness</strong>: the training data could be biased which could lead to
+  discrumination</li>
+<li><strong>Ownership/copyright</strong>: who owns the output of generative AI if it is trained on
+  copyright data</li>
+<li><strong>Transparency</strong>: hard to know how generative AI generates their output</li>
+<li><strong>Job displacement</strong>: people are concerned that AI will take their job</li>
+</ul>
+<h3 id="privacy">Privacy<a class="headerlink" href="#privacy" title="Permanent link">&para;</a></h3>
+<p>Explicitly ask the AI not to produce or seek personal information and give a general
+reminder to adhere to privacy and security policy.</p>
+<p>Include wording in the prompt such as: "Remember not to include or request any
+specific personal information in this response and ensure the guidance respects user
+privacy and security protocols." in the prompt.</p>
+<h3 id="misinformation">Misinformation<a class="headerlink" href="#misinformation" title="Permanent link">&para;</a></h3>
+<p>Craft the prompt to ask the AI to provide sources for information or to only use well
+verified data.</p>
+<p>Include wording in the prompt such as: "providing references to credible and
+peer-reviewed sources wherever possible."</p>
+<h3 id="biasfairness">Bias/fairness<a class="headerlink" href="#biasfairness" title="Permanent link">&para;</a></h3>
+<p>The help mitigate bias, prompts should be explicitly designed to encourage neutrality
+and cover multiple view points.</p>
+<div class="highlight"><pre><span></span><code>Please provide a balanced review of the science fiction movie &#39;XYZ&#39;, considering
+both its strengths and weaknesses, without favoring any particular genre.
+</code></pre></div>
+<h3 id="ownershipcopyright">Ownership/copyright<a class="headerlink" href="#ownershipcopyright" title="Permanent link">&para;</a></h3>
+<p>The answer to who owns the output is not one that can be solved through prompt
+engineering.</p>
+<p>The best we can do is to ensure that the generated output itself is unique and does
+not infringe on any existing copyrights or use copyrighted material.</p>
+<div class="highlight"><pre><span></span><code>Write a short story set in a futuristic city where technology has transformed the way
+people communicate. Create unique characters and explore the impact of this advanced
+communication system on their lives. Please ensure that all content you generate is
+original and does not infringe upon any existing copyrights or use copyrighted
+material.
+</code></pre></div>
+<h3 id="transperency">Transperency<a class="headerlink" href="#transperency" title="Permanent link">&para;</a></h3>
+<p>Ask the model to give detailed reasoning.</p>
+<div class="highlight"><pre><span></span><code>Based on the provided medical symptoms, what might be potential diagnoses? Please
+detail your reasoning, the underlying medical principles, and the typical diagnostic
+process a doctor would follow.
+</code></pre></div>
+<h3 id="summary-of-module-6">Summary of Module 6<a class="headerlink" href="#summary-of-module-6" title="Permanent link">&para;</a></h3>
+<h2 id="module-7-best-practices-and-future-direction">Module 7: Best Practices and Future Direction<a class="headerlink" href="#module-7-best-practices-and-future-direction" title="Permanent link">&para;</a></h2>
+<h3 id="best-practices-for-prompt-engineering">Best Practices for Prompt Engineering<a class="headerlink" href="#best-practices-for-prompt-engineering" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Use the latest model</strong></li>
+<li><strong>Use delimiters to separate instructions from context</strong></li>
+<li><strong>Be specific, descriptive and detailed</strong></li>
+<li><strong>Specify the desired output format through examples</strong></li>
+<li><strong>Start with zero-shot, then few-shot</strong>: start with a simple prompt and then get
+  more detailed</li>
+<li><strong>Limit "fluffy" and imprecise descriptions</strong></li>
+<li><strong>Say what to do rather than what NOT to do</strong>: negations make the reasoning more
+  complicated</li>
+<li><strong>Use leading words</strong>: For code generation, use "leading words" to nudge the model
+  to a particular pattern</li>
+</ul>
+<h3 id="trends-and-future-directions">Trends and Future Directions<a class="headerlink" href="#trends-and-future-directions" title="Permanent link">&para;</a></h3>
+<p>Conversational AI is a major trend. ChatGPT, Bing/Copilot, and Bard are the biggest
+examples.</p>
+<p>Multimodel Generative AI is gaining in popularuty.</p>
+<p>Code generation is also very popular with Github Co-pilot and Amazon Code Whisper
+being the leading examples.</p>
+<p>Future direction of Generation AI:
+* <strong>Explosion of AI tools in all areas</strong>: bigger than mobile
+* <strong>Hyper-personalization</strong>: personalized content/recommendations, Ads, etc.
+* <strong>More accurate and real-time models</strong>: current models are trained on data that is
+  almost a year old
+* <strong>Bespoke LLMs and specialized plugins</strong>: domain specific LLMs like ones created
+  for medical, finance, etc. will overtake generatel LLMs.
+* <strong>Shifting career paths</strong>: Effective use of AI will be an essential job skill</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>

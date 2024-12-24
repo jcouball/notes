@@ -1,0 +1,2919 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation that the author finds useful in his day to day coding activities.">
+      
+      
+      
+      
+        <link rel="prev" href="../../ai/prompt_engineering_for_improved_performance/">
+      
+      
+        <link rel="next" href="../ultimate_git_course/00_introduction/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Git Tips - James Couball's Tech Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-tips" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-header__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            James Couball's Tech Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git Tips
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="James Couball&#39;s Tech Docs" class="md-nav__button md-logo" aria-label="James Couball's Tech Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    James Couball's Tech Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jcouball/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jcouball/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentation_standards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documentation Standards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/chatgpt_prompt_engineering_for_developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChatGPT Prompt Engineering for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/getting_started_on_prompt_engineering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started on Prompt Engineering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/prompt_engineering_best_practices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering Best Practices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai/prompt_engineering_for_improved_performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Engineering for Improved Performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Git / GitHub
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Git / GitHub
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Git Tips
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Git Tips
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-git-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building git from source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syncing-a-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syncing a fork
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-git-remote-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Git Remote URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revert-one-or-more-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revert one or more commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#show-history-of-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show History of a File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-author-of-a-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find Author of a Line
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Show
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-and-rebasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging and rebasing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-previous-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference previous Commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#squash-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Squash commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rewrite-commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rewrite commit message
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stash
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkout-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkout a pull request
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signing-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signing Commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diff
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-index-for-staged-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check index for staged changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ls-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      ls-files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-if-inside-work-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine if inside work tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-if-at-the-top-level-of-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine if at the top level of the repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-default-branch-of-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine default branch of remote
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-create-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Undo create-release
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#are-there-staged-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Are there staged changes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#number-of-commits-in-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Number of commits in the repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-the-repository-empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is the repository empty?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#number-of-commits-in-a-feature-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Number of commits in a feature branch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-does-head-point-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does HEAD point to?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ways-to-determine-the-current-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ways to determine the current branch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ways to determine the current branch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-branch-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current branch states
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands-to-determine-head-branch-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands to determine HEAD branch state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands-to-determine-the-current-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands to determine the current branch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate Git Course
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate Git Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/02_creating_snapshots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Snapshots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/03_browsing_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browsing History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/04_branching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/05_collaboration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collaboration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ultimate_git_course/06_rewriting_history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homebrew/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homebrew Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homefiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JavaScript/Node
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            JavaScript/Node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ultimate JavaScript Mastery
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ultimate JavaScript Mastery
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/01_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/02_control_flow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Control Flow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/03_objects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/04_arrays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arrays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/05_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/06_objects_revisited/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Objects Revisited
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/07_prototypes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/08_prototypical_inheritance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prototypical Inheritance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/09_es6_classes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Classes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/ultimate_javascript_mastery/10_es6_tooling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ES6 Tooling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Complete Node.js
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Complete Node.js
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/00_introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/01_getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/02_node_module_system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Module System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/03_node_package_manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node Package Manager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/04_express/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/05_express_advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced Express
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/06_async_javascript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Async JavaScript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/07_crud_mongoose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crud with Mongoose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/08_mongo_data_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongo Data Validations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/09_mongoose_relationships/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mongoose Relationships
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/10_auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11_errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Handling and Logging Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/11b_refactoring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/12_unit_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/13_integration_testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integration Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/14_test_driven_development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Test Driven Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/complete_node_js/15_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mermaid/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mermaid
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../music_theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Music Theory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ruby
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/subprocesses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subprocesses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ssl_tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    systemd
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            systemd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemd/systemctl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    systemctl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vscode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-git-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building git from source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syncing-a-fork" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syncing a fork
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-git-remote-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Git Remote URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revert-one-or-more-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revert one or more commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#show-history-of-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show History of a File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-author-of-a-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find Author of a Line
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Show
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-and-rebasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging and rebasing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-previous-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference previous Commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#squash-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Squash commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rewrite-commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rewrite commit message
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stash
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkout-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkout a pull request
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signing-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signing Commits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diff
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-index-for-staged-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check index for staged changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ls-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      ls-files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-if-inside-work-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine if inside work tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-if-at-the-top-level-of-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine if at the top level of the repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-default-branch-of-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine default branch of remote
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undo-create-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Undo create-release
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#are-there-staged-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Are there staged changes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#number-of-commits-in-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Number of commits in the repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-the-repository-empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Is the repository empty?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#number-of-commits-in-a-feature-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Number of commits in a feature branch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-does-head-point-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does HEAD point to?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ways-to-determine-the-current-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ways to determine the current branch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ways to determine the current branch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-branch-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current branch states
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands-to-determine-head-branch-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands to determine HEAD branch state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands-to-determine-the-current-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands to determine the current branch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="git-tips">Git Tips<a class="headerlink" href="#git-tips" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#building-git-from-source">Building git from source</a></li>
+<li><a href="#syncing-a-fork">Syncing a fork</a></li>
+<li><a href="#change-git-remote-url">Change Git Remote URL</a></li>
+<li><a href="#revert-one-or-more-commits">Revert one or more commits</a></li>
+<li><a href="#git-log">Git Log</a></li>
+<li><a href="#show-history-of-a-file">Show History of a File</a></li>
+<li><a href="#find-author-of-a-line">Find Author of a Line</a></li>
+<li><a href="#git-show">Git Show</a></li>
+<li><a href="#merging-and-rebasing">Merging and rebasing</a></li>
+<li><a href="#reference-previous-commits">Reference previous Commits</a></li>
+<li><a href="#squash-commits">Squash commits</a></li>
+<li><a href="#rewrite-commit-message">Rewrite commit message</a></li>
+<li><a href="#stash">Stash</a></li>
+<li><a href="#checkout-a-pull-request">Checkout a pull request</a></li>
+<li><a href="#signing-commits">Signing Commits</a></li>
+<li><a href="#diff">Diff</a></li>
+<li><a href="#check-index-for-staged-changes">Check index for staged changes</a></li>
+<li><a href="#clean">Clean</a></li>
+<li><a href="#ls-files">ls-files</a></li>
+<li><a href="#determine-if-inside-work-tree">Determine if inside work tree</a></li>
+<li><a href="#determine-if-at-the-top-level-of-the-repository">Determine if at the top level of the repository</a></li>
+<li><a href="#determine-default-branch-of-remote">Determine default branch of remote</a></li>
+<li><a href="#undo-create-release">Undo create-release</a></li>
+<li><a href="#are-there-staged-changes">Are there staged changes?</a></li>
+<li><a href="#number-of-commits-in-the-repository">Number of commits in the repository</a></li>
+<li><a href="#is-the-repository-empty">Is the repository empty?</a></li>
+<li><a href="#number-of-commits-in-a-feature-branch">Number of commits in a feature branch</a></li>
+<li><a href="#what-does-head-point-to">What does HEAD point to?</a></li>
+<li><a href="#ways-to-determine-the-current-branch">Ways to determine the current branch</a><ul>
+<li><a href="#current-branch-states">Current branch states</a><ul>
+<li><a href="#1-branch-exists">1. Branch Exists</a></li>
+<li><a href="#2-unborn-branch">2. Unborn Branch</a></li>
+<li><a href="#3-detached-head">3. Detached HEAD</a></li>
+</ul>
+</li>
+<li><a href="#commands-to-determine-head-branch-state">Commands to determine HEAD branch state</a></li>
+<li><a href="#commands-to-determine-the-current-branch">Commands to determine the current branch</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="building-git-from-source">Building git from source<a class="headerlink" href="#building-git-from-source" title="Permanent link">&para;</a></h2>
+<p>See the page <a href="https://www.atlassian.com/git/tutorials/install-git">How to install
+Git</a> from Atlassian.</p>
+<p>I have successfully used the instructions in the section "Build Git from source on OS
+X" on MacOS 15.</p>
+<ol>
+<li>From your terminal install XCode's Command Line Tools (if you haven't already):</li>
+</ol>
+<div class="highlight"><pre><span></span><code>xcode-select<span class="w"> </span>--install
+</code></pre></div>
+<ol>
+<li>
+<p>Install <a href="http://brew.sh/">Homebrew</a></p>
+</li>
+<li>
+<p>Using Homebrew, install openssl:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>openssl
+</code></pre></div>
+<ol>
+<li>
+<p>Download the source tarball from
+   <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/">here</a> and extract it</p>
+</li>
+<li>
+<p>Build Git run make with the following command:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nv">NO_GETTEXT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include&quot;</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/openssl/lib&quot;</span>
+</code></pre></div>
+<ol>
+<li>
+<p>The newly built git command will be found at <code>bin-wrappers/git</code></p>
+</li>
+<li>
+<p>Set the git gem to use your version</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;git&#39;</span>
+<span class="c1"># set the binary path</span>
+<span class="no">Git</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span><span class="w"> </span><span class="n">config</span><span class="o">.</span><span class="n">binary_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/Users/james/Downloads/git-2.30.2/bin-wrappers/git&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="c1"># validate the version</span>
+<span class="n">assert_equal</span><span class="p">(</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="no">Git</span><span class="o">.</span><span class="n">binary_version</span><span class="p">)</span>
+</code></pre></div>
+<p>or run tests with your newly built version:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">GIT_PATH</span><span class="o">=</span>/Users/james/Downloads/git-2.30.2/bin-wrappers<span class="w"> </span>bin/test
+</code></pre></div>
+<h2 id="syncing-a-fork">Syncing a fork<a class="headerlink" href="#syncing-a-fork" title="Permanent link">&para;</a></h2>
+<p>Create the upstream remote for the fork:
+<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork">Confiuring a remote for a fork</a></p>
+<ul>
+<li>git remote -v</li>
+</ul>
+<ul>
+<li>git remote add upstream GITURL</li>
+<li>git remote -v</li>
+</ul>
+<p>Sync the fork:
+<a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork">Syncing a Fork</a></p>
+<ul>
+<li>git fetch upstream</li>
+<li>git checkout master</li>
+<li>git merge upstream/master</li>
+</ul>
+<h2 id="change-git-remote-url">Change Git Remote URL<a class="headerlink" href="#change-git-remote-url" title="Permanent link">&para;</a></h2>
+<p>In order to change the URL of a Git remote, you have to use the <code>git remote set-url</code>
+command and specify the name of the remote as well as the new remote URL to be changed.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>&lt;remote_name&gt;<span class="w"> </span>&lt;remote_url&gt;
+</code></pre></div>
+<h2 id="revert-one-or-more-commits">Revert one or more commits<a class="headerlink" href="#revert-one-or-more-commits" title="Permanent link">&para;</a></h2>
+<p>Revert commit:
+<a href="https://www.git-tower.com/learn/git/faq/restore-repo-to-previous-revision">Restore Repo to Previous Version</a></p>
+<p>Throw away changes to files in the “undone” commits:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD
+</code></pre></div>
+<p>Keep all the changes in the "undone" commits as local modifications use the --soft
+option (it is the default):</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>HEAD~1
+<span class="c1"># or</span>
+git<span class="w"> </span>reset<span class="w"> </span>HEAD~1
+</code></pre></div>
+<h2 id="git-log">Git Log<a class="headerlink" href="#git-log" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>--one-line<span class="w"> </span>-3
+</code></pre></div>
+<p><code>-3</code>: show only the last n commits where n is an any positive integer</p>
+<p><code>--one-line</code> : summary only of each commit</p>
+<p><code>--stat</code>: show each file that has changed</p>
+<p><code>--patch</code>: show changes in each file</p>
+<p>Filtering</p>
+<p>Last n commits: <code>git log -n 3</code> or <code>git log -3</code></p>
+<p>Find by author: <code>--author jcouball</code></p>
+<p>Find by date: <code>--after="2020-07-01"</code> <code>--before="2020-08-01"</code></p>
+<p>Relative dates: <code>--before="yesterday"</code> <code>--after="one week ago"</code></p>
+<p>Grep commit message (case sensative):<code>--grep="GUI"</code></p>
+<p>Grep for added or removed lines: <code>-S"hello()"</code> (might want to use with <code>--patch</code>)</p>
+<p>List between two commits <code>git log --one-line {start}..{end}</code> where start and end are
+commit hashes.</p>
+<p>Commits that touch a particular file: <code>git log --one-line -- {filename}</code></p>
+<p>Format or colorize git log output: <code>--pretty[=&lt;format&gt;]</code>or <code>--format=&lt;format&gt;</code> where
+format is one of  <code>oneline</code>, <code>short</code>, <code>medium</code>, <code>full</code>, <code>fuller</code>, <code>reference</code>, <code>email</code>,
+<code>raw</code>, <code>format:&lt;string&gt;</code> and <code>tformat:&lt;string&gt;</code>. The default is <code>medium</code>. See
+<a href="https://git-scm.com/docs/git-log#_pretty_formats">PRETTY FORMATS</a> for more info.</p>
+<h2 id="show-history-of-a-file">Show History of a File<a class="headerlink" href="#show-history-of-a-file" title="Permanent link">&para;</a></h2>
+<p>Show all the commits against a file:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>--one-line<span class="w"> </span>--stat<span class="w"> </span><span class="o">[</span>filename<span class="o">]</span>
+</code></pre></div>
+<h2 id="find-author-of-a-line">Find Author of a Line<a class="headerlink" href="#find-author-of-a-line" title="Permanent link">&para;</a></h2>
+<p>List the auther of every line in a file:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>blame<span class="w"> </span><span class="o">[</span>rev<span class="o">]</span><span class="w"> </span><span class="o">[</span>path<span class="o">]</span>
+</code></pre></div>
+<p>Show blame between two lines: <code>--L 1,3</code></p>
+<h2 id="git-show">Git Show<a class="headerlink" href="#git-show" title="Permanent link">&para;</a></h2>
+<p>Show an object (like a commit, see <a href="https://git-scm.com/docs/gitrevisions">gitrevisions</a>
+for the full range of what can be shown):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># git show [object]</span>
+git<span class="w"> </span>show<span class="w"> </span>555b62
+git<span class="w"> </span>show<span class="w"> </span>HEAD~2
+</code></pre></div>
+<p>Show only changes to one file: <code>git show HEAD~2:{path}</code></p>
+<p>Only list files that were changed: <code>--name-only</code></p>
+<p>Only list files that were changed with status: <code>--name-status</code></p>
+<h2 id="merging-and-rebasing">Merging and rebasing<a class="headerlink" href="#merging-and-rebasing" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">Merging vs. Rebasing</a></p>
+<h2 id="reference-previous-commits">Reference previous Commits<a class="headerlink" href="#reference-previous-commits" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Most recent commit: HEAD</li>
+<li>Parent of the most recent commit: HEAD^</li>
+<li>HEAD~1 is the last commit. If you want to rollback 3 commits you could use HEAD~3. If
+  you want to rollback to a specific revision number, you could also do that using its
+  SHA hash.</li>
+</ul>
+<h2 id="squash-commits">Squash commits<a class="headerlink" href="#squash-commits" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/wprig/wprig/wiki/How-to-squash-commits">How to Squash Commits</a>
+Make sure your branch is up to date with the master branch</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>master
+</code></pre></div>
+<h2 id="rewrite-commit-message">Rewrite commit message<a class="headerlink" href="#rewrite-commit-message" title="Permanent link">&para;</a></h2>
+<p>Amend last commit message:
+* git commit --amend</p>
+<p>Amend older commit messages:
+* git rebase -i HEAD~3 # Displays a list of the last 3 commits on the current branch
+* Replace pick with reword before each commit message you want to change.
+* git push --force</p>
+<h2 id="stash">Stash<a class="headerlink" href="#stash" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>git stash</code><ul>
+<li>[save “message”] - annotate a stash with a description</li>
+<li>[--include-untracked | -u] - include untracked files</li>
+<li>[--all | -a] - include ignored files</li>
+<li>[—patch | -p] - interactively choose which change hunks to save in the stash.
+    Press ‘?’ for a list of hunk commands.</li>
+</ul>
+</li>
+<li><code>git stash apply</code><ul>
+<li>re-apply a stash but keep the stash</li>
+</ul>
+</li>
+<li><code>git stash pop</code><ul>
+<li>re-apply the most recently created stash: stash@{0}</li>
+<li>[identifier] - re-apply a stash by identifier (see git stash list)</li>
+</ul>
+</li>
+<li><code>git stash list</code><ul>
+<li>List all available stashes with identifier and message</li>
+</ul>
+</li>
+<li><code>git stash show</code><ul>
+<li>View a summary of the last stash</li>
+<li>[identifier] - show the summary of a different stash</li>
+<li>[--patch | -p] - include a full diff of the stash</li>
+</ul>
+</li>
+<li><code>git stash branch [branch-name]</code><ul>
+<li>check out a new branch based on the commit the last stash was created from and
+    then pops that stash’s changes onto it</li>
+<li>[identifier] - branch and pop from a different stash</li>
+</ul>
+</li>
+<li><code>git stash drop</code><ul>
+<li>Delete the last stash</li>
+<li>[identifier] - delete a different stash</li>
+</ul>
+</li>
+<li><code>git stash clean</code><ul>
+<li>Delete all stashes</li>
+</ul>
+</li>
+</ul>
+<h2 id="checkout-a-pull-request">Checkout a pull request<a class="headerlink" href="#checkout-a-pull-request" title="Permanent link">&para;</a></h2>
+<p>Modifying an inactive pull request locally</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># $PR is the pull request number</span>
+<span class="c1"># $BRANCHNAME is the new branch to create</span>
+
+git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>pull/<span class="nv">$PR</span>/head:<span class="nv">$BRANCHNAME</span>
+git<span class="w"> </span>checkout<span class="w"> </span><span class="nv">$BRANCHNAME</span>
+
+<span class="c1"># … make changes …</span>
+
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span><span class="nv">$BRANCHNAME</span>
+
+<span class="c1"># Creeate a new PR with the new branch</span>
+</code></pre></div>
+<h2 id="signing-commits">Signing Commits<a class="headerlink" href="#signing-commits" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://help.github.com/en/github/authenticating-to-github/signing-commits">signing Commits</a></li>
+</ul>
+<h2 id="diff">Diff<a class="headerlink" href="#diff" title="Permanent link">&para;</a></h2>
+<p>Compare worktree to index:</p>
+<p><code>git diff [&lt;options&gt;] [--] [&lt;path&gt; …]</code></p>
+<p>Compare paths:</p>
+<p><code>git diff [&lt;options&gt;] --no-index [--] &lt;path&gt; &lt;path&gt;</code></p>
+<p>Compare index to a commit:</p>
+<p><code>git diff [&lt;options&gt;] --cached [&lt;commit&gt;] [--] [&lt;path&gt; …]</code></p>
+<p>Compare worktree to commit:</p>
+<p><code>git diff [&lt;options&gt;] &lt;commit&gt; [--] [&lt;path&gt; …]</code></p>
+<p>Compare two commits:</p>
+<p><code>git diff [&lt;options&gt;] &lt;commit&gt; &lt;commit&gt; [--] [&lt;path&gt; …]</code></p>
+<p>View changes between two commits where each commit defaults to HEAD:</p>
+<p><code>git diff [&lt;options&gt;] &lt;commit&gt;..&lt;commit&gt; [--] [&lt;path&gt; …]</code></p>
+<p>View the results of a merge commit:</p>
+<p><code>git diff [&lt;options&gt;] &lt;merge_commit&gt; &lt;parent_commit&gt; … &lt;parent_commit&gt; [--] [&lt;path&gt; …]</code></p>
+<p>View the changes on the branch containing and up to the second <commit>, starting at a
+common ancestor of both <commit>:</p>
+<p><code>git diff [&lt;options&gt;] &lt;commit&gt;...&lt;commit&gt; [--] [&lt;path&gt; …]</code></p>
+<p>View the differences between the raw contents of two blob objects:</p>
+<p><code>git diff [&lt;options&gt;] &lt;blob&gt; &lt;blob&gt;</code></p>
+<h2 id="check-index-for-staged-changes">Check index for staged changes<a class="headerlink" href="#check-index-for-staged-changes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># exits with 0 then there were no differences (1 means there were differences)</span>
+
+git<span class="w"> </span>diff-index<span class="w"> </span>--quiet<span class="w"> </span>--cached<span class="w"> </span>HEAD<span class="w"> </span>--
+git<span class="w"> </span>diff-files<span class="w"> </span>--quiet
+</code></pre></div>
+<h2 id="clean">Clean<a class="headerlink" href="#clean" title="Permanent link">&para;</a></h2>
+<p><code>git clean -xdf</code></p>
+<ul>
+<li>-x removes all untracked files including ignored build directories</li>
+<li>-d allows Git to recurse into untracked directories when no path is specified</li>
+<li>-f overwrites the default Git clean configuration and starts cleaning untracked files
+  and directories</li>
+</ul>
+<h2 id="ls-files">ls-files<a class="headerlink" href="#ls-files" title="Permanent link">&para;</a></h2>
+<p>List “untracked” files (will include ignored files, if present):</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>ls-files<span class="w"> </span>--others
+</code></pre></div>
+<p>List untracked and unignored files:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>ls-files<span class="w"> </span>--exclude-standard<span class="w"> </span>--others<span class="sb">`</span>
+</code></pre></div>
+<p>better example of above two:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">u</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>git<span class="w"> </span>ls-files<span class="w"> </span>--others<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$u</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Get number of files added to the index (but uncommitted)</p>
+<div class="highlight"><pre><span></span><code>expr<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>status<span class="w"> </span>--porcelain<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;^M&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+</code></pre></div>
+<p>Get number of files that are uncommitted and not added</p>
+<div class="highlight"><pre><span></span><code>expr<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>status<span class="w"> </span>--porcelain<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;^ M&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+</code></pre></div>
+<p>Get number of total uncommited files</p>
+<div class="highlight"><pre><span></span><code>expr<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>status<span class="w"> </span>--porcelain<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">|</span><span class="w"> </span>egrep<span class="w"> </span><span class="s2">&quot;^(M| M)&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+</code></pre></div>
+<h2 id="determine-if-inside-work-tree">Determine if inside work tree<a class="headerlink" href="#determine-if-inside-work-tree" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rev-parse<span class="w"> </span>--is-inside-work-tree<span class="w"> </span>--quiet<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
+<h2 id="determine-if-at-the-top-level-of-the-repository">Determine if at the top level of the repository<a class="headerlink" href="#determine-if-at-the-top-level-of-the-repository" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--show-toplevel<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+</code></pre></div>
+<h2 id="determine-default-branch-of-remote">Determine default branch of remote<a class="headerlink" href="#determine-default-branch-of-remote" title="Permanent link">&para;</a></h2>
+<h2 id="undo-create-release">Undo create-release<a class="headerlink" href="#undo-create-release" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nv">version</span><span class="o">=</span><span class="sb">`</span>bump<span class="w"> </span>current<span class="sb">`</span>
+git<span class="w"> </span>reset<span class="w"> </span>HEAD~1
+git<span class="w"> </span>restore<span class="w"> </span>CHANGELOG.md<span class="w"> </span>lib/git/version.rb
+git<span class="w"> </span>checkout<span class="w"> </span>master
+git<span class="w"> </span>branch<span class="w"> </span>-D<span class="w"> </span>release-v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>
+git<span class="w"> </span>tag<span class="w"> </span>-d<span class="w"> </span>v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>release-v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>
+git<span class="w"> </span>remote<span class="w"> </span>prune<span class="w"> </span>origin
+</code></pre></div>
+<h2 id="are-there-staged-changes">Are there staged changes?<a class="headerlink" href="#are-there-staged-changes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>diff<span class="w"> </span>--staged<span class="w"> </span>--name-only<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</code></pre></div>
+<p>version=0.5.0
+git checkout master
+git branch -D release-v<span class="arithmatex" version="version"><span class="MathJax_Preview">{version}
+git tag -d v</span><script type="math/tex">{version}
+git tag -d v</script></span>
+git push origin --delete v<span class="arithmatex" version="version"><span class="MathJax_Preview">{version}
+git push origin --delete release-v</span><script type="math/tex">{version}
+git push origin --delete release-v</script></span>
+git remote prune origin
+gh release delete v${version}</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>init<span class="w"> </span>--bare<span class="w"> </span>repo1.git
+git<span class="w"> </span>init<span class="w"> </span>--bare<span class="w"> </span>repo2.git
+git<span class="w"> </span>clone<span class="w"> </span>repo1.git<span class="w"> </span>work
+<span class="nb">cd</span><span class="w"> </span>work
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;# README File&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>README.md
+git<span class="w"> </span>add<span class="w"> </span>README.md
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Add README.md file&#39;</span>
+git<span class="w"> </span>push
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>repo2<span class="w"> </span>../repo2.git
+git<span class="w"> </span>push<span class="w"> </span>repo2
+<span class="c1"># Create a new &#39;dev&#39; branch in repo1.git and make it the active branch</span>
+git<span class="w"> </span>--git-dir<span class="w"> </span>../repo1.git<span class="w"> </span>branch<span class="w"> </span>dev<span class="w"> </span>HEAD
+git<span class="w"> </span>--git-dir<span class="w"> </span>../repo1.git<span class="w"> </span>symbolic-ref<span class="w"> </span>HEAD<span class="w"> </span>refs/heads/dev
+<span class="c1">#</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;----------&#39;</span>
+git<span class="w"> </span>symbolic-ref<span class="w"> </span>refs/remotes/origin/HEAD<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s@^refs/remotes/origin/@@&#39;</span>
+git<span class="w"> </span>symbolic-ref<span class="w"> </span>refs/remotes/repo2/HEAD<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s@^refs/remotes/repo2/@@&#39;</span>
+</code></pre></div>
+<p><a href="https://stackoverflow.com/questions/3301956/git-correct-way-to-change-active-branch-in-a-bare-repository">Change the Active Branch in a bare repository</a></p>
+<p><a href="https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch">How to Get the Default Branch</a></p>
+<p><a href="https://git-scm.com/docs/git-symbolic-ref">git-symbolic-ref</a></p>
+<p><a href="https://git-scm.com/docs/git-ls-remote.html">git-ls-remote</a></p>
+<p>Git default branch name introduced in git 2.28.0.  Before that version, the default
+branch name was assumed to be <code>master</code></p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>init.defaultBranch
+master
+</code></pre></div>
+<p>Number of commits in the repository:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>rev-list<span class="w"> </span>--all<span class="w"> </span>--count
+<span class="m">0</span>
+</code></pre></div>
+<p>How to tell if you are in a detached state:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Returns HEAD if in a detached state; otherwise, gives a branch</span>
+$<span class="w"> </span>git<span class="w"> </span>rev-parse<span class="w"> </span>--abbrev-ref<span class="w"> </span>--symbolic-full-name<span class="w"> </span>HEAD
+</code></pre></div>
+<p>For a new repository with no commits:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span><span class="c1"># no output</span>
+
+$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="w"> </span><span class="c1"># git 2.22.0 and later</span>
+master
+
+$<span class="w"> </span>git<span class="w"> </span>symbolic-ref<span class="w"> </span>--short<span class="w"> </span>refs/remotes/origin/HEAD
+fatal:<span class="w"> </span>ref<span class="w"> </span>refs/remotes/origin/HEAD<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>symbolic<span class="w"> </span>ref
+
+$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>show<span class="w"> </span>origin
+fatal:<span class="w"> </span><span class="s1">&#39;origin&#39;</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>appear<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>git<span class="w"> </span>repository
+fatal:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span><span class="nb">read</span><span class="w"> </span>from<span class="w"> </span>remote<span class="w"> </span>repository.
+
+Please<span class="w"> </span>make<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>the<span class="w"> </span>correct<span class="w"> </span>access<span class="w"> </span>rights
+and<span class="w"> </span>the<span class="w"> </span>repository<span class="w"> </span>exists.
+
+$<span class="w"> </span>git<span class="w"> </span>ls-remote<span class="w"> </span>--symref<span class="w"> </span>origin
+fatal:<span class="w"> </span><span class="s1">&#39;origin&#39;</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>appear<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>git<span class="w"> </span>repository
+fatal:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span><span class="nb">read</span><span class="w"> </span>from<span class="w"> </span>remote<span class="w"> </span>repository.
+
+Please<span class="w"> </span>make<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>the<span class="w"> </span>correct<span class="w"> </span>access<span class="w"> </span>rights
+and<span class="w"> </span>the<span class="w"> </span>repository<span class="w"> </span>exists.
+</code></pre></div>
+<p>For a new repository with one commit and no remotes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Last known state of HEAD on the origin remote</span>
+$<span class="w"> </span>git<span class="w"> </span>symbolic-ref<span class="w"> </span>--short<span class="w"> </span>refs/remotes/origin/HEAD
+&lt;remote&gt;/main
+
+<span class="c1"># Not sure what this points to</span>
+$<span class="w"> </span>git<span class="w"> </span>symbolic-ref<span class="w"> </span>--short<span class="w"> </span>refs/origin/HEAD
+
+<span class="c1"># Only if there isn&#39;t a origin remote</span>
+$<span class="w"> </span>git<span class="w"> </span>symbolic-ref<span class="w"> </span>--short<span class="w"> </span>HEAD
+main
+
+$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>show<span class="w"> </span>origin
+
+$<span class="w"> </span>git<span class="w"> </span>ls-remote<span class="w"> </span>--symref<span class="w"> </span>origin
+
+$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>init.defaultBranch
+</code></pre></div>
+<p><code>refs/remotes/origin/HEAD</code> is the default branch on the remote</p>
+<p>After cloning a Github repository whose default branch is <code>main</code> and then changing the
+default branch of the Github repository to <code>new_main</code> using the Github UI:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>symbolic-ref<span class="w"> </span>--short<span class="w"> </span>refs/remotes/origin/HEAD
+origin/main
+
+$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>show<span class="w"> </span>origin
+*<span class="w"> </span>remote<span class="w"> </span>origin
+<span class="w">  </span>Fetch<span class="w"> </span>URL:<span class="w"> </span>https://github.com/jcouball/test
+<span class="w">  </span>Push<span class="w">  </span>URL:<span class="w"> </span>https://github.com/jcouball/test
+<span class="w">  </span>HEAD<span class="w"> </span>branch:<span class="w"> </span>new_main
+<span class="w">  </span>Remote<span class="w"> </span>branches:
+<span class="w">    </span>main<span class="w">     </span>tracked
+<span class="w">    </span>new_main<span class="w"> </span>new<span class="w"> </span><span class="o">(</span>next<span class="w"> </span>fetch<span class="w"> </span>will<span class="w"> </span>store<span class="w"> </span><span class="k">in</span><span class="w"> </span>remotes/origin<span class="o">)</span>
+<span class="w">  </span>Local<span class="w"> </span>branch<span class="w"> </span>configured<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;git pull&#39;</span>:
+<span class="w">    </span>main<span class="w"> </span>merges<span class="w"> </span>with<span class="w"> </span>remote<span class="w"> </span>main
+<span class="w">  </span>Local<span class="w"> </span>ref<span class="w"> </span>configured<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;git push&#39;</span>:
+<span class="w">    </span>main<span class="w"> </span>pushes<span class="w"> </span>to<span class="w"> </span>main<span class="w"> </span><span class="o">(</span>up<span class="w"> </span>to<span class="w"> </span>date<span class="o">)</span>
+
+$<span class="w"> </span>git<span class="w"> </span>ls-remote<span class="w"> </span>--symref<span class="w"> </span>origin
+ref:<span class="w"> </span>refs/heads/new_main<span class="w">  </span>HEAD
+13f353ea1f675fc580c4b8bbc3011432abeb6c3d<span class="w">  </span>HEAD
+13f353ea1f675fc580c4b8bbc3011432abeb6c3d<span class="w">  </span>refs/heads/main
+13f353ea1f675fc580c4b8bbc3011432abeb6c3d<span class="w">  </span>refs/heads/new_main
+</code></pre></div>
+<p>Repository has no commits if the following command returns 0:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rev-list<span class="w"> </span>--all<span class="w"> </span>--count
+</code></pre></div>
+<p>Repository has no remotes if the following command returns nothing:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote
+</code></pre></div>
+<p>Repository has a detached HEAD if the following command returns HEAD</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rev-parse<span class="w"> </span>--abbrev-ref<span class="w"> </span>--symbolic-full-name<span class="w"> </span>HEAD
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>What is the default branch?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No Commits, Not Remote, Not Detached</td>
+<td>Return the branch that HEAD references<br /><code>git symbolic-ref --short HEAD</code></td>
+</tr>
+<tr>
+<td>No Commits, Not Remote, Detached</td>
+<td>NOT A VALID STATE</td>
+</tr>
+<tr>
+<td>No Commits, Remote, Not Detached</td>
+<td>???</td>
+</tr>
+<tr>
+<td>No Commits, Remote, Detached</td>
+<td>NOT A VALID STATE</td>
+</tr>
+<tr>
+<td>Commits, Not Remote, Not Detached</td>
+<td>If a branch with the name given by the <code>init.defaultBranch</code> configuration exists, return it.<br />Otherwise, return the current branch<br /><code>git symbolic-ref --short HEAD</code></td>
+</tr>
+<tr>
+<td>Commits, Not Remote, Detached</td>
+<td>If there is only one branch, return it. If there is more than one branch and one of them is the configured <code>init.defaultBranch</code>, return it. Otherwise return the current branch.</td>
+</tr>
+<tr>
+<td>Commits, Remote, Not Detached</td>
+<td>Return the last known state of HEAD on the remote<br /><code>git symbolic-ref --short refs/remotes/origin/HEAD</code></td>
+</tr>
+<tr>
+<td>Commits, Remote, Detached</td>
+<td>Return the last known state of HEAD on the remote<br /><code>git symbolic-ref --short refs/remotes/origin/HEAD</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="number-of-commits-in-the-repository">Number of commits in the repository<a class="headerlink" href="#number-of-commits-in-the-repository" title="Permanent link">&para;</a></h2>
+<p>This is all the <em>reachable</em> commits. Commits no longer reachable from any references
+are not counted.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rev-list<span class="w"> </span>--all<span class="w"> </span>--count
+</code></pre></div>
+<h2 id="is-the-repository-empty">Is the repository empty?<a class="headerlink" href="#is-the-repository-empty" title="Permanent link">&para;</a></h2>
+<p>There are different methods:</p>
+<ul>
+<li><code>git show-ref</code> will output nothing and return exitcode 1</li>
+<li><code>git rev-list --count --max-count=1 --all</code> will output '0' and return exitcode 0</li>
+</ul>
+<h2 id="number-of-commits-in-a-feature-branch">Number of commits in a feature branch<a class="headerlink" href="#number-of-commits-in-a-feature-branch" title="Permanent link">&para;</a></h2>
+<p>Assumes that there are no branches created from the feature branch.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">BRANCH_NAME</span><span class="o">=</span>branch2
+git<span class="w"> </span>rev-list<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BRANCH_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--exclude<span class="o">=</span><span class="s2">&quot;refs/heads/</span><span class="si">${</span><span class="nv">BRANCH_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--not<span class="w"> </span>--all
+</code></pre></div>
+<p>Just the number of commits, add <code>--count</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">BRANCH_NAME</span><span class="o">=</span>branch2
+git<span class="w"> </span>rev-list<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BRANCH_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--exclude<span class="o">=</span><span class="s2">&quot;refs/heads/</span><span class="si">${</span><span class="nv">BRANCH_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--not<span class="w"> </span>--all<span class="w"> </span>--count
+</code></pre></div>
+<h2 id="what-does-head-point-to">What does HEAD point to?<a class="headerlink" href="#what-does-head-point-to" title="Permanent link">&para;</a></h2>
+<p>The .git/HEAD file contains either:</p>
+<ol>
+<li>The reference to the current branch (e.g., ref: refs/heads/<branch-name>).</li>
+</ol>
+<ul>
+<li>If this reference points to a non-existent branch ref, the branch is in a new
+     state with no commits.</li>
+<li>If this reference points to an existing branch ref, that ref file contains the
+     SHA of the latest commit on the branch.</li>
+</ul>
+<ol>
+<li>The SHA of a commit, indicating that Git is in a detached HEAD state, pointing
+   directly to a specific commit rather than a branch.</li>
+</ol>
+<h2 id="ways-to-determine-the-current-branch">Ways to determine the current branch<a class="headerlink" href="#ways-to-determine-the-current-branch" title="Permanent link">&para;</a></h2>
+<h3 id="current-branch-states">Current branch states<a class="headerlink" href="#current-branch-states" title="Permanent link">&para;</a></h3>
+<p>The current branch is the one pointed to by <code>HEAD</code>. The state of <code>HEAD</code> determines
+the state of the current branch:</p>
+<h4 id="1-branch-exists">1. Branch Exists<a class="headerlink" href="#1-branch-exists" title="Permanent link">&para;</a></h4>
+<p><code>HEAD</code> points to a branch reference, which in turn points to a commit representing
+the tip of that branch. This is the typical state when working on an active branch.</p>
+<h4 id="2-unborn-branch">2. Unborn Branch<a class="headerlink" href="#2-unborn-branch" title="Permanent link">&para;</a></h4>
+<p><code>HEAD</code> points to a branch reference that does not yet exist because no commits have
+been made on that branch. This state occurs in two scenarios:</p>
+<ul>
+<li>When a repository is newly initialized and no commits have been made on the
+  initial branch.</li>
+<li>When a new branch is created using <code>git checkout --orphan &lt;branch&gt;</code>, starting a new
+  branch with no history.</li>
+</ul>
+<h4 id="3-detached-head">3. Detached HEAD<a class="headerlink" href="#3-detached-head" title="Permanent link">&para;</a></h4>
+<p><code>HEAD</code> points directly to a specific commit (identified by its SHA) rather than a
+branch reference. This state occurs when you check out a commit, a tag, or any state
+that is not directly associated with a branch.</p>
+<h3 id="commands-to-determine-head-branch-state">Commands to determine HEAD branch state<a class="headerlink" href="#commands-to-determine-head-branch-state" title="Permanent link">&para;</a></h3>
+<h3 id="commands-to-determine-the-current-branch">Commands to determine the current branch<a class="headerlink" href="#commands-to-determine-the-current-branch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>symbolic-ref<span class="w"> </span>--short<span class="w"> </span>HEAD
+</code></pre></div>
+<ul>
+<li><strong>Branch Exists</strong>: outputs the branch name and returns exitcode 0</li>
+<li><strong>Unborn Branch</strong>: outputs the unborn branch name and returns exitcode 0</li>
+<li><strong>Detached HEAD</strong>: Outputs 'fatal: ref HEAD is not a symbolic ref' to stderr and
+  returns exitcode 128</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>branch<span class="w"> </span>--show-current
+</code></pre></div>
+<ul>
+<li><strong>Branch Exists</strong>: outputs branch name and returns exitcode 0</li>
+<li><strong>Unborn Branch</strong>: outputs the unborn branch name and exitcode 0</li>
+<li><strong>Detached HEAD</strong>: outputs nothing and returns exitcode 0</li>
+</ul>
+<ul>
+<li><strong>Branch Exists</strong>:</li>
+<li><strong>Unborn Branch</strong>:</li>
+<li><strong>Detached HEAD</strong>:</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
