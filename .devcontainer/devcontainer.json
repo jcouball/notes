@@ -22,6 +22,7 @@
           "!.yardopts"
         ],
         "rewrap.wrappingColumn": 85,
+        "terminal.integrated.shell.linux": "/bin/bash",
         "workbench.iconTheme": "vscode-icons"
       },
       "extensions": [
@@ -32,6 +33,8 @@
         "GitHub.copilot",
         "GitHub.copilot-chat",
         "stkb.rewrap",
+        "ms-python.python",
+        "ms-vscode.node-debug2",
         "yzhang.markdown-all-in-one"
       ]
     }

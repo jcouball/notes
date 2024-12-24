@@ -6,9 +6,9 @@ These are my personal notes I have taken on many different technical and musical
 subjects.
 
 * [Getting Started](#getting-started)
-  * [Without a devcontainer](#without-a-devcontainer)
-  * [In VS Code](#in-vs-code)
-  * [Deploying](#deploying)
+    * [Without a devcontainer](#without-a-devcontainer)
+    * [In VS Code](#in-vs-code)
+    * [Deploying](#deploying)
 
 ## Getting Started
 
@@ -50,8 +50,8 @@ The deployment is configured with these files:
 * config/provision.yaml: Proxmox provisioning configuration
 * Dockerfile: creates the production deployment image which is deployed to docker hub
   to [jcouball/notes](https://hub.docker.com/repository/docker/jcouball/notes/general)
-  * docker-build: a script to build the docker image locally
-  * docker-run: a script to run the docker image locally
+    * docker-build: a script to build the docker image locally
+    * docker-run: a script to run the docker image locally
 * config/deploy.yaml: Kamal 2 deployment configuration
 
 Currently, Proxmox configuration must be done manaully (see the commands at the

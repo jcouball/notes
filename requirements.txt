@@ -2,3 +2,5 @@ mkdocs
 pymdown-extensions
 mkdocs-material ~= 9.0, >= 9.0.3
 markdown-include
+mdx_truly_sane_lists
+

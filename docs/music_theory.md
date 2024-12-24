@@ -44,33 +44,33 @@ For example C to F# is a 4th but is not a perfect 4th as F# is not in C major sc
 #### major
 
 * There are four intervals that are called major intervals:
-  * major 2nd, major 3rd, major 6th, and major 7th
+    * major 2nd, major 3rd, major 6th, and major 7th
 * If the upper note of an interval is in the major scale of the lower note (and it’s
   not a 4th, 5th or 8ve) then it will be a major interval.
 
 * augmented
-  * An interval becomes augmented when we extend a major or perfect interval by one
-    semitone (half step) without changing the letter name.
-  * For example, given a major 2nd like F to G, change the G to G# to make an augmented
-    2nd.
-  * For example, given a perfect 5th like F to C, change the C to C# to make an
-    augmented 5th.
+    * An interval becomes augmented when we extend a major or perfect interval by one
+        semitone (half step) without changing the letter name.
+    * For example, given a major 2nd like F to G, change the G to G# to make an augmented
+        2nd.
+    * For example, given a perfect 5th like F to C, change the C to C# to make an
+        augmented 5th.
 
 * minor
-  * Any major interval made smaller by one semitone is a minor interval
-  * For example, if we took C to E which is a major 3rd and flattened the E to make it
-    an Eb, it now becomes a minor 3rd.
-  * Because there are only four major intervals there are also only four minor intervals:
-  * minor 2nd, minor 3rd, minor 6th, minor 7th
+    * Any major interval made smaller by one semitone is a minor interval
+    * For example, if we took C to E which is a major 3rd and flattened the E to make it
+        an Eb, it now becomes a minor 3rd.
+    * Because there are only four major intervals there are also only four minor intervals:
+    * minor 2nd, minor 3rd, minor 6th, minor 7th
 
 * diminished
-  * Flatten any of the three perfect intervals (the 4th, 5th or 8ve) or any minor
-    interval (minor 2nd, minor 3rd, minor 6th, or minor 7th) by a semitone, to make a
-    diminished interval.
-  * For example, given A and D which is a perfect 4th, flatten the D to Db to make it a
-    diminished 4th.
-  * For example, given E and D which is a minor 7th, flatten D to Db to make it a
-    diminished 7th.
+    * Flatten any of the three perfect intervals (the 4th, 5th or 8ve) or any minor
+        interval (minor 2nd, minor 3rd, minor 6th, or minor 7th) by a semitone, to make a
+        diminished interval.
+    * For example, given A and D which is a perfect 4th, flatten the D to Db to make it a
+        diminished 4th.
+    * For example, given E and D which is a minor 7th, flatten D to Db to make it a
+        diminished 7th.
 
 ### Interval Chart
 

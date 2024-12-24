@@ -152,10 +152,10 @@ If the module is a path that begins with './', '.', or '../', node will do the f
 * **If a file with the given name exists** (or the given name plus the extensions .js,
   .json, or .node exists), Node will load that file
 * **If a directory with the given name exists**:
-  * And that directory contains a file named `package.json`, Node will try to load
-    the file named in the `main` property.
-  * And that directory contains a file named `index.js` or `index.node`, Node will
-    load that file.
+    * And that directory contains a file named `package.json`, Node will try to load
+        the file named in the `main` property.
+    * And that directory contains a file named `index.js` or `index.node`, Node will
+        load that file.
 * **Otherwise**, Node will throw a `MODULE_NOT_FOUND` error
 
 ### Core Modules
@@ -206,10 +206,10 @@ To find the file to include, Node will check for the following in each path:
 * **If a file with the given name exists** (or the given name plus the extensions .js,
   .json, or .node exists), Node will load that file
 * **If a directory with the given name exists**:
-  * And that directory contains a file named `package.json`, Node will try to load
-    the file named in the `main` property.
-  * And that directory contains a file named `index.js` or `index.node`, Node will
-    load that file.
+    * And that directory contains a file named `package.json`, Node will try to load
+        the file named in the `main` property.
+    * And that directory contains a file named `index.js` or `index.node`, Node will
+        load that file.
 
 Node will process the paths in the order they appear in `module.paths` and return the first
 match.
@@ -745,7 +745,7 @@ jcouball_node_demo $
 The version in the `package.json` file is still `1.0.0`. In order to publish a
 different version, we need to update the `version` property.
 
-What should the new version be? Keeping in mind [Semantic Versioning](semantic-versioning),
+What should the new version be? Keeping in mind [Semantic Versioning](#semantic-versioning),
 the major version should not be updated since there are no backward
 incompatible changes. Since we ARE adding a new feature we should increment
 the minor version.
