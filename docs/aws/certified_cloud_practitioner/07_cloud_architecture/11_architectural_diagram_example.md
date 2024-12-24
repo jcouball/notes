@@ -1,0 +1,1 @@
+# Architectural diagram example

@@ -1,0 +1,1 @@
+# AWS Toolkit for VSCode

@@ -77,6 +77,361 @@ nav:
     - Prompt Engineering Best Practices: ai/prompt_engineering_best_practices.md
     - Prompt Engineering for Improved Performance: ai/prompt_engineering_for_improved_performance.md
 
+
+  - AWS:
+    - Certified Cloud Practitioner:
+      - Introduction:
+        - Meet Your Instructor: aws/certified_cloud_practitioner/01_introduction/01_meet_your_instructor.md
+        - Is CPP Right for Me?: aws/certified_cloud_practitioner/01_introduction/02_is_cpp_right_for_me.md
+        - Exam Guide Walkthrough: aws/certified_cloud_practitioner/01_introduction/03_exam_guide_walkthrough.md
+        - Study Habits Guide: aws/certified_cloud_practitioner/01_introduction/04_study_habits_guide.md
+        - Practice Exam Sample: aws/certified_cloud_practitioner/01_introduction/05_practice_exam_sample.md
+        - Case Study Question Type: aws/certified_cloud_practitioner/01_introduction/06_case_study_question_type.md
+        - Validators: aws/certified_cloud_practitioner/01_introduction/07_validators.md
+      - Cloud Concepts:
+        - What is Cloud Computing?: aws/certified_cloud_practitioner/02_cloud_concepts/01_what_is_cloud_computing.md
+        - Evolution of Cloud Hosting: aws/certified_cloud_practitioner/02_cloud_concepts/02_evolution_of_cloud_hosting.md
+        - What is Amazon?: aws/certified_cloud_practitioner/02_cloud_concepts/03_what_is_amazon.md
+        - What is AWS?: aws/certified_cloud_practitioner/02_cloud_concepts/04_what_is_aws.md
+        - What is a Cloud Service Provider?: aws/certified_cloud_practitioner/02_cloud_concepts/05_what_is_a_cloud_service_provider.md
+        - Landscape of CSPs: aws/certified_cloud_practitioner/02_cloud_concepts/06_landscape_of_csps.md
+        - Gartner Magic Quadrant for Cloud: aws/certified_cloud_practitioner/02_cloud_concepts/07_gartner_magic_quadrant_for_cloud.md
+        - Common Cloud Services: aws/certified_cloud_practitioner/02_cloud_concepts/08_common_cloud_services.md
+        - AWS Technology Overview: aws/certified_cloud_practitioner/02_cloud_concepts/09_aws_technology_overview.md
+        - AWS Services Preview: aws/certified_cloud_practitioner/02_cloud_concepts/10_aws_services_preview.md
+        - Evolution of Computing: aws/certified_cloud_practitioner/02_cloud_concepts/11_evolution_of_computing.md
+        - Types of Cloud Computing: aws/certified_cloud_practitioner/02_cloud_concepts/12_types_of_cloud_computing.md
+        - Cloud Computing Deployment Models: aws/certified_cloud_practitioner/02_cloud_concepts/13_cloud_computing_deployment_models.md
+        - Deployment Model Use Cases: aws/certified_cloud_practitioner/02_cloud_concepts/14_deployment_model_use_cases.md
+      - Getting Started:
+        - Create an AWS Account: aws/certified_cloud_practitioner/03_getting_started/01_create_an_aws_account.md
+        - Create IAM User: aws/certified_cloud_practitioner/03_getting_started/02_create_iam_user.md
+        - AWS Region Selector: aws/certified_cloud_practitioner/03_getting_started/03_aws_region_selector.md
+        - Overbilling Story: aws/certified_cloud_practitioner/03_getting_started/04_overbilling_story.md
+        - AWS Budgets: aws/certified_cloud_practitioner/03_getting_started/05_aws_budgets.md
+        - AWS Free Tier: aws/certified_cloud_practitioner/03_getting_started/06_aws_free_tier.md
+        - Billing Alarm: aws/certified_cloud_practitioner/03_getting_started/07_billing_alarm.md
+        - Turning on MFA: aws/certified_cloud_practitioner/03_getting_started/08_turning_on_mfa.md
+      - Digital Transformation:
+        - Innovation Waves: aws/certified_cloud_practitioner/04_digital_transformation/01_innovation_waves.md
+        - Burning Platform: aws/certified_cloud_practitioner/04_digital_transformation/02_burning_platform.md
+        - Digital Transformation Checklist: aws/certified_cloud_practitioner/04_digital_transformation/03_digital_transformation_checklist.md
+        - Evolution of Computing Power: aws/certified_cloud_practitioner/04_digital_transformation/04_evolution_of_computing_power.md
+        - Amazon Braket: aws/certified_cloud_practitioner/04_digital_transformation/05_amazon_braket.md
+      - The Benefits of Cloud:
+        - The Benefits of the Cloud: aws/certified_cloud_practitioner/05_the_benefits_of_cloud/01_the_benefits_of_the_cloud.md
+        - The Seven Advantages of Cloud: aws/certified_cloud_practitioner/05_the_benefits_of_cloud/02_the_seven_advantages_of_cloud.md
+      - AWS Global Infrastructure:
+        - AWS Global Infrastructure Overview: aws/certified_cloud_practitioner/06_aws_global_infrastructure/01_aws_global_infrastructure_overview.md
+        - AWS Global Infrastructure Follow Along: aws/certified_cloud_practitioner/06_aws_global_infrastructure/02_aws_global_infrastructure_follow_along.md
+        - Regions: aws/certified_cloud_practitioner/06_aws_global_infrastructure/03_regions.md
+        - Regional vs Global Services: aws/certified_cloud_practitioner/06_aws_global_infrastructure/04_regional_vs_global_services.md
+        - Availability Zones (AZs): aws/certified_cloud_practitioner/06_aws_global_infrastructure/05_availability_zones_azs.md
+        - Regions and AZ Visualized: aws/certified_cloud_practitioner/06_aws_global_infrastructure/06_regions_and_az_visualized.md
+        - Selecting Regions and Azs Follow Along: aws/certified_cloud_practitioner/06_aws_global_infrastructure/07_selecting_regions_and_azs_follow_along.md
+        - Fault Tolerance: aws/certified_cloud_practitioner/06_aws_global_infrastructure/08_fault_tolerance.md
+        - AWS Global Network: aws/certified_cloud_practitioner/06_aws_global_infrastructure/09_aws_global_network.md
+        - Points of Presence (PoP): aws/certified_cloud_practitioner/06_aws_global_infrastructure/10_points_of_presence_pop.md
+        - Tier 1: aws/certified_cloud_practitioner/06_aws_global_infrastructure/11_tier_1.md
+        - AWS Services using PoPs: aws/certified_cloud_practitioner/06_aws_global_infrastructure/12_aws_services_using_pops.md
+        - AWS Direct Connect: aws/certified_cloud_practitioner/06_aws_global_infrastructure/13_aws_direct_connect.md
+        - Direct Connect Locations: aws/certified_cloud_practitioner/06_aws_global_infrastructure/14_direct_connect_locations.md
+        - AWS Local Zones: aws/certified_cloud_practitioner/06_aws_global_infrastructure/15_aws_local_zones.md
+        - Wavelength Zones: aws/certified_cloud_practitioner/06_aws_global_infrastructure/16_wavelength_zones.md
+        - Data Residency: aws/certified_cloud_practitioner/06_aws_global_infrastructure/17_data_residency.md
+        - AWS for Government: aws/certified_cloud_practitioner/06_aws_global_infrastructure/18_aws_for_government.md
+        - GovCloud: aws/certified_cloud_practitioner/06_aws_global_infrastructure/19_govcloud.md
+        - AWS in China: aws/certified_cloud_practitioner/06_aws_global_infrastructure/20_aws_in_china.md
+        - AWS in China Follow Along: aws/certified_cloud_practitioner/06_aws_global_infrastructure/21_aws_in_china_follow_along.md
+        - Sustainability: aws/certified_cloud_practitioner/06_aws_global_infrastructure/22_sustainability.md
+        - Sustainability Follow Along: aws/certified_cloud_practitioner/06_aws_global_infrastructure/23_sustainability_follow_along.md
+        - AWS Ground Station: aws/certified_cloud_practitioner/06_aws_global_infrastructure/24_aws_ground_station.md
+        - AWS Outposts: aws/certified_cloud_practitioner/06_aws_global_infrastructure/25_aws_outposts.md
+      - Cloud Architecture:
+        - Cloud Architecture Terminologies: aws/certified_cloud_practitioner/07_cloud_architecture/01_cloud_architecture_terminologies.md
+        - High Availability: aws/certified_cloud_practitioner/07_cloud_architecture/02_high_availability.md
+        - High Scalability: aws/certified_cloud_practitioner/07_cloud_architecture/03_high_scalability.md
+        - High Elasticity: aws/certified_cloud_practitioner/07_cloud_architecture/04_high_elasticity.md
+        - Fault Tolerance: aws/certified_cloud_practitioner/07_cloud_architecture/05_fault_tolerance.md
+        - High Durability: aws/certified_cloud_practitioner/07_cloud_architecture/06_high_durability.md
+        - Business Continuity Plan: aws/certified_cloud_practitioner/07_cloud_architecture/07_business_continuity_plan.md
+        - Disaster Recovery Options: aws/certified_cloud_practitioner/07_cloud_architecture/08_disaster_recovery_options.md
+        - RTO Visualized: aws/certified_cloud_practitioner/07_cloud_architecture/09_rto_visualized.md
+        - RPO Visualized: aws/certified_cloud_practitioner/07_cloud_architecture/10_rpo_visualized.md
+        - Architectural diagram example: aws/certified_cloud_practitioner/07_cloud_architecture/11_architectural_diagram_example.md
+        - HA Follow Along: aws/certified_cloud_practitioner/07_cloud_architecture/12_ha_follow_along.md
+      - Management and Development Tools:
+        - AWS API: aws/certified_cloud_practitioner/08_management_and_development_tools/01_aws_api.md
+        - AWS API Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/02_aws_api_follow_along.md
+        - AWS Management Console: aws/certified_cloud_practitioner/08_management_and_development_tools/03_aws_management_console.md
+        - AWS Management Console Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/04_aws_management_console_follow_along.md
+        - Service Console: aws/certified_cloud_practitioner/08_management_and_development_tools/05_service_console.md
+        - Service Console Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/06_service_console_follow_along.md
+        - AWS Account ID: aws/certified_cloud_practitioner/08_management_and_development_tools/07_aws_account_id.md
+        - AWS Account ID Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/08_aws_account_id_follow_along.md
+        - AWS Tools for PowerShell: aws/certified_cloud_practitioner/08_management_and_development_tools/09_aws_tools_for_powershell.md
+        - AWS Tools for Powershell Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/10_aws_tools_for_powershell_follow_along.md
+        - Amazon Resource Names: aws/certified_cloud_practitioner/08_management_and_development_tools/11_amazon_resource_names.md
+        - ARN Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/12_arn_follow_along.md
+        - AWS CLI: aws/certified_cloud_practitioner/08_management_and_development_tools/13_aws_cli.md
+        - AWS CLI Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/14_aws_cli_follow_along.md
+        - AWS SDK: aws/certified_cloud_practitioner/08_management_and_development_tools/15_aws_sdk.md
+        - AWS SDK Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/16_aws_sdk_follow_along.md
+        - AWS CloudShell: aws/certified_cloud_practitioner/08_management_and_development_tools/17_aws_cloudshell.md
+        - Infrastructure as Code: aws/certified_cloud_practitioner/08_management_and_development_tools/18_infrastructure_as_code.md
+        - CloudFormation: aws/certified_cloud_practitioner/08_management_and_development_tools/19_cloudformation.md
+        - CloudFormation Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/20_cloudformation_follow_along.md
+        - CDK: aws/certified_cloud_practitioner/08_management_and_development_tools/21_cdk.md
+        - AWS Toolkit for VSCode: aws/certified_cloud_practitioner/08_management_and_development_tools/22_aws_toolkit_for_vscode.md
+        - Access Keys: aws/certified_cloud_practitioner/08_management_and_development_tools/23_access_keys.md
+        - Access Keys Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/24_access_keys_follow_along.md
+        - AWS Documentation: aws/certified_cloud_practitioner/08_management_and_development_tools/25_aws_documentation.md
+        - AWS Documentation Follow Along: aws/certified_cloud_practitioner/08_management_and_development_tools/26_aws_documentation_follow_along.md
+      - Shared Responsibility Model:
+        - Introduction to Shared Responsibility Model: aws/certified_cloud_practitioner/09_shared_responsibility_model/01_introduction_to_shared_responsibility_model.md
+        - AWS Shared Responsibility Model: aws/certified_cloud_practitioner/09_shared_responsibility_model/02_aws_shared_responsibility_model.md
+        - Types of Cloud Responsibilities: aws/certified_cloud_practitioner/09_shared_responsibility_model/03_types_of_cloud_responsibilities.md
+        - Shared Responsibility for Compute: aws/certified_cloud_practitioner/09_shared_responsibility_model/04_shared_responsibility_for_compute.md
+        - Shared Responsibility Model Alternate: aws/certified_cloud_practitioner/09_shared_responsibility_model/05_shared_responsibility_model_alternate.md
+        - Shared Responsibility Model Architecture: aws/certified_cloud_practitioner/09_shared_responsibility_model/06_shared_responsibility_model_architecture.md
+      - Compute:
+        - EC2 Overview: aws/certified_cloud_practitioner/10_compute/01_ec2_overview.md
+        - VMs, Containers and Serverless: aws/certified_cloud_practitioner/10_compute/02_vms_containers_and_serverless.md
+        - Compute Follow Along: aws/certified_cloud_practitioner/10_compute/03_compute_follow_along.md
+        - High Performance Computing (HPC): aws/certified_cloud_practitioner/10_compute/04_high_performance_computing_hpc.md
+        - HPC Follow Along: aws/certified_cloud_practitioner/10_compute/05_hpc_follow_along.md
+        - Edge and Hybrid: aws/certified_cloud_practitioner/10_compute/06_edge_and_hybrid.md
+        - Edge Computing Follow Along: aws/certified_cloud_practitioner/10_compute/07_edge_computing_follow_along.md
+        - Cost & Capacity Management: aws/certified_cloud_practitioner/10_compute/08_cost_capacity_management.md
+      - Storage:
+        - Types of Storage Services: aws/certified_cloud_practitioner/11_storage/01_types_of_storage_services.md
+        - Introduction to S3: aws/certified_cloud_practitioner/11_storage/02_introduction_to_s3.md
+        - S3 Storage Classes: aws/certified_cloud_practitioner/11_storage/03_s3_storage_classes.md
+        - AWS Snow Family: aws/certified_cloud_practitioner/11_storage/04_aws_snow_family.md
+        - Storage Services: aws/certified_cloud_practitioner/11_storage/05_storage_services.md
+        - S3 Follow Along: aws/certified_cloud_practitioner/11_storage/06_s3_follow_along.md
+        - EBS Follow Along: aws/certified_cloud_practitioner/11_storage/07_ebs_follow_along.md
+        - EFS Follow Along: aws/certified_cloud_practitioner/11_storage/08_efs_follow_along.md
+        - Snow Family Follow Along: aws/certified_cloud_practitioner/11_storage/09_snow_family_follow_along.md
+      - Databases:
+        - What is a database?: aws/certified_cloud_practitioner/12_databases/01_what_is_a_database.md
+        - What is a data warehouse?: aws/certified_cloud_practitioner/12_databases/02_what_is_a_data_warehouse.md
+        - What is a key value store?: aws/certified_cloud_practitioner/12_databases/03_what_is_a_key_value_store.md
+        - What is a document database?: aws/certified_cloud_practitioner/12_databases/04_what_is_a_document_database.md
+        - NoSQL Database Services: aws/certified_cloud_practitioner/12_databases/05_nosql_database_services.md
+        - Relational Database Services: aws/certified_cloud_practitioner/12_databases/06_relational_database_services.md
+        - Other Database Services: aws/certified_cloud_practitioner/12_databases/07_other_database_services.md
+        - DynamoDB Follow Along: aws/certified_cloud_practitioner/12_databases/08_dynamodb_follow_along.md
+        - RDS Follow Along: aws/certified_cloud_practitioner/12_databases/09_rds_follow_along.md
+        - Redshift Follow Along: aws/certified_cloud_practitioner/12_databases/10_redshift_follow_along.md
+      - Networking:
+        - Cloud-Native Networking Services: aws/certified_cloud_practitioner/13_networking/01_cloud_native_networking_services.md
+        - Enterprise/Hybrid Networking Services: aws/certified_cloud_practitioner/13_networking/02_enterprise_hybrid_networking_services.md
+        - Virtual Private Cloud (VPC) & Subnets: aws/certified_cloud_practitioner/13_networking/03_virtual_private_cloud_vpc_subnets.md
+        - Security Groups vs NACLs: aws/certified_cloud_practitioner/13_networking/04_security_groups_vs_nacls.md
+        - Security Groups vs NACLs Follow Along: aws/certified_cloud_practitioner/13_networking/05_security_groups_vs_nacls_follow_along.md
+        - AWS CloudFront: aws/certified_cloud_practitioner/13_networking/06_aws_cloudfront.md
+      - EC2:
+        - Introduction to EC2: aws/certified_cloud_practitioner/14_ec2/01_introduction_to_ec2.md
+        - EC2 Instance Families: aws/certified_cloud_practitioner/14_ec2/02_ec2_instance_families.md
+        - EC2 Instance Types: aws/certified_cloud_practitioner/14_ec2/03_ec2_instance_types.md
+        - Dedicated Host vs Dedicated Instances: aws/certified_cloud_practitioner/14_ec2/04_dedicated_host_vs_dedicated_instances.md
+        - EC2 Tenancy: aws/certified_cloud_practitioner/14_ec2/05_ec2_tenancy.md
+        - Launch an EC2, SSH and Sessions Manager: aws/certified_cloud_practitioner/14_ec2/06_launch_an_ec2_ssh_and_sessions_manager.md
+        - Elastic IP: aws/certified_cloud_practitioner/14_ec2/07_elastic_ip.md
+        - AMI and Launch Template: aws/certified_cloud_practitioner/14_ec2/08_ami_and_launch_template.md
+        - Launch an ASG: aws/certified_cloud_practitioner/14_ec2/09_launch_an_asg.md
+        - Launch an ALB: aws/certified_cloud_practitioner/14_ec2/10_launch_an_alb.md
+        - Cleanup: aws/certified_cloud_practitioner/14_ec2/11_cleanup.md
+      - EC2 Pricing Models:
+        - Ec2 Pricing Models: aws/certified_cloud_practitioner/15_ec2_pricing_models/01_ec2_pricing_models.md
+        - On Demand: aws/certified_cloud_practitioner/15_ec2_pricing_models/02_on_demand.md
+        - Reserved Instances: aws/certified_cloud_practitioner/15_ec2_pricing_models/03_reserved_instances.md
+        - RI Attributes: aws/certified_cloud_practitioner/15_ec2_pricing_models/04_ri_attributes.md
+        - Regional and Zonal RI: aws/certified_cloud_practitioner/15_ec2_pricing_models/05_regional_and_zonal_ri.md
+        - RI Limits: aws/certified_cloud_practitioner/15_ec2_pricing_models/06_ri_limits.md
+        - Capacity Reservations: aws/certified_cloud_practitioner/15_ec2_pricing_models/07_capacity_reservations.md
+        - Standard vs Convertible RI: aws/certified_cloud_practitioner/15_ec2_pricing_models/08_standard_vs_convertible_ri.md
+        - RI Marketplace: aws/certified_cloud_practitioner/15_ec2_pricing_models/09_ri_marketplace.md
+        - Spot Instances: aws/certified_cloud_practitioner/15_ec2_pricing_models/10_spot_instances.md
+        - Dedicated Instances: aws/certified_cloud_practitioner/15_ec2_pricing_models/11_dedicated_instances.md
+        - Savings Plan: aws/certified_cloud_practitioner/15_ec2_pricing_models/12_savings_plan.md
+      - Identity:
+        - Zero-Trust Model: aws/certified_cloud_practitioner/16_identity/01_zero_trust_model.md
+        - Zero-Trust on AWS: aws/certified_cloud_practitioner/16_identity/02_zero_trust_on_aws.md
+        - Zero-Trust on AWS with Third-Parties: aws/certified_cloud_practitioner/16_identity/03_zero_trust_on_aws_with_third_parties.md
+        - Directory Service: aws/certified_cloud_practitioner/16_identity/04_directory_service.md
+        - Active Directory: aws/certified_cloud_practitioner/16_identity/05_active_directory.md
+        - Identity Providers: aws/certified_cloud_practitioner/16_identity/06_identity_providers.md
+        - Single-Sign-On: aws/certified_cloud_practitioner/16_identity/07_single_sign_on.md
+        - LDAP: aws/certified_cloud_practitioner/16_identity/08_ldap.md
+        - Multi-Factor-Authenication: aws/certified_cloud_practitioner/16_identity/09_multi_factor_authenication.md
+        - Security Keys: aws/certified_cloud_practitioner/16_identity/10_security_keys.md
+        - AWS IAM: aws/certified_cloud_practitioner/16_identity/11_aws_iam.md
+        - Anatomy of an IAM Policy: aws/certified_cloud_practitioner/16_identity/12_anatomy_of_an_iam_policy.md
+        - IAM Policies Follow Along: aws/certified_cloud_practitioner/16_identity/13_iam_policies_follow_along.md
+        - Principle-of-Least-Privilege: aws/certified_cloud_practitioner/16_identity/14_principle_of_least_privilege.md
+        - AWS Account Root User: aws/certified_cloud_practitioner/16_identity/15_aws_account_root_user.md
+        - AWS SSO: aws/certified_cloud_practitioner/16_identity/16_aws_sso.md
+      - Application Integration:
+        - Introduction to Application Integration: aws/certified_cloud_practitioner/17_application_integration/01_introduction_to_application_integration.md
+        - Queueing and SQS: aws/certified_cloud_practitioner/17_application_integration/02_queueing_and_sqs.md
+        - Streaming and Kinesis: aws/certified_cloud_practitioner/17_application_integration/03_streaming_and_kinesis.md
+        - Pub-Sub and SNS: aws/certified_cloud_practitioner/17_application_integration/04_pub_sub_and_sns.md
+        - API Gateway and Amazon API Gateway: aws/certified_cloud_practitioner/17_application_integration/05_api_gateway_and_amazon_api_gateway.md
+        - State Machines and AWS Step Functions: aws/certified_cloud_practitioner/17_application_integration/06_state_machines_and_aws_step_functions.md
+        - Event Bus and Amazon Event Bridge: aws/certified_cloud_practitioner/17_application_integration/07_event_bus_and_amazon_event_bridge.md
+        - Application Integration Services: aws/certified_cloud_practitioner/17_application_integration/08_application_integration_services.md
+      - Containers:
+        - VMs vs Containers: aws/certified_cloud_practitioner/18_containers/01_vms_vs_containers.md
+        - What are Microservices?: aws/certified_cloud_practitioner/18_containers/02_what_are_microservices.md
+        - Kuberenetes: aws/certified_cloud_practitioner/18_containers/03_kuberenetes.md
+        - Docker: aws/certified_cloud_practitioner/18_containers/04_docker.md
+        - Podman: aws/certified_cloud_practitioner/18_containers/05_podman.md
+        - Container Services: aws/certified_cloud_practitioner/18_containers/06_container_services.md
+      - Governance:
+        - Organizations and Accounts: aws/certified_cloud_practitioner/19_governance/01_organizations_and_accounts.md
+        - AWS Control Tower: aws/certified_cloud_practitioner/19_governance/02_aws_control_tower.md
+        - AWS Config: aws/certified_cloud_practitioner/19_governance/03_aws_config.md
+        - AWS Config FollowAlong: aws/certified_cloud_practitioner/19_governance/04_aws_config_followalong.md
+        - AWS Quick Starts: aws/certified_cloud_practitioner/19_governance/05_aws_quick_starts.md
+        - AWS QuickStarts Follow Along: aws/certified_cloud_practitioner/19_governance/06_aws_quickstarts_follow_along.md
+        - Tagging: aws/certified_cloud_practitioner/19_governance/07_tagging.md
+        - Tag Name Follow Along: aws/certified_cloud_practitioner/19_governance/08_tag_name_follow_along.md
+        - Resource Groups: aws/certified_cloud_practitioner/19_governance/09_resource_groups.md
+        - Resource Groups Follow Along: aws/certified_cloud_practitioner/19_governance/10_resource_groups_follow_along.md
+        - Business Centric Services: aws/certified_cloud_practitioner/19_governance/11_business_centric_services.md
+      - Provisioning:
+        - Provisioning Services: aws/certified_cloud_practitioner/20_provisioning/01_provisioning_services.md
+        - AWS Elastic Beanstalk: aws/certified_cloud_practitioner/20_provisioning/02_aws_elastic_beanstalk.md
+        - AWS Elastic Beanstalk Follow Along: aws/certified_cloud_practitioner/20_provisioning/03_aws_elastic_beanstalk_follow_along.md
+      - Serverless Services:
+        - What is Serverless?: aws/certified_cloud_practitioner/21_serverless_services/01_what_is_serverless.md
+        - Serverless Services: aws/certified_cloud_practitioner/21_serverless_services/02_serverless_services.md
+      - Windows on AWS:
+        - Windows on AWS: aws/certified_cloud_practitioner/22_windows_on_aws/01_windows_on_aws.md
+        - EC2 Windows Follow Along: aws/certified_cloud_practitioner/22_windows_on_aws/02_ec2_windows_follow_along.md
+        - AWS License Manager: aws/certified_cloud_practitioner/22_windows_on_aws/03_aws_license_manager.md
+      - Logging:
+        - Logging Services: aws/certified_cloud_practitioner/23_logging/01_logging_services.md
+        - AWS Cloud Trail: aws/certified_cloud_practitioner/23_logging/02_aws_cloud_trail.md
+        - CloudWatch Alarm: aws/certified_cloud_practitioner/23_logging/03_cloudwatch_alarm.md
+        - mastering attached flashcard: aws/certified_cloud_practitioner/23_logging/04_mastering_attached_flashcard.md
+        - Anatomy of an Alarm: aws/certified_cloud_practitioner/23_logging/05_anatomy_of_an_alarm.md
+        - Log Streams and Events: aws/certified_cloud_practitioner/23_logging/06_log_streams_and_events.md
+        - Log Insights: aws/certified_cloud_practitioner/23_logging/07_log_insights.md
+        - CloudWatch Metrics: aws/certified_cloud_practitioner/23_logging/08_cloudwatch_metrics.md
+        - AWS CloudTrail Follow Along: aws/certified_cloud_practitioner/23_logging/09_aws_cloudtrail_follow_along.md
+      - ML and AI and Big Data:
+        - Introduction to ML and Al: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/01_introduction_to_ml_and_al.md
+        - Al and ML Services: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/02_al_and_ml_services.md
+        - BigData and Analytics Services: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/03_bigdata_and_analytics_services.md
+        - Amazon QuickSight: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/04_amazon_quicksight.md
+        - QuickSight Follow Along: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/05_quicksight_follow_along.md
+        - Machine Learning and Al Services - Extended: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/06_machine_learning_and_al_services_extended.md
+        - Generative Al: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/07_generative_al.md
+        - ML and DL Frameworks and Tools: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/08_ml_and_dl_frameworks_and_tools.md
+        - Apache MXNet: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/09_apache_mxnet.md
+        - What is Intel: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/10_what_is_intel.md
+        - Intel Xeon Scalable and Intel Gaudi: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/11_intel_xeon_scalable_and_intel_gaudi.md
+        - What is a GPU: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/12_what_is_a_gpu.md
+        - What is CUDA: aws/certified_cloud_practitioner/24_ml_and_ai_and_big_data/13_what_is_cuda.md
+      - AWS Well-Architected Framework:
+        - AWS Well-Architected Framework: aws/certified_cloud_practitioner/25_aws_well_architected_framework/01_aws_well_architected_framework.md
+        - General Defintions: aws/certified_cloud_practitioner/25_aws_well_architected_framework/02_general_defintions.md
+        - On Architecture: aws/certified_cloud_practitioner/25_aws_well_architected_framework/03_on_architecture.md
+        - Amazon Leadership Principles: aws/certified_cloud_practitioner/25_aws_well_architected_framework/04_amazon_leadership_principles.md
+        - General Design Principles: aws/certified_cloud_practitioner/25_aws_well_architected_framework/05_general_design_principles.md
+        - Anatomy of a Pillar: aws/certified_cloud_practitioner/25_aws_well_architected_framework/06_anatomy_of_a_pillar.md
+        - Operational Excellence: aws/certified_cloud_practitioner/25_aws_well_architected_framework/07_operational_excellence.md
+        - Security: aws/certified_cloud_practitioner/25_aws_well_architected_framework/08_security.md
+        - Reliability: aws/certified_cloud_practitioner/25_aws_well_architected_framework/09_reliability.md
+        - Performance Efficiency: aws/certified_cloud_practitioner/25_aws_well_architected_framework/10_performance_efficiency.md
+        - Cost Optimization: aws/certified_cloud_practitioner/25_aws_well_architected_framework/11_cost_optimization.md
+        - AWS Well-Architected-Tool: aws/certified_cloud_practitioner/25_aws_well_architected_framework/12_aws_well_architected_tool.md
+        - Well-Architected Framework and Tool- Follow Along: aws/certified_cloud_practitioner/25_aws_well_architected_framework/13_well_architected_framework_and_tool_follow_along.md
+        - AWS Architecture Center: aws/certified_cloud_practitioner/25_aws_well_architected_framework/14_aws_architecture_center.md
+      - TCO and Migration:
+        - Total Cost of Ownership (TCO): aws/certified_cloud_practitioner/26_tco_and_migration/01_total_cost_of_ownership_tco.md
+        - CAPEX vS OPEX: aws/certified_cloud_practitioner/26_tco_and_migration/02_capex_vs_opex.md
+        - Shifting-IT Personnel: aws/certified_cloud_practitioner/26_tco_and_migration/03_shifting_it_personnel.md
+        - AWS Pricing Calculator: aws/certified_cloud_practitioner/26_tco_and_migration/04_aws_pricing_calculator.md
+        - AWS Pricing Calculator Follow Along: aws/certified_cloud_practitioner/26_tco_and_migration/05_aws_pricing_calculator_follow_along.md
+        - Migration Evaluator: aws/certified_cloud_practitioner/26_tco_and_migration/06_migration_evaluator.md
+        - VM Import Export: aws/certified_cloud_practitioner/26_tco_and_migration/07_vm_import_export.md
+        - Database Migration Service: aws/certified_cloud_practitioner/26_tco_and_migration/08_database_migration_service.md
+        - Cloud Adoption Framework: aws/certified_cloud_practitioner/26_tco_and_migration/09_cloud_adoption_framework.md
+      - Billing, Pricing and Support:
+        - AWS Free Services: aws/certified_cloud_practitioner/27_billing_pricing_and_support/01_aws_free_services.md
+        - AWS Support Plans: aws/certified_cloud_practitioner/27_billing_pricing_and_support/02_aws_support_plans.md
+        - Technical Account Manager: aws/certified_cloud_practitioner/27_billing_pricing_and_support/03_technical_account_manager.md
+        - AWS Support Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/04_aws_support_follow_along.md
+        - AWS Marketplace: aws/certified_cloud_practitioner/27_billing_pricing_and_support/05_aws_marketplace.md
+        - AWS Marketplace Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/06_aws_marketplace_follow_along.md
+        - Consolidated Billing: aws/certified_cloud_practitioner/27_billing_pricing_and_support/07_consolidated_billing.md
+        - Consolidated Billing Volume Discounts: aws/certified_cloud_practitioner/27_billing_pricing_and_support/08_consolidated_billing_volume_discounts.md
+        - AWS Trusted Advisor: aws/certified_cloud_practitioner/27_billing_pricing_and_support/09_aws_trusted_advisor.md
+        - AWS Trusted Advisor Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/10_aws_trusted_advisor_follow_along.md
+        - SLAS: aws/certified_cloud_practitioner/27_billing_pricing_and_support/11_slas.md
+        - AWS SLA Examples: aws/certified_cloud_practitioner/27_billing_pricing_and_support/12_aws_sla_examples.md
+        - AWS SLA Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/13_aws_sla_follow_along.md
+        - Service Health Dashboard: aws/certified_cloud_practitioner/27_billing_pricing_and_support/14_service_health_dashboard.md
+        - AWS Personal Health Dashboard: aws/certified_cloud_practitioner/27_billing_pricing_and_support/15_aws_personal_health_dashboard.md
+        - AWS Abuse: aws/certified_cloud_practitioner/27_billing_pricing_and_support/16_aws_abuse.md
+        - AWS Abuse Report Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/17_aws_abuse_report_follow_along.md
+        - AWS Free Tier: aws/certified_cloud_practitioner/27_billing_pricing_and_support/18_aws_free_tier.md
+        - AWS Credits: aws/certified_cloud_practitioner/27_billing_pricing_and_support/19_aws_credits.md
+        - AWS Partner Network: aws/certified_cloud_practitioner/27_billing_pricing_and_support/20_aws_partner_network.md
+        - AWS Budgets: aws/certified_cloud_practitioner/27_billing_pricing_and_support/21_aws_budgets.md
+        - AWS Budget Reports: aws/certified_cloud_practitioner/27_billing_pricing_and_support/22_aws_budget_reports.md
+        - AWS Cost and Usage Reports: aws/certified_cloud_practitioner/27_billing_pricing_and_support/23_aws_cost_and_usage_reports.md
+        - Cost Allocation Tags: aws/certified_cloud_practitioner/27_billing_pricing_and_support/24_cost_allocation_tags.md
+        - Billing Alarms: aws/certified_cloud_practitioner/27_billing_pricing_and_support/25_billing_alarms.md
+        - AWS Cost Explorer: aws/certified_cloud_practitioner/27_billing_pricing_and_support/26_aws_cost_explorer.md
+        - AWS Cost Explorer Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/27_aws_cost_explorer_follow_along.md
+        - Programmatic Pricing APls: aws/certified_cloud_practitioner/27_billing_pricing_and_support/28_programmatic_pricing_apls.md
+        - AWS Savings Plan Follow Along: aws/certified_cloud_practitioner/27_billing_pricing_and_support/29_aws_savings_plan_follow_along.md
+      - Security:
+        - Defense-In-Depth: aws/certified_cloud_practitioner/28_security/01_defense_in_depth.md
+        - CIA Triad: aws/certified_cloud_practitioner/28_security/02_cia_triad.md
+        - Vulnerabilities: aws/certified_cloud_practitioner/28_security/03_vulnerabilities.md
+        - Encryption: aws/certified_cloud_practitioner/28_security/04_encryption.md
+        - Cyphers: aws/certified_cloud_practitioner/28_security/05_cyphers.md
+        - Cryptographic Keys: aws/certified_cloud_practitioner/28_security/06_cryptographic_keys.md
+        - Hashing and Salting: aws/certified_cloud_practitioner/28_security/07_hashing_and_salting.md
+        - Digital Signatures and Signing: aws/certified_cloud_practitioner/28_security/08_digital_signatures_and_signing.md
+        - In-Transit vs At-Rest Encryption: aws/certified_cloud_practitioner/28_security/09_in_transit_vs_at_rest_encryption.md
+        - Compliance Programs: aws/certified_cloud_practitioner/28_security/10_compliance_programs.md
+        - AWS Compliance Programs Follow Along: aws/certified_cloud_practitioner/28_security/11_aws_compliance_programs_follow_along.md
+        - Pen Testing: aws/certified_cloud_practitioner/28_security/12_pen_testing.md
+        - Pen Testing Follow Along: aws/certified_cloud_practitioner/28_security/13_pen_testing_follow_along.md
+        - AWS Artifact: aws/certified_cloud_practitioner/28_security/14_aws_artifact.md
+        - AWS Artifact Follow Along: aws/certified_cloud_practitioner/28_security/15_aws_artifact_follow_along.md
+        - AWS Inspector: aws/certified_cloud_practitioner/28_security/16_aws_inspector.md
+        - DDoS: aws/certified_cloud_practitioner/28_security/17_ddos.md
+        - AWS Shield: aws/certified_cloud_practitioner/28_security/18_aws_shield.md
+        - AWS Guard Duty: aws/certified_cloud_practitioner/28_security/19_aws_guard_duty.md
+        - AWS Guard Duty Follow Along: aws/certified_cloud_practitioner/28_security/20_aws_guard_duty_follow_along.md
+        - AWS VPN: aws/certified_cloud_practitioner/28_security/21_aws_vpn.md
+        - AWS WAF: aws/certified_cloud_practitioner/28_security/22_aws_waf.md
+        - AWS WAF Follow Along: aws/certified_cloud_practitioner/28_security/23_aws_waf_follow_along.md
+        - Hardware Security Module: aws/certified_cloud_practitioner/28_security/24_hardware_security_module.md
+        - AWS KMS: aws/certified_cloud_practitioner/28_security/25_aws_kms.md
+        - AWS KMS Follow Along: aws/certified_cloud_practitioner/28_security/26_aws_kms_follow_along.md
+        - CloudHSM: aws/certified_cloud_practitioner/28_security/27_cloudhsm.md
+      - Variation Study:
+        - Know Your Initialisms: aws/certified_cloud_practitioner/29_variation_study/01_know_your_initialisms.md
+        - AWS Config AWS AppConfig: aws/certified_cloud_practitioner/29_variation_study/02_aws_config_aws_appconfig.md
+        - SNS vs SQS: aws/certified_cloud_practitioner/29_variation_study/03_sns_vs_sqs.md
+        - SNS vs SES vs PinPoint vs Workmail: aws/certified_cloud_practitioner/29_variation_study/04_sns_vs_ses_vs_pinpoint_vs_workmail.md
+        - Amazon Inspector vs AWS Trusted Advisor: aws/certified_cloud_practitioner/29_variation_study/05_amazon_inspector_vs_aws_trusted_advisor.md
+        - Connect Named Services: aws/certified_cloud_practitioner/29_variation_study/06_connect_named_services.md
+        - Elastic Transcoder vs MediaConvert: aws/certified_cloud_practitioner/29_variation_study/07_elastic_transcoder_vs_mediaconvert.md
+        - AWS Artifact vs Amazon Inspector: aws/certified_cloud_practitioner/29_variation_study/08_aws_artifact_vs_amazon_inspector.md
+        - ELB variants: aws/certified_cloud_practitioner/29_variation_study/09_elb_variants.md
+      - Next Steps:
+        - Booking Your Exam: aws/certified_cloud_practitioner/30_next_steps/01_booking_your_exam.md
+
   - Git / GitHub:
     - Git Tips: git/git.md
     - Ultimate Git Course:
