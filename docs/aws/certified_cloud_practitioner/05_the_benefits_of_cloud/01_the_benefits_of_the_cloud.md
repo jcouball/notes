@@ -3,8 +3,6 @@
 The benefits of the cloud are a summary of reasons why an organization would consider
 adopting or migrating to utilizing the public cloud.
 
-# fix this markdown table ... the headers are wrong
-
 | *Benefit* | *Description* |
 | Agility | Increase speed and agility |
 | Pay-as-you-go pricing | Trade capital expense for variable expense |
