@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "setup": "npm install && pip3 install -r requirements.txt",
+    "setup": "npm install && pip3 install -r requirements.txt && (command -v asdf >/dev/null && asdf reshim python || true)",
     "lint": "markdownlint-cli2 '**/*.md' '!node_modules'",
-    "build": "markdownlint-cli2 '**/*.md' '!node_modules' && mkdocs build",
-    "serve": "markdownlint-cli2 '**/*.md' '!node_modules' && mkdocs serve"
+    "build": "markdownlint-cli2 '**/*.md' '!node_modules' '!.venv' && mkdocs build",
+    "serve": "markdownlint-cli2 '**/*.md' '!node_modules' '!.venv' && mkdocs serve"
   },
   "devDependencies": {
     "markdownlint-cli2": "^0.14.0"
