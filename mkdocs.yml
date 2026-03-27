@@ -73,6 +73,7 @@ nav:
 
   - AI:
     - ChatGPT Prompt Engineering for Developers: ai/chatgpt_prompt_engineering_for_developers.md
+    - Claude Code Concepts: ai/claude_code_concepts.md
     - Getting Started on Prompt Engineering: ai/getting_started_on_prompt_engineering.md
     - Prompt Engineering Best Practices: ai/prompt_engineering_best_practices.md
     - Prompt Engineering for Improved Performance: ai/prompt_engineering_for_improved_performance.md
