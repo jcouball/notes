@@ -70,6 +70,12 @@ theme:
 nav:
   - About Me: index.md
   - Documentation Standards: documentation_standards.md
+  - Blog Posts:
+    - blog_posts.md
+    - Defining Class Variables and Constants in an Anonymous Class: blog_posts/2022-03-21-defining-class-variables-and-constants-in-an-anonymous-class.md
+    - Continuous Delivery for Ruby Gems: blog_posts/2025-04-16-continuous-delivery-for-ruby-gems.md
+    - Enforcing Conventional Commits with Git Hooks: blog_posts/2025-04-18-enforcing-conventional-commits-git.md
+    - Enforcing Conventional Commits with GitHub Actions: blog_posts/2025-04-20-enforcing-conventional-commits-github.md
 
   - AI:
     - ChatGPT Prompt Engineering for Developers: ai/chatgpt_prompt_engineering_for_developers.md
